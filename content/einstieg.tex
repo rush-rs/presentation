@@ -1,0 +1,106 @@
+% \section{Einstieg \& Motivation}
+% \begin{frame}{Einstieg \& Motivation}
+% 	\begin{itemize}
+% 		\item Computerprogrammer werden oft in speziell entwickelten Programmiersprachen verfasst
+% 		\item Vorteile eines hohen Abstraktionsgrades~\cite[S.~9]{Dandamudi2005Risc}:
+% 		      \begin{itemize}
+% 			      \item Entwicklung ist einfacher und schneller
+% 			      \item Programme sind portabel
+% 			      \item Instandhaltung ist einfacher
+% 		      \end{itemize}
+% 		\item Programme sollten einfach zu schreiben sein
+% 		\item[\Rightarrow] Zentrales Problem: Ein Computer muss diese jedoch auch verstehen
+% 	\end{itemize}
+% \end{frame}
+%
+% \begin{frame}{Methoden zur Programmausführung}
+% 	\begin{itemize}
+% 		\item Man unterscheidet zwischen \emph{Compilern} und \emph{Interpretern}
+% 		\item Ein Compiler (auch \emph{Übersetzer}) übersetzt die Sprache in ein zielspezifiesches Format, sodass ein Computer dieses verstehen kann
+% 		\item Ein Interpreter führt das Programm direkt aus, ohne es vorher zu bearbeiten
+% 	\end{itemize}
+% \end{frame}
+
+\begin{frame}{Etappen der Übersetzung}
+	\begin{figure}[h]
+		\begin{adjustbox}{max totalsize={\textwidth}{!},center}
+			\begin{tikzpicture}[node distance=1cm, inner sep=3mm]
+				\node (lexical_analysis) [rec] {lexical analysis};
+				\node (syntactic_analysis) [rec, right=of lexical_analysis, align=center] {syntactical\\analysis};
+				\draw [arrow] (lexical_analysis) -- (syntactic_analysis);
+				\node (semantic_analysis) [rec, right=of syntactic_analysis, align=center] {semantic\\analysis};
+				\draw [arrow] (syntactic_analysis) -- (semantic_analysis);
+				\node (codegen) [rec, right=of semantic_analysis] {code generation};
+				\draw [arrow] (semantic_analysis) -- (codegen);
+			\end{tikzpicture}
+		\end{adjustbox}
+		\caption{Etappen der Übersetzung}{\cite[S.~6--7]{wirth_compiler_construction_2005}}\label{fig:compilation_steps}
+	\end{figure}
+\end{frame}
+
+\begin{frame}{Etappen der Übersetzung (angepasst)}
+	\begin{figure}[h]
+		\begin{adjustbox}{max totalsize={\textwidth}{!},center}
+			\begin{tikzpicture}[node distance=3mm and 1cm, inner sep=3mm]
+				\node (syntactic_analysis_text) [inner sep=0] {syntactical analysis};
+				\node (lexical_analysis) [rec, below=of syntactic_analysis_text] {lexical analysis};
+				\node (syntactic_analysis) [rec, fit={(syntactic_analysis_text) (lexical_analysis)}] {};
+				\node (semantic_analysis) [rec, right=of syntactic_analysis] {semantic analysis};
+				\draw [arrow] (syntactic_analysis) -- (semantic_analysis);
+				\node (codegen) [rec, right=of semantic_analysis] {code generation};
+				\draw [arrow] (semantic_analysis) -- (codegen);
+			\end{tikzpicture}
+		\end{adjustbox}
+		\caption{Etappen der Übersetzung (angepasst)}{\cite[S.~6--7]{wirth_compiler_construction_2005}}\label{fig:compilation_steps_altered}
+	\end{figure}
+\end{frame}
+
+\subsection{Die Programmiersprache \enquote{rush}}
+
+\begin{frame}{Die Programmiersprache \enquote{rush}}
+	\Lirsting[caption={Erzeugen von Fibonaccizahlen in rush}, label={lst:rush_fib}, float=H]{deps/paper/listings/fib.rush}
+\end{frame}
+
+\begin{frame}{Fähigkeiten von rush}
+	\begin{table}[h]
+		\caption{Die wichtigsten Fähigkeiten von rush}\label{tbl:rush_features}
+		\rowcolors{2}{gray!15}{}
+		\begin{tabularx}{0.95\textwidth}{lL}
+			\rowcolor{gray!25} Name & rush Code                                         \\
+			\hline
+			Loop                    & \LirstInline{rush}{loop {  }}                     \\
+			While                   & \LirstInline{rush}{while x < 5 {  }}              \\
+			For                     & \LirstInline{rush}{for i = 0; i < 5; i += 1 {  }} \\
+			If                      & \LirstInline{rush}{if true { /* */ } else {  }}   \\
+			Fn                      & \LirstInline{rush}{fn foo(n: int) {  }}           \\
+			Infix Expr              & \LirstInline{rush}{1 + n; 5 ** 2}                 \\
+			Prefix Expr             & \LirstInline{rush}{!false; -n}                    \\
+			Variables               & \LirstInline{rush}{let mut answer = 42}           \\
+			Cast Expr               & \LirstInline{rush}{42 as char}                    \\
+		\end{tabularx}
+	\end{table}
+\end{frame}
+
+\begin{frame}{Datentypen in rush}
+	\begin{table}[h]
+		\caption{Datentypen in rush}\label{tbl:rush_types}
+		\rowcolors{2}{gray!15}{}
+		\begin{tabularx}{0.95\textwidth}{lL}
+			\rowcolor{gray!25} Notation & Example Data                             \\
+			\hline
+			\qVerb{int}                 & \LirstInline{rush}{let a: int = 0;}      \\
+			\qVerb{float}               & \LirstInline{rush}{let b: float = 3.14;} \\
+			\qVerb{bool}                & \LirstInline{rush}{let c: bool = true;}  \\
+			\qVerb{char}                & \LirstInline{rush}{let c: char = 'a';}   \\
+			\qVerb{()}                  & \LirstInline{rush}{let d: () = main();}  \\
+			\qVerb{!}                   & \LirstInline{rush}{let e = exit(42);}    \\
+		\end{tabularx}
+	\end{table}
+\end{frame}
+
+\begin{frame}{Fakten über rush}
+    \begin{itemize}
+        \item Im Commit \rushCommit~umfasste das Projekt \rushLoc Zeilen Programmtext\footnote{Leerzeilen und Kommentare werden nicht gezählt}
+        \item Enthält einen Lexer, einen Parser, fünf Compiler und einen Interpreter
+    \end{itemize}
+\end{frame}
