@@ -1,10 +1,12 @@
-\documentclass[ngerman, table]{beamer}
+\documentclass[ngerman, table, 9pt]{beamer}
 \usetheme{metropolis}
 
 %\usepackage[all]{hypcap}
 \usepackage{colortbl}
 \usepackage{scrhack}
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[no-math]{fontspec}
 \usepackage{babel}
 %\usepackage[pdfborder={0 0 0}]{hyperref}
 %\usepackage{amsmath}
@@ -15,17 +17,14 @@
 %\usepackage{textcomp}
 
 % REFERENCE: https://www.ctan.org/tex-archive/macros/latex/contrib/drawstack
-% TODO: Install this package in the docker container / use offline version of it
 %\usepackage[nocolor]{drawstack}
 
 \usepackage[backend=biber,style=alphabetic,sorting=ynt]{biblatex}
 \addbibresource{deps/paper/bibliography.bib}
 
-\usepackage[T1]{fontenc}
 
-\usepackage[no-math]{fontspec}
-% \setmainfont{Times New Roman}
-% \setsansfont{Arial}
+\setmainfont{Fira Sans}
+\setsansfont{Fira Sans}
 \setmonofont[Scale=MatchLowercase]{JetBrains Mono NL}
 
 % \setlength{\parindent}{0pt}
@@ -53,4 +52,6 @@
 % \setcounter{tocdepth}{3}% Include \subsubsection in ToC
 
 \newcounter{chapter}
-\setcounter{chapter}{0}
+\setcounter{chapter}{1}
+
+\newcommand{\scite}[2][]{\footnotesize\cite[#1]{#2}}

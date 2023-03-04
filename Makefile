@@ -12,14 +12,16 @@ build: listings/generated
 main.pdf: main.tex deps preamble lirstings.json
 	latexmk -lualatex -shell-escape -g main.tex
 
+listings/generated: rush_build.py deps/rush deps/paper
+	cd deps/paper && make listings/generated && cd ..
+	mkdir -p ./listings/generated/
+	python3 rush_build.py build
+
 init: fetch_deps.sh
 	sh fetch_deps.sh
 	mkdir -p ./deps/paper/deps
 	cp -fr ./deps/rush ./deps/paper/deps/rush
 	cargo install --git https://github.com/rush-rs/lirstings --force
-
-listings/generated:
-	cd deps/paper && make listings/generated && cd ..
 
 clean:
 	eztex c
