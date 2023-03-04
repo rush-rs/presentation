@@ -2,7 +2,7 @@ build: listings/generated
 	rm -f main.pdf
 	make main.pdf
 	exiftool \
-		-Title="The Conversion of Source Code to Machine Code" \
+		-Title="Defense: The Conversion of Source Code to Machine Code" \
 		-Author="Silas Groh, Mik Müller" \
 		-Subject="Compiler Construction" \
 		-Keywords="compiler, compiler construction, programming language" \
@@ -15,7 +15,7 @@ main.pdf: main.tex deps preamble lirstings.json
 init: fetch_deps.sh
 	sh fetch_deps.sh
 	mkdir -p ./deps/paper/deps
-	cp -r ./deps/rush ./deps/paper/deps/rush
+	cp -fr ./deps/rush ./deps/paper/deps/rush
 	cargo install --git https://github.com/rush-rs/lirstings --force
 
 listings/generated:
