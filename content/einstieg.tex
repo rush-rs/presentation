@@ -12,11 +12,11 @@
 \end{frame}
 
 \begin{frame}{Zentrales Problem}
-	\begin{minipage}{.4\textwidth}
+	\begin{minipage}{.35\textwidth}
 		\Lirsting[float=H, fancyvrb={frame=none}, size=small]{deps/paper/listings/simple.rush}
 	\end{minipage}%
-	\begin{tikzpicture}[my triangle/.style={-{Triangle[width=\the\dimexpr1.8\pgflinewidth,length=\the\dimexpr0.8\pgflinewidth]}}]
-		\draw[line width=8pt,my triangle](0,0) -- (1,0);
+	\begin{tikzpicture}[triangle/.style={-{Triangle[width=\the\dimexpr1.8\pgflinewidth,length=\the\dimexpr0.8\pgflinewidth]}}]
+        \draw[line width=9pt,triangle](0,0) -- node[anchor=south, yshift=.15cm] {\footnotesize Übersetzung} (1.4,0);
 	\end{tikzpicture}
 	\hfill
 	\begin{minipage}{.35\textwidth}
@@ -40,12 +40,12 @@
 	\begin{figure}[h]
 		\begin{adjustbox}{max totalsize={\textwidth}{!},center}
 			\begin{tikzpicture}[node distance=1cm, inner sep=3mm]
-				\node (lexical_analysis) [rec] {lexical analysis};
-				\node (syntactic_analysis) [rec, right=of lexical_analysis, align=center] {syntactical\\analysis};
+				\node (lexical_analysis) [rec, minimum height=1.5cm] {Lexikalische Analyse};
+				\node (syntactic_analysis) [rec, right=of lexical_analysis, align=center, minimum height=1.5cm] {Syntaxanalyse};
 				\draw [arrow] (lexical_analysis) -- (syntactic_analysis);
-				\node (semantic_analysis) [rec, right=of syntactic_analysis, align=center] {semantic\\analysis};
+				\node (semantic_analysis) [rec, right=of syntactic_analysis, align=center, minimum height=1.5cm] {Semantische\\Analyse};
 				\draw [arrow] (syntactic_analysis) -- (semantic_analysis);
-				\node (codegen) [rec, right=of semantic_analysis] {code generation};
+				\node (codegen) [rec, right=of semantic_analysis, minimum height=1.5cm] {Code-Erzeugung};
 				\draw [arrow] (semantic_analysis) -- (codegen);
 			\end{tikzpicture}
 		\end{adjustbox}
@@ -57,12 +57,12 @@
 	\begin{figure}[h]
 		\begin{adjustbox}{max totalsize={\textwidth}{!},center}
 			\begin{tikzpicture}[node distance=3mm and 1cm, inner sep=3mm]
-				\node (syntactic_analysis_text) [inner sep=0] {syntactical analysis};
-				\node (lexical_analysis) [rec, below=of syntactic_analysis_text] {lexical analysis};
+				\node (syntactic_analysis_text) [inner sep=0] {Syntaxanalyse};
+				\node (lexical_analysis) [rec, below=of syntactic_analysis_text] {Lexikalische Analyse};
 				\node (syntactic_analysis) [rec, fit={(syntactic_analysis_text) (lexical_analysis)}] {};
-				\node (semantic_analysis) [rec, right=of syntactic_analysis] {semantic analysis};
+				\node (semantic_analysis) [rec, right=of syntactic_analysis] {Semantische Analyse};
 				\draw [arrow] (syntactic_analysis) -- (semantic_analysis);
-				\node (codegen) [rec, right=of semantic_analysis] {code generation};
+				\node (codegen) [rec, right=of semantic_analysis] {Code-Erzeugung};
 				\draw [arrow] (semantic_analysis) -- (codegen);
 			\end{tikzpicture}
 		\end{adjustbox}
