@@ -110,9 +110,9 @@
 			\qVerb{int}                    & \LirstInline{rush}{let a: int = 0;}      \\
 			\qVerb{float}                  & \LirstInline{rush}{let b: float = 3.14;} \\
 			\qVerb{bool}                   & \LirstInline{rush}{let c: bool = true;}  \\
-			\qVerb{char}                   & \LirstInline{rush}{let c: char = 'a';}   \\
-			\qVerb{()}                     & \LirstInline{rush}{let d: () = main();}  \\
-			\qVerb{!}                      & \LirstInline{rush}{let e = exit(42);}    \\
+			\qVerb{char}                   & \LirstInline{rush}{let d: char = 'a';}   \\
+			\qVerb{()}                     & \LirstInline{rush}{let e: () = main();}  \\
+			\qVerb{!}                      & \LirstInline{rush}{let f = exit(42);}    \\
 		\end{tabularx}
 	\end{table}
 \end{frame}
@@ -122,4 +122,22 @@
 		\item Im Commit \rushCommit~umfasste das Projekt \rushLoc~Zeilen Programmtext\footnote{Leerzeilen und Kommentare werden nicht gezählt}
 		\item Das Projekt enthält einen Lexer, einen Parser, fünf Compiler und einen Interpreter
 	\end{itemize}
+\end{frame}
+
+\begin{frame}{Programmtext der einzelnen Komponenten}
+	\begin{table}[h]
+		\centering
+		\caption{Zeilen Programmtext pro Komponente}\label{tbl:rush_loc_components}
+		\begin{tabularx}{0.95\textwidth}{|L|L|}
+			\hline
+			\rowcolor{gray!20} Komponente & Zeilen Programmtext                                                  \\ \hline
+			Lexer / Parser                & \tokei{./deps/rush/crates/rush-parser}                               \\ \hline
+			Tree-walking interpreter      & \cellcolor{gray!15} \tokei{./deps/rush/crates/rush-interpreter-tree} \\ \hline
+			VM compiler / runtime         & \tokei{./deps/rush/crates/rush-interpreter-vm}                       \\ \hline
+			WASM compiler                 & \tokei{./deps/rush/crates/rush-compiler-wasm}                        \\ \hline
+			LLVM compiler                 & \cellcolor{gray!15} \tokei{./deps/rush/crates/rush-compiler-llvm}    \\ \hline
+			RISC-V compiler               & \tokei{./deps/rush/crates/rush-compiler-risc-v}                      \\ \hline
+			x86 compiler                  & \cellcolor{gray!15} \tokei{./deps/rush/crates/rush-compiler-x86-64}  \\ \hline
+		\end{tabularx}
+	\end{table}
 \end{frame}

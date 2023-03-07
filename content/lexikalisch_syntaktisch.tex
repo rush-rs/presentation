@@ -1,4 +1,54 @@
 \section{Lexikalische \& Syntaktische Analyse}
 \begin{frame}{Lexikalische \& Syntaktische Analyse}
-	Hello, world!
+	\begin{itemize}
+		\item Gruppieren des Programmtextes in Tokens
+		\item Analyse der Syntax des Programms
+		\item Generation eines abstrakten Syntaxbaums
+		\item Festlegen der formalen Regeln in Form einer Grammatik
+	\end{itemize}
+
+	\center
+	\Lirsting[float=H, fancyvrb={frame=none}, size=small, caption={Ein Beispiel für eine Grammatik}]{listings/grammar.ebnf}
+\end{frame}
+
+\begin{frame}{Abstrakter Syntaxbaum}
+	\begin{figure}[h]
+		\begin{minipage}{.35\textwidth}
+			\centering
+			\begin{tikzpicture}[level distance=1cm, sibling distance=2cm, scale=.65, transform shape]
+				\node {Expression}
+				child {node {Term}
+						child {node {Factor}
+								child {node {\Verb{Int(1)}}}}}
+				child {node {\Verb{Plus}}}
+				child {node {Term}
+						child {node {Factor}
+								child {node {\Verb{Int(2)}}}
+								child {node {\Verb{Pow}}}
+								child {node {Factor}
+										child {node {\Verb{Int(3)}}}}}};
+			\end{tikzpicture}
+			\caption{abstakter Syntaxbaum für `\texttt{1+2**3}'}\label{fig:parser_simple_ast}
+		\end{minipage}
+        \hfill
+		\begin{minipage}{.45\textwidth}
+			\begin{figure}[h]
+				\centering
+				\begin{tikzpicture}[level distance=1cm, sibling distance=2cm, scale=.65, transform shape]
+					\node {Expression}
+					child {node {Expression}
+							child {node {\Verb{Int(1)}}}}
+					child {node {\Verb{Plus}}}
+					child {node {Expression}
+							child {node {Expression}
+									child {node {\Verb{Int(2)}}}}
+							child {node {\Verb{Pow}}}
+							child {node {Expression}
+									child {node {\Verb{Int(3)}}}}};
+				\end{tikzpicture}
+				\caption{abstakter Syntaxbaum für `\texttt{1+2**3}', erstellt durch Pratt-Parsing}\label{fig:parser_simple_ast_pratt}
+			\end{figure}
+		\end{minipage}
+
+	\end{figure}
 \end{frame}

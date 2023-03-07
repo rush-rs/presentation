@@ -34,6 +34,7 @@
 
 \newcommand{\TODO}[1]{\textcolor{red}{\textbf{TODO: #1}}}
 \newcommand{\rushCommit}{\ignorespaces\texttt{\input "|git -C ./deps/rush rev-parse --short HEAD"}\unskip}
+\newcommand{\tokei}[1]{\input "|tokei #1 -o json | jq '.Total.code'"}
 \newcommand{\rushLoc}{\ignorespaces\input "|tokei ./deps/rush -o json | jq '.Total.code'"\unskip}
 \newcommand{\paperCommit}{\ignorespaces\texttt{\input "|git rev-parse --short HEAD"}\unskip}
 %\newcommand{\rushCountTests}{\ignorespaces{\input "|python3 ./deps/rush/samples/tests/main.py count-tests"}\unskip}

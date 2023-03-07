@@ -28,6 +28,8 @@ fetch_repo() {
     fi
 }
 
+install_pacman ttf-fira-sans
+
 fetch_repo nvim-treesitter nvim-treesitter &
 fetch_repo tree-sitter tree-sitter-rust &
 fetch_repo tree-sitter tree-sitter-bash &
@@ -41,8 +43,6 @@ fetch_repo wasm-lsp tree-sitter-wasm &
 fetch_repo rush-rs tree-sitter-wasm-queries &
 fetch_repo rush-rs rush &
 fetch_repo rush-rs paper &
-
-install_pacman ttf-fira-sans &
 
 wait
 echo "All dependencies fetched."
