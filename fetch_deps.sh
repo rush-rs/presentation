@@ -29,6 +29,7 @@ fetch_repo() {
 }
 
 install_pacman ttf-fira-sans
+install_pacman perl-image-exiftool
 
 fetch_repo nvim-treesitter nvim-treesitter &
 fetch_repo tree-sitter tree-sitter-rust &
