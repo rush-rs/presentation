@@ -13,14 +13,14 @@
 
 \begin{frame}{Zentrales Problem}
 	\begin{minipage}{.35\textwidth}
-		\Lirsting[float=H, fancyvrb={frame=none}, size=small]{deps/paper/listings/simple.rush}
+		\Lirsting[float=H, fancyvrb={frame=none, fontsize=\small}]{deps/paper/listings/simple.rush}
 	\end{minipage}%
 	\begin{tikzpicture}[triangle/.style={-{Triangle[width=\the\dimexpr1.8\pgflinewidth,length=\the\dimexpr0.8\pgflinewidth]}}]
 		\draw[line width=9pt,triangle](0,0) -- node[anchor=south, yshift=.15cm] {\footnotesize Übersetzung} (1.4,0);
 	\end{tikzpicture}
 	\hfill
 	\begin{minipage}{.35\textwidth}
-		\Lirsting[float=H, fancyvrb={frame=none}, ranges={1-10}, size=small]{listings/generated/rush_simple.hexdump}
+		\Lirsting[float=H, fancyvrb={frame=none, fontsize=\small}, ranges={1-10}]{listings/generated/rush_simple.hexdump}
 	\end{minipage}
 
 	\begin{itemize}
