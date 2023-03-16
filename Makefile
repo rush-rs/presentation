@@ -26,7 +26,7 @@ init: fetch_deps.sh
 	sh fetch_deps.sh
 	mkdir -p ./deps/paper/deps
 	cp -fr ./deps/rush ./deps/paper/deps/rush
-	cargo install --git https://github.com/MikMuellerDev/lirstings --force
+	cargo install --git https://github.com/rush-rs/lirstings --force
 
 clean:
 	eztex c
