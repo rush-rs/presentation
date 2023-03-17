@@ -1,4 +1,4 @@
-FROM debian:buster
+FROM debian:buster-slim
 
 # install basic software
 RUN apt update\
@@ -68,4 +68,13 @@ RUN wget "https://github.com/matze/mtheme/archive/master.zip"\
     && cd mtheme-master\
     && make sty\
     && mv *.sty /usr/share/texmf/tex/latex\
-    && texhash
+    && texhash\
+    && cd ../\
+    && rm -rf mtheme-master master.zip
+
+# uninstall all unneeded software
+RUN apt remove wget curl zip -y\
+    && apt-get clean -y\
+    && apt autoclean -y\
+    && apt autoremove -y\
+    && rm -rf /var/cache/apt

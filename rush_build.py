@@ -106,11 +106,9 @@ if __name__ == '__main__':
     elif sys.argv[1] == 'used':
         assure_used_listings()
     elif sys.argv[1] == 'build':
-        print('No builds set up')
-    elif sys.argv[1] == 'hexdump':
         riscv_hex(
             './deps/paper/listings/simple.rush',
-            './listings/rush_simple.hexdump',
+            './listings/generated/rush_simple.hexdump',
             23,
             '; RISC-V binary\n',
         )
