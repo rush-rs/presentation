@@ -72,6 +72,11 @@ RUN wget "https://github.com/matze/mtheme/archive/master.zip"\
     && cd ../\
     && rm -rf mtheme-master master.zip
 
+# install NodeJS
+RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash -\
+    && apt install nodejs -y\
+    && node -v
+
 # uninstall all unneeded software
 RUN apt remove wget curl zip -y\
     && apt-get clean -y\

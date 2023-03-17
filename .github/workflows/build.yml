@@ -8,13 +8,10 @@ concurrency:
 jobs:
   run-and-push:
     runs-on: ubuntu-latest
-    container: mikmuellerdev/rush-presentation-tex
+    container: mikmuellerdev/rush-presentation-tex:latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-
-      - name: Install POSIX tar
-        run: apk add --no-cache tar
 
       - name: Cache Cargo Target Directory
         uses: actions/cache@v3
