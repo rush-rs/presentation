@@ -50,7 +50,7 @@
 				\draw [arrow] (semantic_analysis) -- (codegen);
 			\end{tikzpicture}
 		\end{adjustbox}
-		\caption{Etappen der Übersetzung}{\scite[S.~6--7]{wirth_compiler_construction_2005}}\label{fig:compilation_steps}
+		\caption{Etappen der Übersetzung.}{\scite[S.~6--7]{wirth_compiler_construction_2005}}\label{fig:compilation_steps}
 	\end{figure}
 \end{frame}
 
@@ -67,7 +67,7 @@
 				\draw [arrow] (semantic_analysis) -- (codegen);
 			\end{tikzpicture}
 		\end{adjustbox}
-		\caption{Etappen der Übersetzung (angepasst)}{\scite[S.~6--7]{wirth_compiler_construction_2005}}\label{fig:compilation_steps_altered}
+		\caption{Etappen der Übersetzung (angepasst).}{\scite[S.~6--7]{wirth_compiler_construction_2005}}\label{fig:compilation_steps_altered}
 	\end{figure}
 \end{frame}
 
@@ -76,33 +76,33 @@
 \begin{frame}{Die Programmiersprache \enquote{rush}}
 	\center
 	\begin{minipage}{.95\textwidth}
-        \Lirsting[caption={Erzeugen von Fibonaccizahlen in rush}, label={lst:rush_fib}, fancyvrb={frame=none}, float=H]{deps/paper/listings/fib.rush}
+		\Lirsting[caption={Berechnung von Fibonaccizahlen in rush}, label={lst:rush_fib}, fancyvrb={frame=none}, float=H]{deps/paper/listings/fib.rush}
 	\end{minipage}
 \end{frame}
 
 \begin{frame}{Fähigkeiten von rush}
 	\begin{table}[h]
-		\caption{Die wichtigsten Fähigkeiten von rush}\label{tbl:rush_features}
+		\caption{Die wichtigsten Fähigkeiten von rush.}\label{tbl:rush_features}
 		\rowcolors{2}{gray!15}{}
 		\begin{tabularx}{0.95\textwidth}{Ll}
-			\rowcolor{gray!25} Bezeichnung & rush Ausdruck                                     \\
+			\rowcolor{gray!25} Bezeichnung & Beispiel                                          \\
 			\hline
-			Loop                           & \LirstInline{rush}{loop {  }}                     \\
-			While                          & \LirstInline{rush}{while x < 5 {  }}              \\
-			For                            & \LirstInline{rush}{for i = 0; i < 5; i += 1 {  }} \\
-			If                             & \LirstInline{rush}{if true { /* */ } else {  }}   \\
-			Fn                             & \LirstInline{rush}{fn foo(n: int) {  }}           \\
-			Infix Expr                     & \LirstInline{rush}{1 + n; 5 ** 2}                 \\
-			Prefix Expr                    & \LirstInline{rush}{!false; -n}                    \\
-			Variables                      & \LirstInline{rush}{let mut answer = 42}           \\
-			Cast Expr                      & \LirstInline{rush}{42 as char}                    \\
+			Schleife                       & \LirstInline{rush}{loop {  }}                     \\
+			while-Schleife                 & \LirstInline{rush}{while x < 5 {  }}              \\
+			for-Schleife                   & \LirstInline{rush}{for i = 0; i < 5; i += 1 {  }} \\
+			if-Verzweigung                 & \LirstInline{rush}{if true {  } else {  }}        \\
+			Funktionsdefinition            & \LirstInline{rush}{fn foo(n: int) {  }}           \\
+			infix-expression               & \LirstInline{rush}{1 + n; 5 ** 2}                 \\
+			prefix-expression              & \LirstInline{rush}{!false; -n}                    \\
+			let-statement                  & \LirstInline{rush}{let mut answer = 42}           \\
+			cast-expression                & \LirstInline{rush}{42 as float}                   \\
 		\end{tabularx}
 	\end{table}
 \end{frame}
 
 \begin{frame}{Datentypen in rush}
 	\begin{table}[h]
-		\caption{Datentypen in rush}\label{tbl:rush_types}
+		\caption{Datentypen in rush.}\label{tbl:rush_types}
 		\rowcolors{2}{gray!15}{}
 		\begin{tabularx}{0.95\textwidth}{lL}
 			\rowcolor{gray!25} Bezeichnung & Instanziierung einer Variable            \\
@@ -119,7 +119,7 @@
 
 \begin{frame}{Fakten über rush}
 	\begin{itemize}
-        \item Im Commit \rushCommit~umfasste das Projekt \tokei{./deps/rush} Zeilen Programmtext\footnote{Leerzeilen und Kommentare werden nicht gezählt}
+		\item Im Commit \rushCommit~umfasste das Projekt \tokei{./deps/rush} Zeilen Programmtext\footnote{Leerzeilen und Kommentare werden nicht gezählt.}
 		\item Das Projekt enthält einen Lexer, einen Parser, fünf Compiler und einen Interpreter
 	\end{itemize}
 \end{frame}
@@ -127,7 +127,7 @@
 \begin{frame}{Programmtext der einzelnen Komponenten}
 	\begin{table}[h]
 		\centering
-		\caption{Zeilen Programmtext pro Komponente}\label{tbl:rush_loc_components}
+		\caption{Zeilen Programmtext pro Komponente.}\label{tbl:rush_loc_components}
 		\begin{tabularx}{0.95\textwidth}{|L|L|}
 			\hline
 			\rowcolor{gray!20} Komponente & Zeilen Programmtext                                                  \\ \hline
