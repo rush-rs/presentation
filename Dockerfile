@@ -9,7 +9,7 @@ RUN apt update\
     libimage-exiftool-perl bsdmainutils\
     texlive-luatex texlive-base texlive-latex-recommended\
     texlive-pictures texlive-latex-extra texlive-lang-german texlive-science\
-    biber latexmk -y
+    biber latexmk rsync -y
 
 # add the LLVM apt repository
 RUN apt-add-repository 'deb http://apt.llvm.org/buster/ llvm-toolchain-buster-14 main'\
