@@ -8,7 +8,7 @@
 	\end{itemize}
 
 	\center
-	\Lirsting[float=H, fancyvrb={frame=none, fontsize=\small}, caption={Ein Beispiel für eine Grammatik}]{listings/grammar.ebnf}
+    \Lirsting[float=H, fancyvrb={frame=none, fontsize=\small}, caption={Ein Beispiel für eine kontextfreihe Grammatik (EBNF).}]{listings/grammar.ebnf}
 \end{frame}
 
 \begin{frame}{Abstrakter Syntaxbaum}
@@ -28,7 +28,7 @@
 								child {node {Factor}
 										child {node {\Verb{Int(3)}}}}}};
 			\end{tikzpicture}
-			\caption{abstakter Syntaxbaum für `\texttt{1+2**3}'}\label{fig:parser_simple_ast}
+			\caption{Abstakter Syntaxbaum für `\texttt{1+2**3}'.}\label{fig:parser_simple_ast}
 		\end{minipage}
         \hfill
 		\begin{minipage}{.45\textwidth}
@@ -46,9 +46,8 @@
 							child {node {Expression}
 									child {node {\Verb{Int(3)}}}}};
 				\end{tikzpicture}
-				\caption{abstakter Syntaxbaum für `\texttt{1+2**3}', erstellt durch Pratt-Parsing}\label{fig:parser_simple_ast_pratt}
+				\caption{Abstakter Syntaxbaum für `\texttt{1+2**3}', erstellt durch Pratt-Parsing.}\label{fig:parser_simple_ast_pratt}
 			\end{figure}
 		\end{minipage}
-
 	\end{figure}
 \end{frame}
