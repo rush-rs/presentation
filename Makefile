@@ -18,7 +18,7 @@ listings/generated: rush_build.py deps/rush deps/paper
 	python3 rush_build.py build
 
 check: rush_build.py listings deps
-	mkdir -p ./listings/generated/
+	#mkdir -p ./listings/generated/
 	python3 rush_build.py check
 	python3 rush_build.py used
 
