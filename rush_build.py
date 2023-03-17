@@ -1,3 +1,4 @@
+#!/bin/python3
 import os
 import sys
 import subprocess
@@ -71,6 +72,30 @@ def lint_all():
     print('\x1b[1;32m=== CHECK SUCCESS ===\x1b[1;m')
 
 
+def assure_used_listings():
+    unused = list()
+    files = list(Path('.').rglob('listings/**/*'))
+    for f_path in files:
+        if not str(f_path).startswith('.git') and not str(f_path).startswith(
+            'deps'
+        ):
+            res = subprocess.run(
+                f'rg -q {f_path} -t tex',
+                shell=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+            )
+            if res.returncode:
+                unused.append(str(f_path))
+            print(f'ok (used): {f_path}')
+    if unused:
+        print('\x1b[1;31m=== CHECK FAILURE: NOT ALL USED ===\x1b[1;m')
+        for f_path in unused:
+            print(f'UNUSED: {f_path}')
+        exit(1)
+    print('\x1b[1;32m=== CHECK SUCCESS ===\x1b[1;m')
+
+
 if __name__ == '__main__':
     if len(sys.argv) != 2:
         print(f'Expected exactly one argument, got {len(sys.argv) - 1}')
@@ -78,10 +103,14 @@ if __name__ == '__main__':
 
     if sys.argv[1] == 'check':
         lint_all()
+    elif sys.argv[1] == 'used':
+        assure_used_listings()
     elif sys.argv[1] == 'build':
+        print('No builds set up')
+    elif sys.argv[1] == 'hexdump':
         riscv_hex(
             './deps/paper/listings/simple.rush',
-            './listings/generated/rush_simple.hexdump',
+            './listings/rush_simple.hexdump',
             23,
             '; RISC-V binary\n',
         )

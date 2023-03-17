@@ -1,0 +1,57 @@
+name: Build PDF and Deploy
+on: [workflow_dispatch, push]
+permissions:
+  contents: write
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  run-and-push:
+    runs-on: ubuntu-latest
+    container: rubixdev42/rush-paper-tex
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install POSIX tar
+        run: apk add --no-cache tar
+
+      - name: Cache Cargo Target Directory
+        uses: actions/cache@v3
+        with:
+          path: |
+            /root/.cache/cargo
+            /usr/local/cargo/bin
+            /usr/local/cargo/registry/index
+            /usr/local/cargo/registry/cache
+            /usr/local/cargo/git/db
+          key: cargo-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: |
+            cargo-${{ hashFiles('**/Cargo.lock') }}
+            cargo-
+
+      - name: Add Safe Directory
+        run: git config --global --add safe.directory /__w/paper/presentation
+
+      - name: Prepare
+        run: make init
+
+      - name: Build
+        run: make build
+
+      - name: Archive main.pdf
+        uses: actions/upload-artifact@v3
+        with:
+          name: paper
+          path: main.pdf
+
+      - name: Prepare GitHub Pages Deployment
+        run: |
+          mkdir -p dist
+          mv main.pdf dist/main.pdf
+          echo '<meta http-equiv="Refresh" content="0; url=main.pdf" />' >> dist/index.html
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: dist
