@@ -8,7 +8,7 @@ concurrency:
 jobs:
   run-and-push:
     runs-on: ubuntu-latest
-    container: rubixdev42/rush-paper-tex
+    container: mikmuellerdev/rush-presentation-tex
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -31,7 +31,7 @@ jobs:
             cargo-
 
       - name: Add Safe Directory
-        run: git config --global --add safe.directory /__w/paper/presentation
+        run: git config --global --add safe.directory /__w/presentation/presentation
 
       - name: Prepare
         run: make init
@@ -42,7 +42,7 @@ jobs:
       - name: Archive main.pdf
         uses: actions/upload-artifact@v3
         with:
-          name: paper
+          name: presentation
           path: main.pdf
 
       - name: Prepare GitHub Pages Deployment
