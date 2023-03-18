@@ -1,0 +1,3 @@
+fn main(_n: int) -> bool {
+    return true;
+}

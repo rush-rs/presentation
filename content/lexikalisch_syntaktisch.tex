@@ -1,4 +1,22 @@
 \section{Lexikalische \& Syntaktische Analyse}
+
+\begin{frame}{Etappen der Übersetzung: Semantische Analyse}
+	\begin{figure}[h]
+		\begin{adjustbox}{max totalsize={\textwidth}{!},center}
+			\begin{tikzpicture}[node distance=1cm, inner sep=3mm]
+				\node (lexical_analysis) [rec, minimum height=1.5cm, fill=gray!20] {Lexikalische Analyse};
+				\node (syntactic_analysis) [rec, right=of lexical_analysis, align=center, minimum height=1.5cm, fill=gray!20] {Syntaxanalyse};
+				\draw [arrow] (lexical_analysis) -- (syntactic_analysis);
+				\node (semantic_analysis) [rec, right=of syntactic_analysis, align=center, minimum height=1.5cm, fill=gray!25] {Semantische\\Analyse};
+				\draw [arrow] (syntactic_analysis) -- (semantic_analysis);
+				\node (codegen) [rec, right=of semantic_analysis, minimum height=1.5cm] {Code-Erzeugung};
+				\draw [arrow] (semantic_analysis) -- (codegen);
+			\end{tikzpicture}
+		\end{adjustbox}
+		\caption{Etappen der Übersetzung: Syntaxanalyse.}{\scite[S.~6--7]{wirth_compiler_construction_2005}}\label{fig:compilation_steps}
+	\end{figure}
+\end{frame}
+
 \begin{frame}{Lexikalische \& Syntaktische Analyse}
 	\begin{itemize}
 		\item Gruppieren des Programmtextes in Tokens
