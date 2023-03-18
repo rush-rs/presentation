@@ -1,85 +1,48 @@
-FROM debian:buster-slim
+FROM rust:alpine
 
-# install basic software
-RUN apt update\
-    && apt upgrade -y \
-# DO I NEED `llvm-dev`?
-    && apt install llvm-dev build-essential\
-    zip jq wget curl git fontconfig software-properties-common\
-    libimage-exiftool-perl bsdmainutils\
-    texlive-luatex texlive-base texlive-latex-recommended\
-    texlive-pictures texlive-latex-extra texlive-lang-german texlive-science\
-    biber latexmk rsync -y
+ENV LLVM_SYS_140_PREFIX=/usr/lib/llvm14
 
-# add the LLVM apt repository
-RUN apt-add-repository 'deb http://apt.llvm.org/buster/ llvm-toolchain-buster-14 main'\
-    && curl https://apt.llvm.org/llvm-snapshot.gpg.key| apt-key add - && apt update
+# to remove the cache at the end, all apk installs must happen in one step,
+# see https://github.com/gliderlabs/docker-alpine/issues/45
+RUN apk add --update \
+        texlive \
+        texlive-luatex \
+        xdvik texlive-dvi \
+        texmf-dist \
+        texmf-dist-bibtexextra \
+        texmf-dist-formatsextra \
+        texmf-dist-latexextra \
+        texmf-dist-science \
+        texmf-dist-pictures \
+        texmf-dist-fontsextra \
+ \
+        llvm14 llvm14-libs llvm14-dev llvm14-static \
+        libc-dev libxml2-dev libffi-dev g++ \
+        make git jq rsync nodejs \
+        python3 zip curl \
+        tokei \
+        exiftool \
+        font-jetbrains-mono-nl && \
+    rm -rf /var/cache/apk/*
 
-# install LLVM 14 and other packages using the older repos
-RUN apt install llvm-14-dev libpolly-14-dev zlib1g-dev -y
-
-# install the RISCV toolchain since a newer version of it is required
-RUN apt-add-repository 'deb http://deb.debian.org/debian bullseye main'\
-    && apt update\
-    && apt install binutils-riscv64-linux-gnu gcc-10-riscv64-linux-gnu qemu-user -y \
-    && ln -s $(which riscv64-linux-gnu-gcc-10) /usr/bin/riscv64-linux-gnu-gcc
-
-# configure Rust
-ENV RUSTUP_HOME=/usr/local/rustup \
-    CARGO_HOME=/usr/local/cargo \
-    PATH=/usr/local/cargo/bin:/root/.wasmer/bin:$PATH
-
-# install Rust
-RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > install.sh\
-    && chmod +x install.sh \
-    && ./install.sh -y \
-    && rm install.sh
-
-# update the `crates.io` index since it takes a lot of time
-WORKDIR /root
-RUN git clone https://github.com/rush-rs/rush
-WORKDIR /root/rush
-RUN cargo update\
-    && cargo install tokei
+# the `biber` package in the repos is too new, so we manually download version 2.17 from sourceforge
+# RUN wget -O- https://master.dl.sourceforge.net/project/biblatex-biber/biblatex-biber/2.17/binaries/Linux-musl/biber-linux_x86_64-musl.tar.gz?viasf=1 | tar xzv -C /bin
+RUN wget -O- https://downloads.rubixdev.de/biber-linux_x86_64-musl.tar.gz | tar xzv -C /bin
 
 # install Fira Sans
 WORKDIR /usr/local/share/fonts
 RUN curl --proto '=https' -sSf "https://fonts.google.com/download?family=Fira%20Sans" > fira.zip\
     && unzip fira.zip\
     && rm fira.zip OFL.txt\
-    && fc-cache -f -v\
-# JetBrains Mono
-    && curl --proto '=https' -sSfL "https://github.com/JetBrains/JetBrainsMono/releases/download/v2.304/JetBrainsMono-2.304.zip" -o jetbrains.zip\
-    && unzip jetbrains.zip\
-    && mv fonts/ttf/* .\
-    && rm jetbrains.zip OFL.txt\
     && fc-cache -f -v
 
-# clone the presentation an run initializations
-WORKDIR /root
-RUN git clone https://github.com/rush-rs/presentation
-WORKDIR /root/presentation
-RUN make init
+WORKDIR /presentation
+ENV RUSTFLAGS="-C target-feature=-crt-static"
+ENV CARGO_TARGET_DIR=/root/.cache/cargo
+ENV CARGO_HOME=/root/cargo
+ENV CARGO_REGISTRIES_CRATES_IO_PROTOCOL=sparse
+ENV PATH=${PATH}:${CARGO_HOME}/bin
 
-# download `mtheme`
-WORKDIR /root/
-RUN wget "https://github.com/matze/mtheme/archive/master.zip"\
-    && unzip master.zip\
-    && cd mtheme-master\
-    && make sty\
-    && mv *.sty /usr/share/texmf/tex/latex\
-    && texhash\
-    && cd ../\
-    && rm -rf mtheme-master master.zip
+RUN cargo install --git https://github.com/rush-rs/lirstings --force\
+    && apk del curl zip
 
-# install NodeJS
-RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash -\
-    && apt install nodejs -y\
-    && node -v
-
-# uninstall all unneeded software
-RUN apt remove wget curl zip -y\
-    && apt-get clean -y\
-    && apt autoclean -y\
-    && apt autoremove -y\
-    && rm -rf /var/cache/apt
