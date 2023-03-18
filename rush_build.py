@@ -105,13 +105,15 @@ if __name__ == '__main__':
         lint_all()
     elif sys.argv[1] == 'used':
         assure_used_listings()
-    elif sys.argv[1] == 'build':
+    elif sys.argv[1] == 'hexdump':
         riscv_hex(
             './deps/paper/listings/simple.rush',
-            './listings/generated/rush_simple.hexdump',
+            './listings/rush_simple.hexdump',
             23,
             '; RISC-V binary\n',
         )
+    elif sys.argv[1] == 'build':
+        print('No input files')
     else:
         print(f'Invalid command-line argument: {sys.argv[1]}')
         exit(1)
