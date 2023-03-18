@@ -44,5 +44,7 @@ ENV CARGO_REGISTRIES_CRATES_IO_PROTOCOL=sparse
 ENV PATH=${PATH}:${CARGO_HOME}/bin
 
 RUN cargo install --git https://github.com/rush-rs/lirstings --force\
-    && apk del curl zip
+    && apk del curl zip\
+    && git clone https://github.com/rush-rs/presentation \
+    && git config --global --add safe.directory /presentation/presentation/deps/rush
 
