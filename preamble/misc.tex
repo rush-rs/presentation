@@ -5,12 +5,9 @@
 \usepackage{colortbl}
 \usepackage{scrhack}
 \usepackage[utf8]{inputenc}
-
-% Fira Sans
-\usepackage[sfdefault]{FiraSans} %% option 'sfdefault' activates Fira Sans as the default text font
+\usepackage{FiraSans} %% option 'sfdefault' activates Fira Sans as the default text font
 \usepackage[T1]{fontenc}
 \renewcommand*\oldstylenums[1]{{\firaoldstyle #1}}
-
 \usepackage[no-math]{fontspec}
 \usepackage{babel}
 %\usepackage[pdfborder={0 0 0}]{hyperref}
@@ -27,7 +24,9 @@
 \usepackage[backend=biber,style=alphabetic,sorting=ynt]{biblatex}
 \addbibresource{deps/paper/bibliography.bib}
 
-% JetBrains Mono
+
+\setmainfont{Fira Sans}
+\setsansfont{Fira Sans}
 \setmonofont[Scale=MatchLowercase]{JetBrains Mono NL}
 
 % \setlength{\parindent}{0pt}
