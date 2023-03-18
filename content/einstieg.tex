@@ -74,7 +74,7 @@
 \begin{frame}{Die Programmiersprache \enquote{rush}}
 	\center
 	\begin{minipage}{.95\textwidth}
-		\Lirsting[caption={Berechnung von Fibonaccizahlen in rush}, label={lst:rush_fib}, fancyvrb={frame=none}, float=H]{deps/paper/listings/fib.rush}
+		\Lirsting[caption={Berechnung von Fibonaccizahlen in rush.}, label={lst:rush_fib}, fancyvrb={frame=none}, float=H]{deps/paper/listings/fib.rush}
 	\end{minipage}
 \end{frame}
 
@@ -117,8 +117,8 @@
 
 \begin{frame}{Fakten über rush}
 	\begin{itemize}
-		\item Im Commit \rushCommit~umfasste das Projekt \tokei{./deps/rush} Zeilen Programmtext\footnote{Leerzeilen und Kommentare werden nicht gezählt.}
-		\item Das Projekt enthält einen Lexer, einen Parser, fünf Compiler und einen Interpreter
+		\item Im Git Commit `\rushCommit'~umfasste das Projekt \tokei{./deps/rush} Zeilen Programmtext\footnote{Leerzeilen und Kommentare werden nicht gezählt.}
+		\item Das Projekt enthält einen Lexer, einen Parser, fünf Compiler, einen Interpreter und einen Transpiler
 	\end{itemize}
 \end{frame}
 
@@ -130,12 +130,12 @@
 			\hline
 			\rowcolor{gray!20} Komponente & Zeilen Programmtext                                                  \\ \hline
 			Lexer / Parser                & \tokei{./deps/rush/crates/rush-parser}                               \\ \hline
-			Tree-walking interpreter      & \cellcolor{gray!15} \tokei{./deps/rush/crates/rush-interpreter-tree} \\ \hline
+			Tree-walking interpreter      & \cellcolor{gray!30} \tokei{./deps/rush/crates/rush-interpreter-tree} \\ \hline
 			VM compiler / runtime         & \tokei{./deps/rush/crates/rush-interpreter-vm}                       \\ \hline
 			WASM compiler                 & \tokei{./deps/rush/crates/rush-compiler-wasm}                        \\ \hline
-			LLVM compiler                 & \cellcolor{gray!15} \tokei{./deps/rush/crates/rush-compiler-llvm}    \\ \hline
+			LLVM compiler                 & \cellcolor{gray!30} \tokei{./deps/rush/crates/rush-compiler-llvm}    \\ \hline
 			RISC-V compiler               & \tokei{./deps/rush/crates/rush-compiler-risc-v}                      \\ \hline
-			x86 compiler                  & \cellcolor{gray!15} \tokei{./deps/rush/crates/rush-compiler-x86-64}  \\ \hline
+			x86 compiler                  & \cellcolor{gray!30} \tokei{./deps/rush/crates/rush-compiler-x86-64}  \\ \hline
 		\end{tabularx}
 	\end{table}
 \end{frame}

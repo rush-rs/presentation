@@ -4,10 +4,10 @@
 	\begin{figure}[h]
 		\begin{adjustbox}{max totalsize={\textwidth}{!},center}
 			\begin{tikzpicture}[node distance=1cm, inner sep=3mm]
-				\node (lexical_analysis) [rec, minimum height=1.5cm, fill=gray!20] {Lexikalische Analyse};
-				\node (syntactic_analysis) [rec, right=of lexical_analysis, align=center, minimum height=1.5cm, fill=gray!20] {Syntaxanalyse};
+				\node (lexical_analysis) [rec, minimum height=1.5cm, fill=gray!25] {Lexikalische Analyse};
+				\node (syntactic_analysis) [rec, right=of lexical_analysis, align=center, minimum height=1.5cm, fill=gray!25] {Syntaxanalyse};
 				\draw [arrow] (lexical_analysis) -- (syntactic_analysis);
-				\node (semantic_analysis) [rec, right=of syntactic_analysis, align=center, minimum height=1.5cm, fill=gray!25] {Semantische\\Analyse};
+				\node (semantic_analysis) [rec, right=of syntactic_analysis, align=center, minimum height=1.5cm] {Semantische\\Analyse};
 				\draw [arrow] (syntactic_analysis) -- (semantic_analysis);
 				\node (codegen) [rec, right=of semantic_analysis, minimum height=1.5cm] {Code-Erzeugung};
 				\draw [arrow] (semantic_analysis) -- (codegen);
