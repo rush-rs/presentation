@@ -76,3 +76,20 @@
 		\caption{Speicherstruktur der rush VM.}\label{fig:rush_vm_linmem}
 	\end{figure}
 \end{frame}
+
+\begin{frame}{Ein Beispielprogramm der rush VM}
+	\hspace{0pt} % This is somehow required
+	\vfill
+	\Lirsting[caption={Beispielprogramm der rush VM.}, fancyvrb={fontsize=\footnotesize}, float=H]{deps/paper/listings/vm_faster_instructions.s}
+	\vfill
+\end{frame}
+
+\begin{frame}{Struktur der Programme der rush VM}
+	\begin{itemize}
+		\item Unterteilung in Funktionen
+		\item Jede Funktion enthält mehrere Anweisungen
+		\item Die Funktions- und Variablennamen wurden durch Indizes ersetzt
+		\item Im Git Commit \rushCommit{} beinhaltete die VM ca. verschiedene 30 Befehlscodes
+		\item Jede Anweisung besteht aus einem Befehlscode mit einem optionalen Operanden
+	\end{itemize}
+\end{frame}
