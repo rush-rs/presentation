@@ -5,7 +5,10 @@ import subprocess
 from pathlib import Path
 from enum import Enum
 
-LINT_ALL_SKIP = ['listings/incompatible_types.rush']
+LINT_ALL_SKIP = [
+    'listings/incompatible_types.rush',
+    'listings/invalid_main_fn.rush',
+]
 
 
 class Backend(Enum):
@@ -24,7 +27,7 @@ JOBS = [
         'out': 'listings/generated/invalid_main_fn.rush.out',
         'show_filename': 'invalid_main_fn.rush',
         'backend': Backend.analyzer,
-    }
+    },
 ]
 
 
@@ -108,7 +111,7 @@ def lint_all():
         skip = False
         for should_skip in LINT_ALL_SKIP:
             if os.path.realpath(should_skip) == input_path:
-                should_skip = True
+                skip = True
                 break
 
         if skip:
