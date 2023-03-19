@@ -18,7 +18,7 @@
 	\end{figure}
 \end{frame}
 
-\begin{frame}{Semantische Analyse}
+\begin{frame}{Semantische Analyse \& Semantikregeln}
 	\begin{itemize}
 		\item Findet nach der Syntaxanalyse und vor der Übersetzung statt
 		\item Validierung der semantischen Eigenschaften des Programms
@@ -35,26 +35,74 @@
 		\item Die \qVerb{main} Funktion liefert immer den \qVerb{()} Datentyp und akzeptiert keine Parameter
 		\item Jede Variable muss Definiert sein, bevor diese Verwendbar ist
 		\item Logische und mathematische Operationen erfolgen nur, wenn die Operanten den selben Datentypen besitzen
+		\item Eine definierte Variable \emph{sollte} verwendet werden
 		\item[\ldots]
 	\end{itemize}
 \end{frame}
 
 \begin{frame}{Beispiel: Invalides rush Programm}
-    \begin{minipage}{.5\textwidth}
-    \Lirsting[float=H, fancyvrb={frame=none}]{listings/incompatible_types.rush}
-    \end{minipage}%
-    \begin{minipage}{.5\textwidth}
-    \Darrow{Fehlerausgabe}
-    \end{minipage}
-    \Lirsting[float=H, fancyvrb={frame=none, fontsize=\footnotesize}, ansi=true]{listings/generated/incompatible_types.rush.out}
+	\begin{minipage}{.5\textwidth}
+		\Lirsting[float=H, fancyvrb={frame=none}]{listings/incompatible_types.rush}
+	\end{minipage}%
+	\begin{minipage}{.5\textwidth}
+		\Darrow{Fehlerausgabe}
+	\end{minipage}
+	\Lirsting[float=H, fancyvrb={frame=none, fontsize=\footnotesize}, ansi=true]{listings/generated/incompatible_types.rush.out}
 \end{frame}
 
 \begin{frame}{Beispiel 2: Invalides rush Programm}
-    \begin{minipage}{.5\textwidth}
-    \Lirsting[float=H, fancyvrb={frame=none}]{listings/invalid_main_fn.rush}
-    \end{minipage}%
-    \begin{minipage}{.5\textwidth}
-    \Darrow{Fehlerausgabe}
-    \end{minipage}
-    \Lirsting[float=H, fancyvrb={frame=none, fontsize=\footnotesize}, ansi=true]{listings/generated/invalid_main_fn.rush.out}
+	\begin{minipage}{.5\textwidth}
+		\Lirsting[float=H, fancyvrb={frame=none}]{listings/invalid_main_fn.rush}
+	\end{minipage}%
+	\begin{minipage}{.5\textwidth}
+		\Darrow{Fehlerausgabe}
+	\end{minipage}
+	\Lirsting[float=H, fancyvrb={frame=none, fontsize=\footnotesize}, ansi=true]{listings/generated/invalid_main_fn.rush.out}
+\end{frame}
+
+\begin{frame}{Beispiel 3: Warnung aufgrund einer unbenutzten Variable}
+	\begin{minipage}{.5\textwidth}
+		\Lirsting[float=H, fancyvrb={frame=none}]{listings/unused_var.rush}
+	\end{minipage}%
+	\begin{minipage}{.5\textwidth}
+		\Darrow{Ausgabe}
+	\end{minipage}
+	\Lirsting[float=H, fancyvrb={frame=none, fontsize=\footnotesize}, ansi=true]{listings/generated/unused_var.rush.out}
+\end{frame}
+
+\begin{frame}{Semantische Analyse für rush}
+	\begin{itemize}
+		\item Muss in der Lage sein, ein invalides von einem validen Programm zu unterscheiden
+		\item Kann zusätzlich hilfreiche Warnungen und Informationen generieren
+		\item Fügt Informationen über Datentypen zu dem (vom Parser erstellten) AST hinzu
+		\item Führt triviale Optimierungen der Programmstruktur durch
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Hinzufügen von Informationen über Datentypen}
+
+	\begin{figure}[h]
+		\begin{adjustbox}{max totalsize={\textwidth}{!},center}
+			\begin{tikzpicture}[
+					tlabel/.style={pos=0.4,right=-1pt,font=\footnotesize\color{red!70!black}},
+				]
+				\node(left){\Verb{1 + 42 - n}}
+				child { node { \Verb{1 + 42} }
+						child { node { \Verb{1} } }
+						child { node { \Verb{+} } }
+						child { node { \Verb{42} } }
+					}
+				child { node  { \Verb{-} }       }
+				child { node(leftm)  { \Verb{n} } };
+
+				\node(right)[right of=left, xshift=7cm]{\Verb{43 - n}: \emph{int}}
+				child { node(rightm) { \Verb{43}: \emph{int} } }
+				child { node  { \Verb{-} } }
+				child { node  { \Verb{n}: \emph{int} } };
+
+				\draw[arrow, shorten >= 0.3cm, shorten <= 0.3cm, very thick] (leftm) -- node[above] {semantic} node[below] {analysis} ++ (rightm);
+			\end{tikzpicture}
+        \end{adjustbox}
+		\caption{How semantic analysis affects the abstract syntax tree.}\label{fig:analysis_tree_conv}
+	\end{figure}
 \end{frame}

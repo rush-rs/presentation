@@ -28,6 +28,12 @@ JOBS = [
         'show_filename': 'invalid_main_fn.rush',
         'backend': Backend.analyzer,
     },
+    {
+        'in': 'listings/unused_var.rush',
+        'out': 'listings/generated/unused_var.rush.out',
+        'show_filename': 'unused_var.rush',
+        'backend': Backend.analyzer,
+    },
 ]
 
 
@@ -46,8 +52,8 @@ def analyzer_output(source: str, output: str, show_filename: str):
         stderr=subprocess.PIPE,
     )
 
-    if res.returncode != 1:
-        print('analyzer returned non 1 exit-code')
+    if res.returncode != 1 and res.returncode != 0:
+        print('analyzer returned unexpected exit-code')
         sys.stdout.buffer.write(res.stderr)
         sys.stdout.buffer.write(res.stdout)
         exit(1)

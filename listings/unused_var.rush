@@ -1,0 +1,5 @@
+fn main() {
+    let variable = 42;
+    let mut code = 3;
+    exit(code)
+}
