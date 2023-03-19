@@ -1,7 +1,11 @@
 \input{preamble/misc}
 \input{preamble/tabularx}
+
 \input{|"lirstings include-tex"}
-\captionsetup{indention=-1cm}
+% Set `deps/rush` as path prefix in all lirstings, is ignored for files under other directories
+\NewCommandCopy{\oldLirsting}{\Lirsting}
+\renewcommand{\Lirsting}[2][]{\oldLirsting[path prefix={deps/rush},#1]{#2}}
+
 \input{preamble/tikz}
 
 \title{The Conversion of Source Code to Machine Code}
@@ -28,6 +32,7 @@
 \input{content/lexikalisch_syntaktisch}
 \input{content/semantische_analyse}
 \input{content/interpreter}
+\input{content/vm}
 \input{content/high_level}
 \input{content/low_level}
 \input{content/anmerkungen}

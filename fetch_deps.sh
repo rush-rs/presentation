@@ -19,7 +19,7 @@ fetch_repo() {
 #install_pacman ttf-fira-sans
 
 fetch_repo nvim-treesitter nvim-treesitter &
-# fetch_repo tree-sitter tree-sitter-rust &
+fetch_repo tree-sitter tree-sitter-rust &
 # fetch_repo tree-sitter tree-sitter-bash &
 # fetch_repo tree-sitter tree-sitter-c &
 fetch_repo RubixDev ebnf &
