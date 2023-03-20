@@ -35,7 +35,9 @@
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Etappen der Übersetzung}
+\begin{frame}{Etappen der Übersetzung~\scite[S.~6--7]{wirth_compiler_construction_2005}}
+	\hspace{0pt} % This is somehow required
+    \vfill
 	\begin{figure}[h]
 		\begin{adjustbox}{max totalsize={\textwidth}{!},center}
 			\begin{tikzpicture}[node distance=1cm, inner sep=3mm]
@@ -48,11 +50,9 @@
 				\draw [arrow] (semantic_analysis) -- (codegen);
 			\end{tikzpicture}
 		\end{adjustbox}
-		\caption{Etappen der Übersetzung.}{\scite[S.~6--7]{wirth_compiler_construction_2005}}\label{fig:compilation_steps}
+		\caption{Etappen der Übersetzung.}\label{fig:compilation_steps}
 	\end{figure}
-\end{frame}
-
-\begin{frame}{Etappen der Übersetzung (angepasst)}
+    \vfill
 	\begin{figure}[h]
 		\begin{adjustbox}{max totalsize={\textwidth}{!},center}
 			\begin{tikzpicture}[node distance=3mm and 1cm, inner sep=3mm]
@@ -65,18 +65,12 @@
 				\draw [arrow] (semantic_analysis) -- (codegen);
 			\end{tikzpicture}
 		\end{adjustbox}
-		\caption{Etappen der Übersetzung (angepasst).}{\scite[S.~6--7]{wirth_compiler_construction_2005}}\label{fig:compilation_steps_altered}
+		\caption{Etappen der Übersetzung (angepasst).}\label{fig:compilation_steps_altered}
 	\end{figure}
+    \vfill
 \end{frame}
 
 \subsection{Die Programmiersprache \enquote{rush}}
-
-\begin{frame}{Die Programmiersprache \enquote{rush}}
-	\center
-	\begin{minipage}{.95\textwidth}
-		\Lirsting[caption={Berechnung von Fibonaccizahlen in rush.}, label={lst:rush_fib}, fancyvrb={frame=none}, float=H]{deps/paper/listings/fib.rush}
-	\end{minipage}
-\end{frame}
 
 \begin{frame}{Fähigkeiten von rush}
 	\begin{table}[h]
@@ -113,6 +107,13 @@
 			\qVerb{!}                      & \LirstInline{rush}{let f = exit(42);}    \\
 		\end{tabularx}
 	\end{table}
+\end{frame}
+
+\begin{frame}{Beispiel Programmtext in rush}
+	\center
+	\begin{minipage}{.95\textwidth}
+		\Lirsting[caption={Beispiel: Berechnung von Fibonaccizahlen in rush.}, label={lst:rush_fib}, fancyvrb={frame=none}, float=H]{deps/paper/listings/fib.rush}
+	\end{minipage}
 \end{frame}
 
 \begin{frame}{Fakten über rush}

@@ -13,7 +13,7 @@
 	\begin{itemize}
 		\item Die meisten Prozessoren basieren auf der \emph{von Neumann Architektur}~\scite[p.~172]{Ledin2020-yp}
 		\item Eine CPU enthält nach von Neumann ein \emph{Rechenwerk}\footnote{Engl: \enquote{arithmetic logic unit} (ALU).}, \emph{Steuerwerk}\footnote{Engl: \enquote{control unit}.}, \emph{Speicherwerk}, \emph{Ein- / Ausgabewerk} und ein Bussystem~\scite[p.~172]{Ledin2020-yp}
-		\item Die Programmausführung wird durch den sog. \emph{Befehlszylus}\footnote{Engl: \enquote{fetch-decode-execute cycle}.} modelliert~\scite[pp.~208-209]{Ledin2020-yp}:
+		\item Die Programmausführung wird durch den sog. \emph{Befehlszyklus}\footnote{Engl: \enquote{fetch-decode-execute cycle}.} modelliert~\scite[pp.~208-209]{Ledin2020-yp}:
 		\item[] \begin{enumerate}
 				\item \textbf{Fetch} (Befehl laden): Das Steuerwerk lädt die nächste Anweisung aus dem Speicher
 				\item \textbf{Decode} (Befehl dekodieren): Der Befehlscode und die Operanden werden ermittelt
@@ -89,7 +89,7 @@
 		\item Unterteilung in Funktionen
 		\item Jede Funktion enthält mehrere Anweisungen
 		\item Die Funktions- und Variablennamen wurden durch Indizes ersetzt
-		\item Im Git Commit \rushCommit{} beinhaltete die VM ca. verschiedene 30 Befehlscodes
+		\item Im Git Commit `\rushCommit{}' beinhaltete die VM ca. verschiedene 30 Befehlscodes
 		\item Jede Anweisung besteht aus einem Befehlscode mit einem optionalen Operanden
 	\end{itemize}
 \end{frame}
