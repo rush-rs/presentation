@@ -31,3 +31,5 @@ init: fetch_deps.sh
 clean:
 	eztex c
 	rm -f lirstings.cache.json
+	rm -f tokei.cache.json
+	rm -rf listings/generated

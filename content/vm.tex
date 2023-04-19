@@ -86,10 +86,22 @@
 
 \begin{frame}{Struktur der Programme der rush VM}
 	\begin{itemize}
+		\item Verwendung eines Stacks für Funktionsaufrufe und temporäre Operationen
 		\item Unterteilung in Funktionen
 		\item Jede Funktion enthält mehrere Anweisungen
 		\item Die Funktions- und Variablennamen wurden durch Indizes ersetzt
-		\item Im Git Commit `\rushCommit{}' beinhaltete die VM ca. verschiedene 30 Befehlscodes
+		\item Im Git Commit \enquote{\rushCommit{}} beinhaltete die VM ca.\ verschiedene 30 Befehlscodes
 		\item Jede Anweisung besteht aus einem Befehlscode mit einem optionalen Operanden
+		\item Beispiele: \enquote{\LirstInline{asm}{add}} oder \enquote{\LirstInline{asm}{call 2}}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{VM: Fazit}
+	\begin{itemize}
+		\item Ca. 2.7 mal schneller als der tree-walking interpreter
+		\item Implementierung des Compilers stellte sich als eher einfach heraus
+		\item Die Stack-basierte Architektur erleichterte die Implementierung des Compilers
+		\item Gleichzeitige Entwicklung der VM und des Compilers erleichterte einige Vorgänge
+        \item Der Compiler profitiert von dem hohen Abstraktionsgrad der VM
 	\end{itemize}
 \end{frame}

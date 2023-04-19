@@ -34,12 +34,14 @@
 
 \usepackage[autostyle]{csquotes}
 
+\newcommand{\RNum}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+\newcommand{\encircle}[1]{\raisebox{.5pt}{\textcircled{\raisebox{-.8pt} {\footnotesize#1}}}}
 \newcommand{\TODO}[1]{\textcolor{red}{\textbf{TODO: #1}}}
 \newcommand{\rushCommit}{\ignorespaces\texttt{\input "|git -C ./deps/rush rev-parse --short HEAD"}\unskip}
 \newcommand{\tokei}[1]{\input "|python3 tokei.py #1"}
 \newcommand{\riscv}{RISC\babelhyphen{nobreak}V}
 
-\newcommand{\qVerb}[2][]{`\Verb[#1]{#2}'}
+\newcommand{\qVerb}[2][]{\enquote{\Verb[#1]{#2}}}
 \newcommand{\VerbCmd}[2][]{\Verb[commandchars=\\\{\}, #1]{#2}}
 \newcommand{\qVerbCmd}[2][]{\qVerb[commandchars=\\\{\}, #1]{#2}}
 \newcommand{\reg}[1]{\VerbCmd{\%#1}}
