@@ -1,0 +1,7 @@
+fn main() {
+    let mut res = 2f;
+    for i = 0; i < 10; i += 1 {
+        res /= 2f;
+    }
+    exit((res * 100f) as int)
+}

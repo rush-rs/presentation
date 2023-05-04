@@ -13,6 +13,9 @@ LINT_ALL_SKIP = [
 
 class Backend(Enum):
     analyzer = 0
+    riscv = 1
+    llvm = 2
+    c = 3
 
 
 JOBS = [
@@ -33,6 +36,11 @@ JOBS = [
         'out': 'listings/generated/unused_var.rush.out',
         'show_filename': 'unused_var.rush',
         'backend': Backend.analyzer,
+    },
+    {
+        'in': 'listings/simple.rush',
+        'out': 'listings/generated/simple.ll',
+        'backend': Backend.llvm,
     },
 ]
 
@@ -67,6 +75,60 @@ def analyzer_output(source: str, output: str, show_filename: str):
     os.chdir(start_dir)
 
     print(f'generated analyzer output of {output_path}')
+
+
+def riscv_asm(source: str, output: str, line_width: int):
+    input_path = os.path.realpath(source)
+    output_path = os.path.realpath(output)
+
+    start_dir = os.path.realpath(os.curdir)
+    os.chdir('./deps/rush/crates/rush-compiler-risc-v/')
+
+    subprocess.run(
+        f'cargo r {input_path} {line_width}',
+        shell=True,
+    ).check_returncode()
+
+    os.rename('output.s', output_path)
+    os.chdir(start_dir)
+
+    print(f'generated {output_path}')
+
+
+def llvm_gen_ir(source: str, output: str):
+    input_path = os.path.realpath(source)
+    output_path = os.path.realpath(output)
+
+    start_dir = os.path.realpath(os.curdir)
+    os.chdir('./deps/rush/crates/rush-compiler-llvm/')
+
+    subprocess.run(
+        f'cargo r {input_path}',
+        shell=True,
+    ).check_returncode()
+
+    os.rename('output.ll', output_path)
+    os.chdir(start_dir)
+
+    print(f'generated {output_path}')
+
+
+def transpile_c(source: str, output: str):
+    input_path = os.path.realpath(source)
+    output_path = os.path.realpath(output)
+
+    start_dir = os.path.realpath(os.curdir)
+    os.chdir('./deps/rush/crates/rush-transpiler-c/')
+
+    subprocess.run(
+        f'cargo r {input_path}',
+        shell=True,
+    ).check_returncode()
+
+    os.rename('output.c', output_path)
+    os.chdir(start_dir)
+
+    print(f'generated {output_path}')
 
 
 def riscv_hex(source: str, output: str, linewidth: int, head: str):
@@ -188,6 +250,12 @@ if __name__ == '__main__':
         for job in JOBS:
             if job['backend'] == Backend.analyzer:
                 analyzer_output(job['in'], job['out'], job['show_filename'])
+            elif job['backend'] == Backend.riscv:
+                riscv_asm(job['in'], job['out'], 100)
+            elif job['backend'] == Backend.llvm:
+                llvm_gen_ir(job['in'], job['out'])
+            elif job['backend'] == Backend.c:
+                transpile_c(job['in'], job['out'])
             else:
                 raise Exception('Invalid enum in job')
     else:
