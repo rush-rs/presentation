@@ -1,0 +1,80 @@
+\section{Kompilierung zu \riscv}
+\begin{frame}{Was ist \riscv?}
+	\begin{itemize}
+        \item \TODO{@MikMuellerDev Write this}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{foobarbaz}
+	\begin{table}
+		\centering
+		\caption[Registers of the \riscv{} architecture.]{Registers of the \riscv{} architecture~\cite[p.~155]{Waterman2019}.}\label{tbl:riscv_regs}
+		\begin{tabularx}{\linewidth}{l|L}
+			\rowcolor{gray!15} Register(s) & Purpose                           \\ \hline
+			\texttt{zero}                  & hardwired zero                    \\ \hline
+			\texttt{ra}                    & return address                    \\ \hline
+			\texttt{sp}                    & stack pointer                     \\ \hline
+			\texttt{t0}--\texttt{t6}       & temporary storage                 \\ \hline
+			\texttt{fp}                    & frame Pointer                     \\ \hline
+			\texttt{a0}, \texttt{a1}       & function arguments, return values \\ \hline
+			\texttt{a2}--\texttt{a7}       & function arguments                \\ \hline
+			\texttt{s1}--\texttt{s11}      & saved register                    \\ \hline
+			\texttt{fa0}, \texttt{fa1}     & float arguments, return values    \\ \hline
+			\texttt{fa2}--\texttt{fa7}     & float arguments                   \\ \hline
+			\texttt{fs0}--\texttt{fs11}    & float saved registers             \\ \hline
+			\texttt{ft0}--\texttt{ft11}    & float temporaries                 \\
+		\end{tabularx}
+	\end{table}
+\end{frame}
+
+\begin{frame}{foobar}
+	\begin{figure}[h]
+		\hspace{-1.75cm}
+		\begin{tikzpicture}[xscale=0.9, yscale=0.7]
+			\footnotesize
+
+			% manually set counter to allow stack frame including the start dots
+			\setcounter{cellnb}{0}
+			\startframe
+			\addtocounter{cellnb}{-1}
+
+			% copied code from `\stacktop{}` to not reset counter to in turn allow `\startframe` above this
+			\draw[padding] (0,\value{cellnb})
+			+(-2,.5) -- +(-2,-.5) -- +(2,-.5) -- +(2,.5);
+			\draw (0,\value{cellnb}) node{...};
+
+			\cell{$n$\textsuperscript{th} stack argument} \cellcom{\texttt{$8n$(fp)}}
+			\cell[padding]{...}
+			% custom draw instead of `\cellcom` for yshift
+			\draw (2.4,\value{cellnb}) node[anchor=west, yshift=3.5pt] {\vdots};
+			\cell{\nth{1} stack argument} \cellcom{\texttt{0(fp)}}
+			\finishframe{previous}
+
+			\startframe
+			\cell{previous \qVerb{fp} value} \cellcom{\texttt{-8(fp)}}
+			\cell{return address} \cellcom{\texttt{-16(fp)}}
+
+			\padding{3}{\makecell{unspecified\\variable size}} \cellcom{\texttt{0(sp)}}
+			% custom draws instead of `\cellcom` for yshift and padding cell offset
+			\draw (2.4,\value{cellnb}+1) node[anchor=west, yshift=3.5pt] {\vdots};
+			\draw (2.4,\value{cellnb}+2) node[anchor=west] {\texttt{-24(fp)}};
+			\finishframe{current}
+			\stackbottom[padding]
+		\end{tikzpicture}
+		\caption{Stack layout of the \riscv{} architecture.}\label{fig:riscv_stack}
+	\end{figure}
+\end{frame}
+
+\begin{frame}{Assembly}
+	\noindent
+	\begin{minipage}{.45\textwidth}
+		\centering
+		\Lirsting[caption={A rush program calculating the sum of two integers.}, label={lst:rush_riscv_simple_sum}, float=H, fontsize=\small]{deps/paper/listings/simple_add.rush}
+	\end{minipage}%
+	\hfill%
+	\begin{minipage}{.45\textwidth}
+		\centering
+        \Lirsting[ranges={18-25},caption={Compiler output of the rush program in Listing~\ref{lst:rush_riscv_simple_sum}.}, label={lst:asm_riscv_simple_sum}, float=H, fontsize=\small]{deps/paper/listings/generated/rush_simple_add.s}
+		\vspace{.1cm}
+	\end{minipage}
+\end{frame}

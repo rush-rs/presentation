@@ -1,12 +1,20 @@
+\section{TODO}
+\begin{frame}{TODO}
+	\begin{itemize}
+		\item \TODO{translate everything into German}
+		\item \TODO{fix lirstings captions}
+	\end{itemize}
+\end{frame}
+
 \section{Einstieg \& Motivation}
 \begin{frame}{Einstieg \& Motivation}
 	\begin{itemize}
-		\item Computerprogrammer werden oft in speziell entwickelten Programmiersprachen verfasst
+		\item Computerprogramme werden oft in speziell entwickelten Programmiersprachen verfasst
 		\item Vorteile eines hohen Abstraktionsgrades~\scite[S.~9]{Dandamudi2005Risc}:
 		      \begin{itemize}
 			      \item Entwicklung ist einfacher und schneller
 			      \item Programme sind portabel
-			      \item Instandhaltung ist einfacher
+			      \item Reperaturen und Erweiterungen sind einfacher
 		      \end{itemize}
 	\end{itemize}
 \end{frame}
@@ -15,29 +23,29 @@
 	\begin{minipage}{.35\textwidth}
 		\Lirsting[float=H, fancyvrb={frame=none, fontsize=\small}]{deps/paper/listings/simple.rush}
 	\end{minipage}%
-    \Larrow{Übersetzung}
+	\Larrow{Übersetzung}
 	\hfill
 	\begin{minipage}{.35\textwidth}
 		\Lirsting[float=H, fancyvrb={frame=none, fontsize=\small}, ranges={1-10}]{listings/rush_simple.hexdump}
 	\end{minipage}
 
 	\begin{itemize}
-		\item Programme sollten einfach zu schreiben sein
-		\item[\Rightarrow] Ein Computer muss diese jedoch auch \textit{einfach} verarbeiten
+		\item Programme sollten \cemph{einfach} zu schreiben sein
+		\item[\Rightarrow] Ein Computer muss diese jedoch auch \cemph{einfach} verarbeiten
 	\end{itemize}
 \end{frame}
 
 \begin{frame}{Methoden zur Programmausführung}
 	\begin{itemize}
-		\item Man unterscheidet zwischen \emph{Compilern} und \emph{Interpretern}
-		\item Ein Compiler (auch \emph{Übersetzer}) übersetzt die Sprache in ein zielspezifiesches Format, sodass ein Computer dieses verstehen kann
-		\item Ein Interpreter führt das Programm direkt aus, ohne es vorher zu bearbeiten
+		\item Man unterscheidet zwischen \cemph{Compilern} und \cemph{Interpretern}
+		\item Ein Compiler übersetzt die Sprache in ein zielspezifiesches Format, welches der Computer versteht
+		\item Ein Interpreter führt das Programm direkt aus, ohne es vorher zu übersetzen
 	\end{itemize}
 \end{frame}
 
 \begin{frame}{Etappen der Übersetzung~\scite[S.~6--7]{wirth_compiler_construction_2005}}
 	\hspace{0pt} % This is somehow required
-    \vfill
+	\vfill
 	\begin{figure}[h]
 		\begin{adjustbox}{max totalsize={\textwidth}{!},center}
 			\begin{tikzpicture}[node distance=1cm, inner sep=3mm]
@@ -52,7 +60,7 @@
 		\end{adjustbox}
 		\caption{Etappen der Übersetzung.}\label{fig:compilation_steps}
 	\end{figure}
-    \vfill
+	\vfill
 	\begin{figure}[h]
 		\begin{adjustbox}{max totalsize={\textwidth}{!},center}
 			\begin{tikzpicture}[node distance=3mm and 1cm, inner sep=3mm]
@@ -67,7 +75,7 @@
 		\end{adjustbox}
 		\caption{Etappen der Übersetzung (angepasst).}\label{fig:compilation_steps_altered}
 	\end{figure}
-    \vfill
+	\vfill
 \end{frame}
 
 \subsection{Die Programmiersprache \enquote{rush}}
@@ -119,7 +127,8 @@
 \begin{frame}{Fakten über rush}
 	\begin{itemize}
 		\item Im Git Commit `\rushCommit'~umfasste das Projekt \tokei{./deps/rush} Zeilen Programmtext\footnote{Leerzeilen und Kommentare werden nicht gezählt.}
-		\item Das Projekt enthält einen Lexer, einen Parser, fünf Compiler, einen Interpreter und einen Transpiler
+		\item Das Projekt enthält zwei Interpreter, einen Transpiler und vier Compiler
+		\item Die Komponenten verwenden alle die selbe Semantikanalyse und den selben Lexer und Parser
 	\end{itemize}
 \end{frame}
 
