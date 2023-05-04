@@ -14,12 +14,14 @@
 %\usepackage{amsmath}
 \usepackage{adjustbox}
 \usepackage{graphicx}
+\usepackage[super]{nth}
 %\usepackage{float}
 %\usepackage{amsfonts}
 %\usepackage{textcomp}
 
 % REFERENCE: https://www.ctan.org/tex-archive/macros/latex/contrib/drawstack
-%\usepackage[nocolor]{drawstack}
+\usepackage[nocolor]{drawstack}
+\tikzstyle{occupiedcell}=[fill=white!70!black, draw=black]
 
 \usepackage[backend=biber,style=alphabetic,sorting=ynt]{biblatex}
 \addbibresource{deps/paper/bibliography.bib}
@@ -47,10 +49,11 @@
 \newcommand{\reg}[1]{\VerbCmd{\%#1}}
 \newcommand{\qreg}[1]{\qVerbCmd{\%#1}}
 
-% TODO: remove this command
-\newcommand{\buildDate}{\ignorespaces\textcolor{red}{Timestamp: \texttt{\input "|date"} | Commit: \paperCommit}\unskip}
 
 % \setcounter{tocdepth}{3}% Include \subsubsection in ToC
+
+\definecolor{DarkTeal}{HTML}{23373b}
+\newcommand{\cemph}[1]{\textcolor{mLightBrown}{#1}}
 
 \newcounter{chapter}
 \setcounter{chapter}{1}
