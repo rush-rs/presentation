@@ -1,33 +1,36 @@
 \section{Kompilierung zu \riscv}
 \begin{frame}{Was ist \riscv?}
 	\begin{itemize}
-        \item \TODO{@MikMuellerDev Write this}
+        \item \textbf{R}educed \textbf{i}nstruction \textbf{s}et \textbf{c}omputer (RISC)
+        \item Simplizität und Erweiterbarkeit
+        \item Forschungsprojekt der UC Berkeley
+        \item Unterstüztung durch: Google Microsoft, Samsung und IBM
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{foobarbaz}
+\begin{frame}{Registers der \riscv{} Architektur \TODO{MAYBE DELETE}}
 	\begin{table}
 		\centering
-		\caption[Registers of the \riscv{} architecture.]{Registers of the \riscv{} architecture~\cite[p.~155]{Waterman2019}.}\label{tbl:riscv_regs}
+		\caption[Registers der \riscv{} Architektur.]{Register der \riscv{} Architektur~\cite[p.~155]{Waterman2019}.}\label{tbl:riscv_regs}
 		\begin{tabularx}{\linewidth}{l|L}
-			\rowcolor{gray!15} Register(s) & Purpose                           \\ \hline
-			\texttt{zero}                  & hardwired zero                    \\ \hline
-			\texttt{ra}                    & return address                    \\ \hline
-			\texttt{sp}                    & stack pointer                     \\ \hline
-			\texttt{t0}--\texttt{t6}       & temporary storage                 \\ \hline
-			\texttt{fp}                    & frame Pointer                     \\ \hline
-			\texttt{a0}, \texttt{a1}       & function arguments, return values \\ \hline
-			\texttt{a2}--\texttt{a7}       & function arguments                \\ \hline
-			\texttt{s1}--\texttt{s11}      & saved register                    \\ \hline
-			\texttt{fa0}, \texttt{fa1}     & float arguments, return values    \\ \hline
-			\texttt{fa2}--\texttt{fa7}     & float arguments                   \\ \hline
-			\texttt{fs0}--\texttt{fs11}    & float saved registers             \\ \hline
-			\texttt{ft0}--\texttt{ft11}    & float temporaries                 \\
+			\rowcolor{gray!15} Register & Verwendung                        \\ \hline
+			\texttt{zero}               & hardwired zero                    \\ \hline
+			\texttt{ra}                 & return address                    \\ \hline
+			\texttt{sp}                 & stack pointer                     \\ \hline
+			\texttt{t0}--\texttt{t6}    & temporary storage                 \\ \hline
+			\texttt{fp}                 & frame pointer                     \\ \hline
+			\texttt{a0}, \texttt{a1}    & function arguments, return values \\ \hline
+			\texttt{a2}--\texttt{a7}    & function arguments                \\ \hline
+			\texttt{s1}--\texttt{s11}   & saved register                    \\ \hline
+			\texttt{fa0}, \texttt{fa1}  & float arguments, return values    \\ \hline
+			\texttt{fa2}--\texttt{fa7}  & float arguments                   \\ \hline
+			\texttt{fs0}--\texttt{fs11} & float saved registers             \\ \hline
+			\texttt{ft0}--\texttt{ft11} & float temporaries                 \\
 		\end{tabularx}
 	\end{table}
 \end{frame}
 
-\begin{frame}{foobar}
+\begin{frame}{Stacklayout der \riscv Architektur \TODO{MAYBE DELETE}}
 	\begin{figure}[h]
 		\hspace{-1.75cm}
 		\begin{tikzpicture}[xscale=0.9, yscale=0.7]
@@ -61,20 +64,14 @@
 			\finishframe{current}
 			\stackbottom[padding]
 		\end{tikzpicture}
-		\caption{Stack layout of the \riscv{} architecture.}\label{fig:riscv_stack}
+		\caption{Stack layout der \riscv{} Architektur.}\label{fig:riscv_stack}
 	\end{figure}
 \end{frame}
 
-\begin{frame}{Assembly}
-	\noindent
-	\begin{minipage}{.45\textwidth}
-		\centering
-		\Lirsting[caption={A rush program calculating the sum of two integers.}, label={lst:rush_riscv_simple_sum}, float=H, fontsize=\small]{deps/paper/listings/simple_add.rush}
-	\end{minipage}%
-	\hfill%
-	\begin{minipage}{.45\textwidth}
-		\centering
-        \Lirsting[ranges={18-25},caption={Compiler output of the rush program in Listing~\ref{lst:rush_riscv_simple_sum}.}, label={lst:asm_riscv_simple_sum}, float=H, fontsize=\small]{deps/paper/listings/generated/rush_simple_add.s}
-		\vspace{.1cm}
-	\end{minipage}
+\begin{frame}{Beispiel: Eingabe}
+	\Lirsting[float=H]{deps/paper/listings/simple_add.rush}
+\end{frame}
+
+\begin{frame}{Beispiel: Ausgabe}
+	\Lirsting[float=H, fancyvrb={fontsize=\scriptsize}]{deps/paper/listings/generated/rush_simple_add.s}
 \end{frame}

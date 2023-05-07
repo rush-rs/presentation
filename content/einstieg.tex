@@ -1,24 +1,3 @@
-\section{TODO}
-\begin{frame}{TODO}
-	\begin{itemize}
-		\item \TODO{translate everything into German}
-		\item \TODO{fix lirstings captions}
-	\end{itemize}
-\end{frame}
-
-\section{Einstieg \& Motivation}
-\begin{frame}{Einstieg \& Motivation}
-	\begin{itemize}
-		\item Computerprogramme werden oft in speziell entwickelten Programmiersprachen verfasst
-		\item Vorteile eines hohen Abstraktionsgrades~\scite[S.~9]{Dandamudi2005Risc}:
-		      \begin{itemize}
-			      \item Entwicklung ist einfacher und schneller
-			      \item Programme sind portabel
-			      \item Reperaturen und Erweiterungen sind einfacher
-		      \end{itemize}
-	\end{itemize}
-\end{frame}
-
 \begin{frame}{Zentrales Problem}
 	\begin{minipage}{.35\textwidth}
 		\Lirsting[float=H, fancyvrb={frame=none, fontsize=\small}]{deps/paper/listings/simple.rush}
@@ -35,15 +14,109 @@
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Methoden zur Programmausführung}
+\section{TODO}
+\begin{frame}{TODO}
 	\begin{itemize}
-		\item Man unterscheidet zwischen \cemph{Compilern} und \cemph{Interpretern}
-		\item Ein Compiler übersetzt die Sprache in ein zielspezifiesches Format, welches der Computer versteht
-		\item Ein Interpreter führt das Programm direkt aus, ohne es vorher zu übersetzen
+		\item \TODO{translate everything into German}
+		\item \TODO{fix lirstings captions}
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Etappen der Übersetzung~\scite[S.~6--7]{wirth_compiler_construction_2005}}
+\section{Einstieg \& Motivation}
+\begin{frame}{Einstieg \& Motivation}
+	\begin{itemize}
+		\item Programme werden in speziellen Sprachen verfasst
+		\item Vorteile eines hohen Abstraktionsgrades~\scite[S.~9]{Dandamudi2005Risc}
+	\end{itemize}
+
+	\begin{figure}[h]
+		\begin{minipage}{.32\textwidth}
+			\begin{center}
+				\centering
+				\centerline{\includegraphics[width=.5\textwidth]{assets/google_icon_construction.png}}
+				{\small Erweiterbarkeit \& Reperatur}
+			\end{center}
+		\end{minipage}
+		\hfill
+		\begin{minipage}{.32\textwidth}
+			\begin{center}
+				\centerline{\includegraphics[width=.5\textwidth]{assets/google_icon_deployed_code.png}}
+                {\small Portabilität \& Platformunabhängigkeit}
+			\end{center}
+		\end{minipage}
+		\hfill
+		\begin{minipage}{.32\textwidth}
+			\begin{center}
+				\centerline{\includegraphics[width=.5\textwidth]{assets/google_icon_speed.png}}
+				{\small Geschwindigkeit \& Einfachheit }
+			\end{center}
+		\end{minipage}
+		% citation
+		\begin{center}
+			\scite{googleFonts}
+		\end{center}
+	\end{figure}
+\end{frame}
+
+\begin{frame}{Methoden zur Programmausführung}
+	\begin{itemize}
+		\item Man unterscheidet zwischen \cemph{Compilern} und \cemph{Interpretern}
+		\item Compiler: übersetzt das Programm in ein Zielformat
+        \item Interpreter: führt das Programm direkt aus (keine Übersetzung)
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Compiler}
+	\begin{minipage}{.35\textwidth}
+		\Lirsting[float=H, fancyvrb={frame=none, fontsize=\small}]{deps/paper/listings/simple.rush}
+	\end{minipage}%
+	\Larrow{
+		\begin{minipage}{1.45cm}
+			Übersetzung
+		\end{minipage}
+		\begin{minipage}{5mm}
+			\includegraphics[width=5mm]{assets/google_icon_settings.png}
+		\end{minipage}
+	}
+	\hfill
+	\begin{minipage}{.35\textwidth}
+		\Lirsting[float=H, fancyvrb={frame=none, fontsize=\small}, ranges={1-10}]{listings/rush_simple.hexdump}
+	\end{minipage}
+
+	\begin{itemize}
+        \item Rust, C, Go, usw.
+		\item Zusätzlicher Prozess
+		\item Umwandlung in ein anderes Format
+		\item[\Rightarrow] Muss vor der Ausführung ablaufen
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Interpreter}
+	\begin{minipage}{.36\textwidth}
+		\Lirsting[float=H, fancyvrb={frame=none, fontsize=\small}]{deps/paper/listings/simple.rush}
+	\end{minipage}%
+	\hfill
+	\Larrow{
+		\begin{minipage}{1.45cm}
+			Ausführung
+		\end{minipage}
+		\begin{minipage}{5mm}
+			\includegraphics[width=5mm]{assets/google_icon_settings.png}
+		\end{minipage}
+	}
+	\hfill
+	\begin{minipage}{.35\textwidth}
+		{\LARGE Exit code: 5}
+	\end{minipage}
+
+	\begin{itemize}
+        \item Python, Javascript, PHP, usw.
+		\item Keine Übersetzung notwending
+		\item[\Rightarrow] Interpretiert den Syntaxbaum direkt
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Stufen der Übersetzung~\scite[S.~6--7]{wirth_compiler_construction_2005}}
 	\hspace{0pt} % This is somehow required
 	\vfill
 	\begin{figure}[h]
@@ -58,7 +131,7 @@
 				\draw [arrow] (semantic_analysis) -- (codegen);
 			\end{tikzpicture}
 		\end{adjustbox}
-		\caption{Etappen der Übersetzung.}\label{fig:compilation_steps}
+		\caption{Stufen der Übersetzung.}\label{fig:compilation_steps}
 	\end{figure}
 	\vfill
 	\begin{figure}[h]
@@ -73,7 +146,7 @@
 				\draw [arrow] (semantic_analysis) -- (codegen);
 			\end{tikzpicture}
 		\end{adjustbox}
-		\caption{Etappen der Übersetzung (angepasst).}\label{fig:compilation_steps_altered}
+		\caption{Stufen der Übersetzung (angepasst).}\label{fig:compilation_steps_altered}
 	\end{figure}
 	\vfill
 \end{frame}
@@ -126,9 +199,17 @@
 
 \begin{frame}{Fakten über rush}
 	\begin{itemize}
-		\item Im Git Commit `\rushCommit'~umfasste das Projekt \tokei{./deps/rush} Zeilen Programmtext\footnote{Leerzeilen und Kommentare werden nicht gezählt.}
-		\item Das Projekt enthält zwei Interpreter, einen Transpiler und vier Compiler
-		\item Die Komponenten verwenden alle die selbe Semantikanalyse und den selben Lexer und Parser
+        \item ca.\ fünf Monate intensive Entwicklung
+        \item \rushCountCommits~Git Commits
+		\item \tokei{./deps/rush} Zeilen Programmtext\footnote{Leerzeilen und Kommentare werden nicht gezählt.} in Git Commit `\rushCommit'
+		\item Inhalte des Projektes
+            \begin{itemize}
+                \item Lexer
+                \item Parser
+                \item zwei Interpreter
+                \item ein Transpiler
+                \item vier Compiler
+            \end{itemize}
 	\end{itemize}
 \end{frame}
 

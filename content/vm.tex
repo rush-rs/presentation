@@ -3,13 +3,18 @@
 
 \begin{frame}{Virtuelle Maschine}
 	\begin{itemize}
-		\item Oft bezeichnet eine \emph{virtuelle Maschine} (VM) ein Softwareprogramm, welches einen echten Computer simuliert
-		\item Hierbei werden oft auch Geräte wie das Display, Lautsprecher oder die Festplatte miteinbezogen
-		\item In diesem Kontext bezeichnet der Begriff jedoch eine Software, die wie die CPU eines Rechners funktioniert
+		\item Meistens: Eine \emph{Virtuelle Maschine} (VM) simuliert echte Computer
+		      \begin{itemize}
+			      \item Display
+			      \item Lautsprecher
+			      \item Festplatte
+			      \item \dots
+		      \end{itemize}
+		\item Hier: Software, die wie die CPU eines Rechners funktioniert
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Wie eine CPU Programme ausführt}
+\begin{frame}{Wie eine CPU Programme ausführt \TODO{DELETE}}
 	\begin{itemize}
 		\item Die meisten Prozessoren basieren auf der \emph{von Neumann Architektur}~\scite[p.~172]{Ledin2020-yp}
 		\item Eine CPU enthält nach von Neumann ein \emph{Rechenwerk}\footnote{Engl: \enquote{arithmetic logic unit} (ALU).}, \emph{Steuerwerk}\footnote{Engl: \enquote{control unit}.}, \emph{Speicherwerk}, \emph{Ein- / Ausgabewerk} und ein Bussystem~\scite[p.~172]{Ledin2020-yp}
@@ -23,7 +28,7 @@
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Übertragung der Konzepte auf die rush VM}
+\begin{frame}{Übertragung der Konzepte auf die rush VM \TODO{DELETE}}
 	\Lirsting[ranges={16-26}, caption={Struct Definition der VM.}, label={lst:vm_struct}, fancyvrb={fontsize=\footnotesize}, float=H]{deps/rush/crates/rush-interpreter-vm/src/vm.rs}
 	\begin{itemize}
 		\item \TODO{fix broken caption}
@@ -34,7 +39,7 @@
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Speicherstruktur der rush VM.}
+\begin{frame}{Speicherstruktur der rush VM. \TODO{DELETE}}
 	\begin{itemize}
 		\item Unterscheidung zwischen zwei Arten der Adressierung
 		\item \emph{relative Adressierung}: \qVerb{svari *rel[0]}
@@ -77,7 +82,7 @@
 	\end{figure}
 \end{frame}
 
-\begin{frame}{Ein Beispielprogramm der rush VM}
+\begin{frame}{Ein Beispielprogramm der rush VM \TODO{Delete}}
 	\hspace{0pt} % This is somehow required
 	\vfill
 	\Lirsting[caption={Beispielprogramm der rush VM.}, fancyvrb={fontsize=\footnotesize}, float=H]{deps/paper/listings/vm_faster_instructions.s}
@@ -86,31 +91,44 @@
 
 \begin{frame}{Struktur der Programme der rush VM}
 	\begin{itemize}
-		\item Verwendung eines Stacks für Funktionsaufrufe und temporäre Operationen
+		\item Stack für temporäre Operationen
+		\item Weiterer Stack für Funktionsaufrufe
 		\item Unterteilung in Funktionen
-		\item Jede Funktion enthält mehrere Anweisungen
-		\item Die Funktions- und Variablennamen wurden durch Indizes ersetzt
-		\item Im Git Commit \enquote{\rushCommit{}} beinhaltete die VM ca.\ verschiedene 30 Befehlscodes
-		\item Jede Anweisung besteht aus einem Befehlscode mit einem optionalen Operanden
-		\item Beispiele: \enquote{\LirstInline{asm}{add}} oder \enquote{\LirstInline{asm}{call 2}}
+		      \begin{itemize}
+			      \item Ohne Namen
+			      \item numerische Identifizierung
+			      \item Enthält mehrere Anweisungen
+		      \end{itemize}
+		\item Git Commit \enquote{\rushCommit{}}: ca.\ 30 verschiedene Befehlscodes
+		\item Struktur der Anweisungen: \enquote{\LirstInline{asm}{call 2}}
+		      \begin{itemize}
+			      \item Befehlscode (\texttt{call})
+			      \item Optionaler Operand (\texttt{2})
+		      \end{itemize}
 	\end{itemize}
 \end{frame}
 
 \begin{frame}{VM: Fazit}
 	\begin{itemize}
-		\item Ca. 2.7 mal schneller als der tree-walking interpreter
-		\item Implementierung des Compilers stellte sich als eher einfach heraus
-		\item Die Stack-basierte Architektur erleichterte die Implementierung des Compilers
-		\item Gleichzeitige Entwicklung der VM und des Compilers erleichterte einige Vorgänge
-		\item Der Compiler profitiert von dem hohen Abstraktionsgrad der VM
+		\item Ca. 2.7 mal schneller als der Tree-walking Interpreter
+		\item Einfache Implementierung des Compilers
+		      \begin{itemize}
+			      \item  Stack-basierte Architektur
+			      \item Gleichzeitige Entwicklung von VM und Compiler
+			      \item Hoher Abstraktionsgrad
+		      \end{itemize}
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{VM: Demonstration}
+\begin{frame}{Demonstration: Eingabe}
 	\Lirsting[float=H, fancyvrb={frame=none, fontsize=\footnotesize}]{listings/pow.rush}
 \end{frame}
 
-\begin{frame}{VM: Demonstration}
+\begin{frame}{Demonstration: Ausgabe}
+    \Lirsting[float=H, fancyvrb={frame=none, fontsize=\footnotesize}, ranges={1-16,+8 60-71}]{listings/vm_pow_rush.s}
+\end{frame}
+
+\begin{frame}{Demonstration: Laufzeitverhalten}
 	\begin{center}
 		\href{run:assets/01_rush_presentation_vm.mp4}{
 			\includegraphics[width=\textwidth]{assets/01_rush_presentation_vm.png}
