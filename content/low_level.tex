@@ -1,40 +1,42 @@
 \section{Kompilierung zu low-level Architekturen}
 \begin{frame}{Kompilierung zu low-level Architekturen}
-	\TODO{@MikMuellerDev Write this}
+	\begin{itemize}
+		\item Zielmaschine ist spezifisch
+		\item Betriebssystem ist spezifisch
+		\item Ziel: Lösen der Probleme vieler CISC Architekturen
+        \item Hier: die Compiler generieren Assembly
+	\end{itemize}
 \end{frame}
 
-\begin{frame}{foobar}
+\begin{frame}{Abstraktionsgrad von Assembly}
 	\begin{figure}[h]
-		\begin{tikzpicture}[node distance=1cm, inner sep=3mm]
-			\node (highlevel) [entity, fill=none] {High-level languages\\(\emph{C}, \emph{Rust}, \emph{rush})};
-			\node (asm) [entity, fill=gray!15, below=of highlevel, align=center] {Assembly language\\level};
-			\draw [arrow] (highlevel) -- (asm);
-			\node (machine) [entity, fill=none, below=of asm, align=center] {Machine language\\level};
-			\draw [arrow] (asm) -- (machine);
-			\node (codegen) [entity, fill=none, below=of machine] {Operating system \\ and Hardware level};
-			\draw [arrow] (machine) -- (codegen);
-		\end{tikzpicture}
-		\caption[Level of abstraction provided by assembly.]{Level of abstraction provided by assembly~\cite[p.~5--6]{Dandamudi2005}.}\label{fig:abstractions}
+		\begin{adjustbox}{max totalsize={.26\textwidth}{!},center}
+			\begin{tikzpicture}[node distance=1cm, inner sep=3mm]
+				\node (highlevel) [entity, fill=none] {High-level Sprachen\\(\emph{C}, \emph{Rust}, \emph{rush})};
+				\node (asm) [entity, fill=gray!15, below=of highlevel, align=center] {Assembly\\Ebene};
+				\draw [arrow] (highlevel) -- (asm);
+				\node (machine) [entity, fill=none, below=of asm, align=center] {Machinensprache\\Ebene};
+				\draw [arrow] (asm) -- (machine);
+				\node (codegen) [entity, fill=none, below=of machine] {Betriebssystem-\\ und Hardwareebene};
+				\draw [arrow] (machine) -- (codegen);
+			\end{tikzpicture}
+		\end{adjustbox}
+		\caption[Level of abstraction provided by assembly.]{Abstraktionsgrad von Assembly~\cite[p.~5--6]{Dandamudi2005}.}\label{fig:abstractions}
 	\end{figure}
 \end{frame}
 
 
-
-\begin{frame}{foobar1}
+\begin{frame}{Register und Speicher}
 	\begin{figure}[h]
 		\begin{tikzpicture}[node distance=2cm]
 			\node(CPU)[center] {CPU};
-			\node(registers)[entity, left of=CPU, yshift=3cm] {Registers};
-			\node(memory)[entity, right of=CPU, yshift=3cm] {Memory};
+			\node(registers)[entity, left of=CPU, yshift=3cm] {Register};
+			\node(memory)[entity, right of=CPU, yshift=3cm] {Speicher};
 
 			% TODO: Maybe use `arrow` instead of `relation` in order to remove spacing
-			\draw [darrow, very thick, double] (CPU) -- node[anchor=east, yshift=-.1cm] {fast} (registers);
-			\draw [darrow] (CPU) -- node[anchor=west] {slow} (memory);
+			\draw [darrow, very thick, double] (CPU) -- node[anchor=east, yshift=-.1cm] {schnell} (registers);
+			\draw [darrow] (CPU) -- node[anchor=west] {langsam} (memory);
 		\end{tikzpicture}
-		\caption[Relationship between registers, memory, and the CPU.]{Relationship between registers, memory, and the CPU~\cite[pp.~20--21]{Dandamudi2005}.}\label{fig:cpu_reg_mem}
+		\caption[Relationship between registers, memory, and the CPU.]{Register, Speicher und die CPU~\cite[pp.~20--21]{Dandamudi2005}.}\label{fig:cpu_reg_mem}
 	\end{figure}
-\end{frame}
-
-\begin{frame}{foobar}
-   aa 
 \end{frame}

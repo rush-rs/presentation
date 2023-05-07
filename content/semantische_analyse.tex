@@ -20,14 +20,12 @@
 
 \begin{frame}{Semantische Analyse \& Semantikregeln}
 	\begin{itemize}
-		\item Findet nach der Syntaxanalyse und vor der Übersetzung statt
-		\item Validierung der semantischen Eigenschaften des Programms
-		\item Die semantischen Regeln einer Programmiersprache werden oft mittels einer natürlichen Sprache beschrieben
-		\item Für rush wurde ein Dokument erstellt, welches die meisten Semantikregeln erklärt
+		\item Validiert die semantische Eigenschaften
+		\item Meistens: Definition in einer natürlichen Sprache
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Beispiele für die Semantikregeln von rush}
+\begin{frame}{Beispiele für die Semantikregeln von rush \TODO{DELETE}}
 	\begin{itemize}
 		\item Jede Variable, jede Funktion und jeder Parameter besitzt einen Datentyp, der nach Definierung nicht mehr geändert werden kann
 		\item Eine Funktion muss immer mit den Argumenten aufgerufen werden, die zu den Parametern passen
@@ -70,17 +68,16 @@
 	\Lirsting[float=H, fancyvrb={frame=none, fontsize=\footnotesize}, ansi=true]{listings/generated/unused_var.rush.out}
 \end{frame}
 
-\begin{frame}{Semantische Analyse für rush}
+\begin{frame}{Anforderungen an die Semantische Analyse (für rush)}
 	\begin{itemize}
-		\item Muss in der Lage sein, ein invalides von einem validen Programm zu unterscheiden
-		\item Kann zusätzlich hilfreiche Warnungen und Informationen generieren
-		\item Fügt Informationen über Datentypen zu dem (vom Parser erstellten) AST hinzu
-		\item Führt triviale Optimierungen der Programmstruktur durch
+		\item Unterscheidung zwischen validen und invaliden Programmen
+		\item Liefern von hilfreiche Warnungen und Informationen
+		\item Hinzufügen von Typinformationen zu dem AST
+		\item Triviale Optimierungen der Programmstruktur
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Hinzufügen von Informationen über Datentypen}
-
+\begin{frame}{Hinzufügen von Informationen über Datentypen \TODO{MAYBE DELETE}}
 	\begin{figure}[h]
 		\begin{adjustbox}{max totalsize={\textwidth}{!},center}
 			\begin{tikzpicture}[
