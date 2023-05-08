@@ -1,20 +1,4 @@
-\begin{frame}{Zentrales Problem}
-	\begin{minipage}{.35\textwidth}
-		\Lirsting[float=H, fancyvrb={frame=none, fontsize=\small}]{deps/paper/listings/simple.rush}
-	\end{minipage}%
-	\Larrow{Übersetzung}
-	\hfill
-	\begin{minipage}{.35\textwidth}
-		\Lirsting[float=H, fancyvrb={frame=none, fontsize=\small}, ranges={1-10}]{listings/rush_simple.hexdump}
-	\end{minipage}
-
-	\begin{itemize}
-		\item Programme sollten \cemph{einfach} zu schreiben sein
-		\item[\Rightarrow] Ein Computer muss diese jedoch auch \cemph{einfach} verarbeiten
-	\end{itemize}
-\end{frame}
-
-\section{TODO}
+\section{Einstieg \& Motivation}
 \begin{frame}{TODO}
 	\begin{itemize}
 		\item \TODO{translate everything into German}
@@ -22,7 +6,6 @@
 	\end{itemize}
 \end{frame}
 
-\section{Einstieg \& Motivation}
 \begin{frame}{Einstieg \& Motivation}
 	\begin{itemize}
 		\item Programme werden in speziellen Sprachen verfasst
@@ -41,7 +24,7 @@
 		\begin{minipage}{.32\textwidth}
 			\begin{center}
 				\centerline{\includegraphics[width=.5\textwidth]{assets/google_icon_deployed_code.png}}
-                {\small Portabilität \& Platformunabhängigkeit}
+				{\small Portabilität \& Platformunabhängigkeit}
 			\end{center}
 		\end{minipage}
 		\hfill
@@ -58,11 +41,36 @@
 	\end{figure}
 \end{frame}
 
+\begin{frame}{Zentrales Problem}
+	\begin{minipage}{.35\textwidth}
+		\Lirsting[float=H, fancyvrb={frame=none, fontsize=\small}]{deps/paper/listings/simple.rush}
+	\end{minipage}%
+	\hfill
+	\Larrow{
+		\begin{minipage}{0.9cm}
+			Vorgang
+		\end{minipage}
+		\begin{minipage}{5mm}
+			\includegraphics[width=3.5mm]{assets/google_icon_settings.png}
+		\end{minipage}
+	}
+	\hfill
+	\begin{minipage}{.34\textwidth}
+		% \Lirsting[float=H, fancyvrb={frame=none, fontsize=\small}, ranges={1-10}]{listings/rush_simple.hexdump}
+		\centerline{\includegraphics[width=.5\textwidth]{assets/google_icon_question_mark.png}}
+	\end{minipage}
+
+	\begin{itemize}
+		\item Programme sollten \cemph{einfach} zu schreiben sein
+		\item[\Rightarrow] Ein Computer muss diese jedoch auch \cemph{einfach} verarbeiten
+	\end{itemize}
+\end{frame}
+
 \begin{frame}{Methoden zur Programmausführung}
 	\begin{itemize}
 		\item Man unterscheidet zwischen \cemph{Compilern} und \cemph{Interpretern}
 		\item Compiler: übersetzt das Programm in ein Zielformat
-        \item Interpreter: führt das Programm direkt aus (keine Übersetzung)
+		\item Interpreter: führt das Programm direkt aus (keine Übersetzung)
 	\end{itemize}
 \end{frame}
 
@@ -75,7 +83,7 @@
 			Übersetzung
 		\end{minipage}
 		\begin{minipage}{5mm}
-			\includegraphics[width=5mm]{assets/google_icon_settings.png}
+			\includegraphics[width=3.5mm]{assets/google_icon_settings.png}
 		\end{minipage}
 	}
 	\hfill
@@ -84,7 +92,7 @@
 	\end{minipage}
 
 	\begin{itemize}
-        \item Rust, C, Go, usw.
+		\item Rust, C, Go, usw.
 		\item Zusätzlicher Prozess
 		\item Umwandlung in ein anderes Format
 		\item[\Rightarrow] Muss vor der Ausführung ablaufen
@@ -97,11 +105,11 @@
 	\end{minipage}%
 	\hfill
 	\Larrow{
-		\begin{minipage}{1.45cm}
+		\begin{minipage}{1.3cm}
 			Ausführung
 		\end{minipage}
 		\begin{minipage}{5mm}
-			\includegraphics[width=5mm]{assets/google_icon_settings.png}
+			\includegraphics[width=3.5mm]{assets/google_icon_settings.png}
 		\end{minipage}
 	}
 	\hfill
@@ -110,13 +118,105 @@
 	\end{minipage}
 
 	\begin{itemize}
-        \item Python, Javascript, PHP, usw.
+		\item Python, Javascript, PHP, usw.
 		\item Keine Übersetzung notwending
 		\item[\Rightarrow] Interpretiert den Syntaxbaum direkt
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Stufen der Übersetzung~\scite[S.~6--7]{wirth_compiler_construction_2005}}
+\section{Die Programmiersprache \enquote{rush}}
+
+\begin{frame}{Fakten über rush}
+	\begin{figure}[h]
+		\flushleft
+		\hspace{.15cm} \rushlogo{y=0.80pt, x=0.80pt, yscale=-0.15, xscale=0.15}
+		\vspace{.2cm}
+	\end{figure}
+	\begin{itemize}
+		\item ca.\ vier Monate intensive Entwicklung
+		\item \rushCountCommits~Git Commits
+		\item \tokei{./deps/rush} Zeilen Programmtext\footnote{Leerzeilen und Kommentare werden nicht gezählt.} in Git Commit `\rushCommit'
+		\item Sprache für mathematische Berechnungen
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Inhalte des Projektes}
+	\begin{itemize}
+		\item Lexer
+		\item Parser
+		\item Semantikanalyse
+		\item zwei Interpreter
+		\item ein Transpiler
+		\item vier Compiler
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Fähigkeiten von rush \TODO{MAYBE SPLIT FEATURES ACROSS SLIDES}}
+	\begin{table}[h]
+		\caption{Die wichtigsten Fähigkeiten von rush.}\label{tbl:rush_features}
+		\rowcolors{2}{gray!15}{}
+		\begin{tabularx}{0.95\textwidth}{Ll}
+			\rowcolor{gray!25} Bezeichnung & Beispiel                                          \\
+			\hline
+			Schleife                       & \LirstInline{rush}{loop {  }}                     \\
+			while-Schleife                 & \LirstInline{rush}{while x < 5 {  }}              \\
+			for-Schleife                   & \LirstInline{rush}{for i = 0; i < 5; i += 1 {  }} \\
+			if-Verzweigung                 & \LirstInline{rush}{if true {  } else {  }}        \\
+			Funktionsdefinition            & \LirstInline{rush}{fn foo(n: int) {  }}           \\
+			infix-expression               & \LirstInline{rush}{1 + n; 5 ** 2}                 \\
+			prefix-expression              & \LirstInline{rush}{!false; -n}                    \\
+			let-statement                  & \LirstInline{rush}{let mut answer = 42}           \\
+			cast-expression                & \LirstInline{rush}{42 as float}                   \\
+		\end{tabularx}
+	\end{table}
+\end{frame}
+
+\begin{frame}{Datentypen in rush \TODO{MAYBE SPLIT TYPES ACROSS SLIDES}}
+	\begin{table}[h]
+		\caption{Datentypen in rush.}\label{tbl:rush_types}
+		\rowcolors{2}{gray!15}{}
+		\begin{tabularx}{0.95\textwidth}{lL}
+			\rowcolor{gray!25} Bezeichnung & Instanziierung einer Variable            \\
+			\hline
+			\qVerb{int}                    & \LirstInline{rush}{let a: int = 0;}      \\
+			\qVerb{float}                  & \LirstInline{rush}{let b: float = 3.14;} \\
+			\qVerb{bool}                   & \LirstInline{rush}{let c: bool = true;}  \\
+			\qVerb{char}                   & \LirstInline{rush}{let d: char = 'a';}   \\
+			\qVerb{()}                     & \LirstInline{rush}{let e: () = main();}  \\
+			\qVerb{!}                      & \LirstInline{rush}{let f = exit(42);}    \\
+		\end{tabularx}
+	\end{table}
+\end{frame}
+
+\begin{frame}{Berechnung von Fibonaccizahlen in rush}
+	\begin{minipage}{.6\textwidth}
+		\Lirsting[float=H]{deps/paper/listings/fib.rush}
+	\end{minipage}
+	\begin{minipage}{.3\textwidth}
+		$f_n = f_{n-1} + f_{n-2}; n \ge 3$
+		$f_1 = f_2 = 1$
+	\end{minipage}
+\end{frame}
+
+\begin{frame}{Programmtext der einzelnen Komponenten}
+	\begin{table}[h]
+		\centering
+		\caption{Zeilen Programmtext pro Komponente.}\label{tbl:rush_loc_components}
+		\begin{tabularx}{0.95\textwidth}{|L|L|}
+			\hline
+			\rowcolor{gray!20} Komponente & Zeilen Programmtext                                                  \\ \hline
+			Lexer / Parser                & \tokei{./deps/rush/crates/rush-parser}                               \\ \hline
+			Tree-walking interpreter      & \cellcolor{gray!30} \tokei{./deps/rush/crates/rush-interpreter-tree} \\ \hline
+			VM compiler / runtime         & \tokei{./deps/rush/crates/rush-interpreter-vm}                       \\ \hline
+			WASM compiler                 & \tokei{./deps/rush/crates/rush-compiler-wasm}                        \\ \hline
+			LLVM compiler                 & \cellcolor{gray!30} \tokei{./deps/rush/crates/rush-compiler-llvm}    \\ \hline
+			RISC-V compiler               & \tokei{./deps/rush/crates/rush-compiler-risc-v}                      \\ \hline
+			x86 compiler                  & \cellcolor{gray!30} \tokei{./deps/rush/crates/rush-compiler-x86-64}  \\ \hline
+		\end{tabularx}
+	\end{table}
+\end{frame}
+
+\begin{frame}{Stufen der Übersetzung~\scite[S.~6--7]{wirth_compiler_construction_2005} \TODO{MAYBE DELETE}}
 	\hspace{0pt} % This is somehow required
 	\vfill
 	\begin{figure}[h]
@@ -149,84 +249,4 @@
 		\caption{Stufen der Übersetzung (angepasst).}\label{fig:compilation_steps_altered}
 	\end{figure}
 	\vfill
-\end{frame}
-
-\subsection{Die Programmiersprache \enquote{rush}}
-
-\begin{frame}{Fähigkeiten von rush}
-	\begin{table}[h]
-		\caption{Die wichtigsten Fähigkeiten von rush.}\label{tbl:rush_features}
-		\rowcolors{2}{gray!15}{}
-		\begin{tabularx}{0.95\textwidth}{Ll}
-			\rowcolor{gray!25} Bezeichnung & Beispiel                                          \\
-			\hline
-			Schleife                       & \LirstInline{rush}{loop {  }}                     \\
-			while-Schleife                 & \LirstInline{rush}{while x < 5 {  }}              \\
-			for-Schleife                   & \LirstInline{rush}{for i = 0; i < 5; i += 1 {  }} \\
-			if-Verzweigung                 & \LirstInline{rush}{if true {  } else {  }}        \\
-			Funktionsdefinition            & \LirstInline{rush}{fn foo(n: int) {  }}           \\
-			infix-expression               & \LirstInline{rush}{1 + n; 5 ** 2}                 \\
-			prefix-expression              & \LirstInline{rush}{!false; -n}                    \\
-			let-statement                  & \LirstInline{rush}{let mut answer = 42}           \\
-			cast-expression                & \LirstInline{rush}{42 as float}                   \\
-		\end{tabularx}
-	\end{table}
-\end{frame}
-
-\begin{frame}{Datentypen in rush}
-	\begin{table}[h]
-		\caption{Datentypen in rush.}\label{tbl:rush_types}
-		\rowcolors{2}{gray!15}{}
-		\begin{tabularx}{0.95\textwidth}{lL}
-			\rowcolor{gray!25} Bezeichnung & Instanziierung einer Variable            \\
-			\hline
-			\qVerb{int}                    & \LirstInline{rush}{let a: int = 0;}      \\
-			\qVerb{float}                  & \LirstInline{rush}{let b: float = 3.14;} \\
-			\qVerb{bool}                   & \LirstInline{rush}{let c: bool = true;}  \\
-			\qVerb{char}                   & \LirstInline{rush}{let d: char = 'a';}   \\
-			\qVerb{()}                     & \LirstInline{rush}{let e: () = main();}  \\
-			\qVerb{!}                      & \LirstInline{rush}{let f = exit(42);}    \\
-		\end{tabularx}
-	\end{table}
-\end{frame}
-
-\begin{frame}{Beispiel Programmtext in rush}
-	\center
-	\begin{minipage}{.95\textwidth}
-		\Lirsting[caption={Beispiel: Berechnung von Fibonaccizahlen in rush.}, label={lst:rush_fib}, fancyvrb={frame=none}, float=H]{deps/paper/listings/fib.rush}
-	\end{minipage}
-\end{frame}
-
-\begin{frame}{Fakten über rush}
-	\begin{itemize}
-        \item ca.\ fünf Monate intensive Entwicklung
-        \item \rushCountCommits~Git Commits
-		\item \tokei{./deps/rush} Zeilen Programmtext\footnote{Leerzeilen und Kommentare werden nicht gezählt.} in Git Commit `\rushCommit'
-		\item Inhalte des Projektes
-            \begin{itemize}
-                \item Lexer
-                \item Parser
-                \item zwei Interpreter
-                \item ein Transpiler
-                \item vier Compiler
-            \end{itemize}
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{Programmtext der einzelnen Komponenten}
-	\begin{table}[h]
-		\centering
-		\caption{Zeilen Programmtext pro Komponente.}\label{tbl:rush_loc_components}
-		\begin{tabularx}{0.95\textwidth}{|L|L|}
-			\hline
-			\rowcolor{gray!20} Komponente & Zeilen Programmtext                                                  \\ \hline
-			Lexer / Parser                & \tokei{./deps/rush/crates/rush-parser}                               \\ \hline
-			Tree-walking interpreter      & \cellcolor{gray!30} \tokei{./deps/rush/crates/rush-interpreter-tree} \\ \hline
-			VM compiler / runtime         & \tokei{./deps/rush/crates/rush-interpreter-vm}                       \\ \hline
-			WASM compiler                 & \tokei{./deps/rush/crates/rush-compiler-wasm}                        \\ \hline
-			LLVM compiler                 & \cellcolor{gray!30} \tokei{./deps/rush/crates/rush-compiler-llvm}    \\ \hline
-			RISC-V compiler               & \tokei{./deps/rush/crates/rush-compiler-risc-v}                      \\ \hline
-			x86 compiler                  & \cellcolor{gray!30} \tokei{./deps/rush/crates/rush-compiler-x86-64}  \\ \hline
-		\end{tabularx}
-	\end{table}
 \end{frame}
