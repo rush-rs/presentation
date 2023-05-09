@@ -1,19 +1,20 @@
+% LTeX: language=de-DE
+% chktex-file -2
 \section{Kompilierung zu \riscv}
 \begin{frame}{Was ist \riscv?}
 	\begin{itemize}
-        \item \textbf{R}educed \textbf{i}nstruction \textbf{s}et \textbf{c}omputer (RISC)
-        \item Forschungsprojekt der UC Berkeley
+		\item \textbf{R}educed \textbf{I}nstruction \textbf{S}et \textbf{C}omputer (RISC)
+		\item Forschungsprojekt der UC Berkeley
 		\item Ziel: Lösen der Probleme vieler CISC Architekturen
-        \item Simplizität und Erweiterbarkeit
-        \item Unterstüztung durch: Google Microsoft, Samsung und IBM
+		\item Simplizität und Erweiterbarkeit
+		\item Unterstüztung durch: Google Microsoft, Samsung und IBM
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Registers der \riscv{} Architektur \TODO{MAYBE DELETE}}
+\begin{frame}{Register der \riscv{} Architektur}
 	\begin{table}
 		\centering
-		\caption[Registers der \riscv{} Architektur.]{Register der \riscv{} Architektur~\cite[p.~155]{Waterman2019}.}\label{tbl:riscv_regs}
-		\begin{tabularx}{\linewidth}{l|L}
+		\begin{tabularx}{\linewidth}{L|L}
 			\rowcolor{gray!15} Register & Verwendung                        \\ \hline
 			\texttt{zero}               & hardwired zero                    \\ \hline
 			\texttt{ra}                 & return address                    \\ \hline
@@ -31,48 +32,28 @@
 	\end{table}
 \end{frame}
 
-\begin{frame}{Stacklayout der \riscv Architektur \TODO{MAYBE DELETE}}
-	\begin{figure}[h]
-		\hspace{-1.75cm}
-		\begin{tikzpicture}[xscale=0.9, yscale=0.7]
-			\footnotesize
-
-			% manually set counter to allow stack frame including the start dots
-			\setcounter{cellnb}{0}
-			\startframe
-			\addtocounter{cellnb}{-1}
-
-			% copied code from `\stacktop{}` to not reset counter to in turn allow `\startframe` above this
-			\draw[padding] (0,\value{cellnb})
-			+(-2,.5) -- +(-2,-.5) -- +(2,-.5) -- +(2,.5);
-			\draw (0,\value{cellnb}) node{...};
-
-			\cell{$n$\textsuperscript{th} stack argument} \cellcom{\texttt{$8n$(fp)}}
-			\cell[padding]{...}
-			% custom draw instead of `\cellcom` for yshift
-			\draw (2.4,\value{cellnb}) node[anchor=west, yshift=3.5pt] {\vdots};
-			\cell{\nth{1} stack argument} \cellcom{\texttt{0(fp)}}
-			\finishframe{previous}
-
-			\startframe
-			\cell{previous \qVerb{fp} value} \cellcom{\texttt{-8(fp)}}
-			\cell{return address} \cellcom{\texttt{-16(fp)}}
-
-			\padding{3}{\makecell{unspecified\\variable size}} \cellcom{\texttt{0(sp)}}
-			% custom draws instead of `\cellcom` for yshift and padding cell offset
-			\draw (2.4,\value{cellnb}+1) node[anchor=west, yshift=3.5pt] {\vdots};
-			\draw (2.4,\value{cellnb}+2) node[anchor=west] {\texttt{-24(fp)}};
-			\finishframe{current}
-			\stackbottom[padding]
-		\end{tikzpicture}
-		\caption{Stack layout der \riscv{} Architektur.}\label{fig:riscv_stack}
-	\end{figure}
+\begin{frame}{Beispiel}
+	\begin{minipage}{0.35\textwidth}
+		\TODO{maybe fib?}
+		\Lirsting[float=H, fancyvrb={frame=none}]{deps/paper/listings/simple_add.rush}
+		\centering
+		\Larrow{Ausgabe}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.45\textwidth}
+		\Lirsting[float=H, fancyvrb={frame=none, fontsize=\scriptsize}]{deps/paper/listings/generated/rush_simple_add.s}
+	\end{minipage}
 \end{frame}
 
-\begin{frame}{Beispiel: Eingabe}
-	\Lirsting[float=H]{deps/paper/listings/simple_add.rush}
-\end{frame}
-
-\begin{frame}{Beispiel: Ausgabe}
-	\Lirsting[float=H, fancyvrb={fontsize=\scriptsize}]{deps/paper/listings/generated/rush_simple_add.s}
+\begin{frame}{Fazit zu \riscv}
+	\begin{table}[h]
+		\rowcolors{2}{gray!15}{}
+		\begin{tabularx}{0.95\textwidth}{L|L}
+			\cellcolor{green!20} Vorteile                       & \cellcolor{red!20} Nachteile               \\
+			Sehr neu und modern                                 & Geringe Verbreitung                        \\
+			Komplett open-source und Gemeinschaftlich verwaltet & Eher experimentell                         \\
+			Sehr übersichtliche und simple Architektur          & Einige Operationen sind aufwendiger        \\
+			Weniger Online-Ressourcen                           & Sehr gute und übersichtliche Dokumentation \\
+		\end{tabularx}
+	\end{table}
 \end{frame}

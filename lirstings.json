@@ -5,7 +5,8 @@
     "s": { "line": "#", "block": ["", ""] },
     "asm": { "line": "#", "block": ["", ""] },
     "hexdump": { "line": ";", "block": ["", ""] },
-    "wat": { "line": ";;", "block": ["(;", ";)"] }
+    "wat": { "line": ";;", "block": ["(;", ";)"] },
+    "ebnf": { "line": "", "block": ["(*", "*)"] }
   },
   "theme": {
     "black": "#101012",

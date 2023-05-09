@@ -12,7 +12,7 @@ build: listings/generated
 main.pdf: main.tex deps preamble lirstings.json
 	latexmk -lualatex -shell-escape -g main.tex
 
-listings/generated: rush_build.py deps/rush deps/paper listings/incompatible_types.rush
+listings/generated: rush_build.py deps/rush deps/paper listings/incompatible_types.rush listings/invalid_main_fn.rush listings/unused_var.rush
 	cd deps/paper && mkdir -p listings/generated && python3 rush_build.py build && cd ..
 	mkdir -p ./listings/generated/
 	python3 rush_build.py build

@@ -1,3 +1,4 @@
+% LTeX: language=de-DE
 \section{Lexikalische \& Syntaktische Analyse}
 
 \begin{frame}{Etappen der Übersetzung: Semantische Analyse}
@@ -13,7 +14,8 @@
 				\draw [arrow] (semantic_analysis) -- (codegen);
 			\end{tikzpicture}
 		\end{adjustbox}
-		\caption{Etappen der Übersetzung: Syntaxanalyse.}{\scite[S.~6--7]{wirth_compiler_construction_2005}}\label{fig:compilation_steps}
+
+		\scite[S.~6--7]{wirth_compiler_construction_2005}
 	\end{figure}
 \end{frame}
 
@@ -25,8 +27,8 @@
 		\item Festlegen der formalen Regeln in Form einer Grammatik
 	\end{itemize}
 
-	\center
-	\Lirsting[float=H, fancyvrb={frame=none, fontsize=\small}, caption={Ein Beispiel für eine kontextfreihe Grammatik (EBNF).}]{listings/grammar.ebnf}
+	\centering
+    \Lirsting[float=H, fancyvrb={fontsize=\small}, ranges={1-5:33, _5:66-5}, caption={Ein Beispiel für eine kontextfreihe Grammatik (EBNF)}]{listings/grammar.ebnf}
 \end{frame}
 
 \begin{frame}{Abstrakter Syntaxbaum \TODO{DELETE}}
@@ -46,7 +48,6 @@
 								child {node {Factor}
 										child {node {\Verb{Int(3)}}}}}};
 			\end{tikzpicture}
-			\caption{Abstakter Syntaxbaum für `\texttt{1+2**3}'.}\label{fig:parser_simple_ast}
 		\end{minipage}
 		\hfill
 		\begin{minipage}{.45\textwidth}
@@ -64,8 +65,10 @@
 							child {node {Expression}
 									child {node {\Verb{Int(3)}}}}};
 				\end{tikzpicture}
-				\caption{Abstakter Syntaxbaum für `\texttt{1+2**3}', erstellt durch Pratt-Parsing.}\label{fig:parser_simple_ast_pratt}
 			\end{figure}
 		\end{minipage}
+
+        \centering
+        Zwei verschiedene Syntaxbäume für \enquote{\LirstInline{rush}{1+2**3}}
 	\end{figure}
 \end{frame}

@@ -1,11 +1,5 @@
+% LTeX: language=de-DE
 \section{Einstieg \& Motivation}
-\begin{frame}{TODO}
-	\begin{itemize}
-		\item \TODO{translate everything into German}
-		\item \TODO{fix lirstings captions}
-	\end{itemize}
-\end{frame}
-
 \begin{frame}{Einstieg \& Motivation}
 	\begin{itemize}
 		\item Programme werden in speziellen Sprachen verfasst
@@ -74,31 +68,6 @@
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Compiler}
-	\begin{minipage}{.35\textwidth}
-		\Lirsting[float=H, fancyvrb={frame=none, fontsize=\small}]{deps/paper/listings/simple.rush}
-	\end{minipage}%
-	\Larrow{
-		\begin{minipage}{1.45cm}
-			Übersetzung
-		\end{minipage}
-		\begin{minipage}{5mm}
-			\includegraphics[width=3.5mm]{assets/google_icon_settings.png}
-		\end{minipage}
-	}
-	\hfill
-	\begin{minipage}{.35\textwidth}
-		\Lirsting[float=H, fancyvrb={frame=none, fontsize=\small}, ranges={1-10}]{listings/rush_simple.hexdump}
-	\end{minipage}
-
-	\begin{itemize}
-		\item Rust, C, Go, usw.
-		\item Zusätzlicher Prozess
-		\item Umwandlung in ein anderes Format
-		\item[\Rightarrow] Muss vor der Ausführung ablaufen
-	\end{itemize}
-\end{frame}
-
 \begin{frame}{Interpreter}
 	\begin{minipage}{.36\textwidth}
 		\Lirsting[float=H, fancyvrb={frame=none, fontsize=\small}]{deps/paper/listings/simple.rush}
@@ -124,6 +93,31 @@
 	\end{itemize}
 \end{frame}
 
+\begin{frame}{Compiler}
+	\begin{minipage}{.35\textwidth}
+		\Lirsting[float=H, fancyvrb={frame=none, fontsize=\small}]{deps/paper/listings/simple.rush}
+	\end{minipage}%
+	\Larrow{
+		\begin{minipage}{1.45cm}
+			Übersetzung
+		\end{minipage}
+		\begin{minipage}{5mm}
+			\includegraphics[width=3.5mm]{assets/google_icon_settings.png}
+		\end{minipage}
+	}
+	\hfill
+	\begin{minipage}{.35\textwidth}
+		\Lirsting[float=H, fancyvrb={frame=none, fontsize=\small}, ranges={1-10}]{listings/rush_simple.hexdump}
+	\end{minipage}
+
+	\begin{itemize}
+		\item Rust, C, Go, usw.
+		\item Zusätzlicher Prozess
+		\item Umwandlung in ein anderes Format
+		\item[\Rightarrow] Muss vor der Ausführung stattfinden
+	\end{itemize}
+\end{frame}
+
 \section{Die Programmiersprache \enquote{rush}}
 
 \begin{frame}{Fakten über rush}
@@ -136,7 +130,6 @@
 		\item ca.\ vier Monate intensive Entwicklung
 		\item \rushCountCommits~Git Commits
 		\item \tokei{./deps/rush} Zeilen Programmtext\footnote{Leerzeilen und Kommentare werden nicht gezählt.} in Git Commit `\rushCommit'
-		\item Sprache für mathematische Berechnungen
 	\end{itemize}
 \end{frame}
 
@@ -153,7 +146,6 @@
 
 \begin{frame}{Fähigkeiten von rush \TODO{MAYBE SPLIT FEATURES ACROSS SLIDES}}
 	\begin{table}[h]
-		\caption{Die wichtigsten Fähigkeiten von rush.}\label{tbl:rush_features}
 		\rowcolors{2}{gray!15}{}
 		\begin{tabularx}{0.95\textwidth}{Ll}
 			\rowcolor{gray!25} Bezeichnung & Beispiel                                          \\
@@ -173,7 +165,6 @@
 
 \begin{frame}{Datentypen in rush \TODO{MAYBE SPLIT TYPES ACROSS SLIDES}}
 	\begin{table}[h]
-		\caption{Datentypen in rush.}\label{tbl:rush_types}
 		\rowcolors{2}{gray!15}{}
 		\begin{tabularx}{0.95\textwidth}{lL}
 			\rowcolor{gray!25} Bezeichnung & Instanziierung einer Variable            \\
@@ -193,15 +184,16 @@
 		\Lirsting[float=H]{deps/paper/listings/fib.rush}
 	\end{minipage}
 	\begin{minipage}{.3\textwidth}
-		$f_n = f_{n-1} + f_{n-2}; n \ge 3$
-		$f_1 = f_2 = 1$
+        \begin{align*}
+            f_n &= f_{n-2} + f_{n-1} &; n \ge 3 \\
+            f_1 &= f_2 = 1
+        \end{align*}
 	\end{minipage}
 \end{frame}
 
-\begin{frame}{Programmtext der einzelnen Komponenten}
+\begin{frame}{Umfang der einzelnen Komponenten}
 	\begin{table}[h]
 		\centering
-		\caption{Zeilen Programmtext pro Komponente.}\label{tbl:rush_loc_components}
 		\begin{tabularx}{0.95\textwidth}{|L|L|}
 			\hline
 			\rowcolor{gray!20} Komponente & Zeilen Programmtext                                                  \\ \hline
@@ -231,7 +223,6 @@
 				\draw [arrow] (semantic_analysis) -- (codegen);
 			\end{tikzpicture}
 		\end{adjustbox}
-		\caption{Stufen der Übersetzung.}\label{fig:compilation_steps}
 	\end{figure}
 	\vfill
 	\begin{figure}[h]
@@ -246,7 +237,6 @@
 				\draw [arrow] (semantic_analysis) -- (codegen);
 			\end{tikzpicture}
 		\end{adjustbox}
-		\caption{Stufen der Übersetzung (angepasst).}\label{fig:compilation_steps_altered}
 	\end{figure}
 	\vfill
 \end{frame}
