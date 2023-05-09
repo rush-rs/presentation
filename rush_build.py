@@ -109,7 +109,7 @@ def x64_asm(source: str, output: str):
     os.chdir('./deps/rush/crates/rush-compiler-x86-64/')
 
     subprocess.run(
-        f'cargo r {input_path}',
+        f'cargo r -- {input_path} --no-comments',
         shell=True,
     ).check_returncode()
 
