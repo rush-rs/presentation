@@ -27,3 +27,14 @@
 
 \newcommand{\stackTopFixed}[2][freecell]{%
 \llcellFixed{1}{#1}{#2}}
+
+% HACK: redefine `\finishframe` to adjust the horizontal label spacing
+\renewcommand{\finishframe}[1]{
+  \draw[snake=brace, line width=0.6pt, segment amplitude=7pt]
+  (-2,\value{cellnb}-0.5) -- (-2,\value{startframe}-0.5);
+  \draw (-4.65cm,\value{cellnb}*0.5+\value{startframe}*0.5-0.5) node
+  {\parbox{3cm}{%
+\begin{flushright}
+#1
+\end{flushright}}};
+}
