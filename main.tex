@@ -3,9 +3,10 @@
 \input{preamble/drawstack}
 
 \input{|"lirstings include-tex"}
+\captionsetup{labelformat=empty}
 % Set `deps/rush` as path prefix in all lirstings, is ignored for files under other directories
 \NewCommandCopy{\oldLirsting}{\Lirsting}
-\renewcommand{\Lirsting}[2][]{\oldLirsting[path prefix={deps/rush},#1]{#2}}
+\renewcommand{\Lirsting}[2][]{\oldLirsting[path prefix={deps/rush},vspace=0pt,#1]{#2}}
 
 \input{preamble/tikz}
 
@@ -26,7 +27,6 @@
 \input{content/semantische_analyse}
 \input{content/interpreter}
 \input{content/vm}
-\input{content/high_level}
 \input{content/wasm}
 \input{content/llvm}
 \input{content/low_level}

@@ -3,7 +3,7 @@
 
 \begin{frame}{Tree-Walking Interpreter}
 	\begin{itemize}
-		\item Traversiert den Syntaxbaum
+        \item \emph{Traversiert} den Syntaxbaum
 		\item \emph{Interpretiert} das Programm direkt
 	\end{itemize}
 \end{frame}
@@ -19,7 +19,7 @@
 
 \begin{frame}{Weitere Typdefinitionen}
 	\begin{minipage}{0.6\textwidth}
-		\Lirsting[float=H, ranges={6-13, 22-28}]{deps/rush/crates/rush-interpreter-tree/src/value.rs}
+		\Lirsting[float=H, ranges={6-13, 22-28}, fancyvrb={fontsize=\small}]{deps/rush/crates/rush-interpreter-tree/src/value.rs}
 	\end{minipage}
 	\hfill
 	\begin{minipage}{0.35\textwidth}
@@ -45,8 +45,7 @@
 			child {node {Expression \encircle{4}}
 					child {node {\Verb|Int(3)|}}};
 		\end{tikzpicture}
-
-        Syntaxbaum zu \enquote{\LirstInline{rush}{1 + 2 * 3}}
+        \caption{Syntaxbaum zu \enquote{\LirstInline{rush}{1 + 2 * 3}}}
 	\end{figure}
 \end{frame}
 

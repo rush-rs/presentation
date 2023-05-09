@@ -1,3 +1,4 @@
+% chktex-file -2
 \section{Kompilierung zu LLVM}
 \begin{frame}{Was ist LLVM?}
 	\begin{itemize}
@@ -49,14 +50,13 @@
 
 \begin{frame}{Fazit}
 	\begin{table}[h]
-		\caption{Vor- und Nachteile von LLVM}\label{tbl:llvm_pro_con}
 		\rowcolors{2}{gray!15}{}
-		\begin{tabularx}{0.95\textwidth}{LL}
-			\cellcolor{green!20} Vorteile                                 & \cellcolor{red!20} Nachteile               \\ \hline
-			hoher Abstraktionsgrad                                        & Aufwendige Installation der LLVM Libraries \\ \hline
-			Unabhängigkeit von der Zielmaschine                           & signifikante Größe der ausführbaren Datei  \\ \hline
-			aggressive Optimisierungsmaßnahmen                            & unvollständige Dokumentation von Inkwell   \\ \hline
-            Ausgabeprogramm ca. 1,7 mal schneller (vgl. x86\_64 Compiler) & Abhängigkeit von einer C++ Codebase        \\ \hline
+		\begin{tabularx}{0.95\textwidth}{L|L}
+			\cellcolor{green!20} Vorteile                                 & \cellcolor{red!20} Nachteile               \\
+			hoher Abstraktionsgrad                                        & Aufwendige Installation der LLVM Libraries \\
+			Unabhängigkeit von der Zielmaschine                           & signifikante Größe der ausführbaren Datei  \\
+			aggressive Optimisierungsmaßnahmen                            & unvollständige Dokumentation von Inkwell   \\
+			Ausgabeprogramm ca. 1,7 mal schneller (vgl. x86\_64 Compiler) & Abhängigkeit von einer C++ Codebase        \\
 		\end{tabularx}
 	\end{table}
 \end{frame}

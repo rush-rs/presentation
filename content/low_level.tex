@@ -3,7 +3,8 @@
 	\begin{itemize}
 		\item Zielmaschine ist spezifisch
 		\item Betriebssystem ist spezifisch
-        \item Hier: die Compiler generieren Assembly
+		\item Nutzung von Registern
+		\item Hier: die Compiler generieren Assembly
 	\end{itemize}
 \end{frame}
 
@@ -20,22 +21,83 @@
 				\draw [arrow] (machine) -- (codegen);
 			\end{tikzpicture}
 		\end{adjustbox}
-		\caption[Level of abstraction provided by assembly.]{Abstraktionsgrad von Assembly~\cite[p.~5--6]{Dandamudi2005}.}\label{fig:abstractions}
 	\end{figure}
 \end{frame}
 
+\begin{frame}{Stacklayouts}
+	\begin{minipage}{0.45\textwidth}
+        \hspace{-2.75cm}
+		\begin{tikzpicture}[xscale=0.7, yscale=0.6]
+			\scriptsize
 
-\begin{frame}{Register und Speicher}
-	\begin{figure}[h]
-		\begin{tikzpicture}[node distance=2cm]
-			\node(CPU)[center] {CPU};
-			\node(registers)[entity, left of=CPU, yshift=3cm] {Register};
-			\node(memory)[entity, right of=CPU, yshift=3cm] {Speicher};
+			% manually set counter to allow stack frame including the start dots
+			\setcounter{cellnb}{0}
+			\startframe
+			\addtocounter{cellnb}{-1}
 
-			% TODO: Maybe use `arrow` instead of `relation` in order to remove spacing
-			\draw [darrow, very thick, double] (CPU) -- node[anchor=east, yshift=-.1cm] {schnell} (registers);
-			\draw [darrow] (CPU) -- node[anchor=west] {langsam} (memory);
+			% copied code from `\stacktop{}` to not reset counter to in turn allow `\startframe` above this
+			\draw[padding] (0,\value{cellnb})
+			+(-2,.5) -- +(-2,-.5) -- +(2,-.5) -- +(2,.5);
+			\draw (0,\value{cellnb}) node{...};
+
+			\cell{$n$\textsuperscript{th} stack argument} \cellcom{\texttt{$8n$(fp)}}
+			\cell[padding]{...}
+			% custom draw instead of `\cellcom` for yshift
+			\draw (2.4,\value{cellnb}) node[anchor=west, yshift=3.5pt] {\vdots};
+			\cell{\nth{1} stack argument} \cellcom{\texttt{0(fp)}}
+			\finishframe{previous}
+
+			\startframe
+			\cell{previous \qVerb{fp} value} \cellcom{\texttt{-8(fp)}}
+			\cell{return address} \cellcom{\texttt{-16(fp)}}
+
+			\padding{3}{\makecell{unspecified\\variable size}} \cellcom{\texttt{0(sp)}}
+			% custom draws instead of `\cellcom` for yshift and padding cell offset
+			\draw (2.4,\value{cellnb}+1) node[anchor=west, yshift=3.5pt] {\vdots};
+			\draw (2.4,\value{cellnb}+2) node[anchor=west] {\texttt{-24(fp)}};
+			\finishframe{current}
+			\stackbottom[padding]
+
+            \small
+            \draw (0,\value{cellnb}-2)  node(currentcell) {\riscv{}};
 		\end{tikzpicture}
-		\caption[Relationship between registers, memory, and the CPU.]{Register, Speicher und die CPU~\cite[pp.~20--21]{Dandamudi2005}.}\label{fig:cpu_reg_mem}
-	\end{figure}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.45\textwidth}
+        \hspace{-2.75cm}
+		\begin{tikzpicture}[xscale=0.7, yscale=0.6]
+			\scriptsize
+
+			% manually set counter to allow stack frame including the start dots
+			\setcounter{cellnb}{0}
+			\startframe
+			\addtocounter{cellnb}{-1}
+
+			% copied code from `\stacktop{}` to not reset counter to in turn allow `\startframe` above this
+			\draw[padding] (0,\value{cellnb})
+			+(-2,.5) -- +(-2,-.5) -- +(2,-.5) -- +(2,.5);
+			\draw (0,\value{cellnb}) node{...};
+
+			\cell{$n$\textsuperscript{th} stack argument} \cellcom{\VerbCmd{\%rbp+}$(16+8n)$}
+			\cell[padding]{...}
+			% custom draw instead of `\cellcom` for yshift
+			\draw (2.4,\value{cellnb}) node[anchor=west, yshift=3.5pt] {\vdots};
+			\cell{\nth{1} stack argument} \cellcom{\VerbCmd{\%rbp+16}}
+			\finishframe{previous}
+
+			\cell{return address} \cellcom{\VerbCmd{\%rbp+8}}
+			\cell{previous \qreg{rbp} value} \cellcom{\VerbCmd{\%rbp}}
+
+			\startframe
+			\padding{3}{\makecell{unspecified\\variable size}} \cellcom{\VerbCmd{\%rsp}}
+			% custom draws instead of `\cellcom` for yshift and padding cell offset
+			\draw (2.4,\value{cellnb}+1) node[anchor=west, yshift=3.5pt] {\vdots};
+			\draw (2.4,\value{cellnb}+2) node[anchor=west] {\VerbCmd{\%rbp-8}};
+			\finishframe{current}
+			\stackbottom[padding]
+
+            \small
+            \draw (0,\value{cellnb}-2)  node(currentcell) {x64};
+		\end{tikzpicture}
+	\end{minipage}
 \end{frame}
