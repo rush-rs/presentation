@@ -27,8 +27,7 @@ fetch_repo RubixDev tree-sitter-llvm &
 fetch_repo rush-rs tree-sitter-rush &
 fetch_repo rush-rs tree-sitter-asm &
 fetch_repo rush-rs tree-sitter-hexdump &
-# fetch_repo wasm-lsp tree-sitter-wasm &
-# fetch_repo rush-rs tree-sitter-wasm-queries &
+fetch_repo rush-rs tree-sitter-wasm &
 fetch_repo rush-rs rush &
 fetch_repo rush-rs paper &
 

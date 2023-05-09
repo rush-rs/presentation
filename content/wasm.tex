@@ -1,4 +1,40 @@
+% chktex-file -2
+% LTeX: language=de-DE
 \section{Kompilierung zu WebAssembly}
-\begin{frame}{Kompilierung zu WebAssembly}
-    \TODO{@RubixDev Write this}
+\begin{frame}{Was ist WebAssembly?}
+	\begin{itemize}
+		\item<1-> Sicheres, portables, kompaktes und effizientes Format
+		\item<2-> Hauptsächlich für leistungsstarke Webanwendungen
+		\item<3-> Alleinstehende Spezifikation
+		\item<4-> Implementation durch Browser oder separate \cemph{Runtimes}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Beispiel Ein-/Ausgabe}
+	\begin{minipage}{0.5\textwidth}
+		\Lirsting[float=H, fancyvrb={frame=none, fontsize=\small}]{deps/paper/listings/fib.rush}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.45\textwidth}
+		\Darrow{Ausgabe}
+	\end{minipage}
+
+	\Lirsting[float=H, fancyvrb={frame=none, fontsize=\footnotesize, numbers=none}]{listings/fib_wasm.hexdump}
+\end{frame}
+
+\begin{frame}{Textdarstellung}
+	\Lirsting[float=H, fancyvrb={frame=none, fontsize=\scriptsize}]{listings/fib.wat}
+\end{frame}
+
+\newcommand{\TableCell}[2]{\begin{minipage}{5cm}\Lirsting[float=H, fancyvrb={frame=none, numbers=none, fontsize=\footnotesize}, ranges={#2}]{listings/wasm_table.#1}\end{minipage}}
+
+\begin{frame}{Hoher Abstraktionsgrad}
+	\rowcolors{2}{gray!15}{}
+	\begin{tabular}{l|l}
+		\rowcolor{gray!20} rush & WebAssembly                   \\
+		\hline
+		\TableCell{rush}{1-3}   & \TableCell{wat}{1-3}   \pause \\
+		\TableCell{rush}{5-9}   & \TableCell{wat}{5-9}   \pause \\
+		\TableCell{rush}{11-13} & \TableCell{wat}{11-14}        \\
+	\end{tabular}
 \end{frame}
