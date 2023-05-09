@@ -16,6 +16,7 @@ class Backend(Enum):
     riscv = 1
     llvm = 2
     c = 3
+    x64 = 4
 
 
 JOBS = [
@@ -41,6 +42,11 @@ JOBS = [
         'in': 'listings/simple.rush',
         'out': 'listings/generated/simple.ll',
         'backend': Backend.llvm,
+    },
+    {
+        'in': 'deps/paper/listings/fib.rush',
+        'out': 'listings/generated/fib_x64.s',
+        'backend': Backend.x64,
     },
 ]
 
@@ -86,6 +92,24 @@ def riscv_asm(source: str, output: str, line_width: int):
 
     subprocess.run(
         f'cargo r {input_path} {line_width}',
+        shell=True,
+    ).check_returncode()
+
+    os.rename('output.s', output_path)
+    os.chdir(start_dir)
+
+    print(f'generated {output_path}')
+
+
+def x64_asm(source: str, output: str):
+    input_path = os.path.realpath(source)
+    output_path = os.path.realpath(output)
+
+    start_dir = os.path.realpath(os.curdir)
+    os.chdir('./deps/rush/crates/rush-compiler-x86-64/')
+
+    subprocess.run(
+        f'cargo r {input_path}',
         shell=True,
     ).check_returncode()
 
@@ -256,6 +280,8 @@ if __name__ == '__main__':
                 llvm_gen_ir(job['in'], job['out'])
             elif job['backend'] == Backend.c:
                 transpile_c(job['in'], job['out'])
+            elif job['backend'] == Backend.x64:
+                x64_asm(job['in'], job['out'])
             else:
                 raise Exception('Invalid enum in job')
     else:
