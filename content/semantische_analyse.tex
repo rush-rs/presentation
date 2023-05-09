@@ -14,7 +14,8 @@
 				\draw [arrow] (semantic_analysis) -- (codegen);
 			\end{tikzpicture}
 		\end{adjustbox}
-		\caption{Etappen der Übersetzung: Semantische Analyse.}{\scite[S.~6--7]{wirth_compiler_construction_2005}}\label{fig:compilation_steps}
+
+		\scite[S.~6--7]{wirth_compiler_construction_2005}
 	\end{figure}
 \end{frame}
 
@@ -25,20 +26,7 @@
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Beispiele für die Semantikregeln von rush \TODO{DELETE}}
-	\begin{itemize}
-		\item Jede Variable, jede Funktion und jeder Parameter besitzt einen Datentyp, der nach Definierung nicht mehr geändert werden kann
-		\item Eine Funktion muss immer mit den Argumenten aufgerufen werden, die zu den Parametern passen
-		\item Jeder Funktionsname muss eindeutig sein
-		\item Die \qVerb{main} Funktion liefert immer den \qVerb{()} Datentyp und akzeptiert keine Parameter
-		\item Jede Variable muss Definiert sein, bevor diese Verwendbar ist
-		\item Logische und mathematische Operationen erfolgen nur, wenn die Operanten den selben Datentypen besitzen
-		\item Eine definierte Variable \emph{sollte} verwendet werden
-		\item[\ldots]
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{Beispiel: Invalides rush Programm}
+\begin{frame}{Beispiel 1: Invalides rush Programm}
 	\begin{minipage}{.5\textwidth}
 		\Lirsting[float=H, fancyvrb={frame=none}]{listings/incompatible_types.rush}
 	\end{minipage}%
@@ -68,16 +56,16 @@
 	\Lirsting[float=H, fancyvrb={frame=none, fontsize=\footnotesize}, ansi=true]{listings/generated/unused_var.rush.out}
 \end{frame}
 
-\begin{frame}{Anforderungen an die Semantische Analyse (für rush)}
+\begin{frame}{Anforderungen an die semantische Analyse (für rush)}
 	\begin{itemize}
 		\item Unterscheidung zwischen validen und invaliden Programmen
-		\item Liefern von hilfreiche Warnungen und Informationen
+		\item Liefern von hilfreichen Warnungen und Informationen
 		\item Hinzufügen von Typinformationen zu dem AST
 		\item Triviale Optimierungen der Programmstruktur
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Hinzufügen von Informationen über Datentypen \TODO{MAYBE DELETE}}
+\begin{frame}{Hinzufügen von Informationen über Datentypen}
 	\begin{figure}[h]
 		\begin{adjustbox}{max totalsize={\textwidth}{!},center}
 			\begin{tikzpicture}[
@@ -100,6 +88,6 @@
 				\draw[arrow, shorten >= 0.3cm, shorten <= 0.3cm, very thick] (leftm) -- node[above] {Semantische} node[below] {Analyse} ++ (rightm);
 			\end{tikzpicture}
         \end{adjustbox}
-		\caption{Auswirkungen der semantischen Analyse auf den AST.}\label{fig:analysis_tree_conv}
+		\caption{Auswirkungen der semantischen Analyse auf den AST}\label{fig:analysis_tree_conv}
 	\end{figure}
 \end{frame}
