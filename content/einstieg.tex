@@ -1,3 +1,4 @@
+% chktex-file -2
 % LTeX: language=de-DE
 \section{Einstieg \& Motivation}
 \begin{frame}{Einstieg \& Motivation}
@@ -98,7 +99,7 @@
 \end{frame}
 
 \begin{frame}{Compiler}
-    \hspace{.8cm}
+	\hspace{.8cm}
 	\begin{minipage}{.35\textwidth}
 		\begin{center}
 			\Lirsting[float=H, fancyvrb={frame=none, fontsize=\small}]{deps/paper/listings/simple.rush}
@@ -112,7 +113,7 @@
 			\includegraphics[width=3.5mm]{assets/google_icon_settings.png}
 		\end{minipage}
 	}
-    \hspace{1.9cm}
+	\hspace{1.9cm}
 	\begin{minipage}{.26\textwidth}
 		\Lirsting[float=H, fancyvrb={frame=none, fontsize=\small}, ranges={1-10}]{listings/rush_simple.hexdump}
 	\end{minipage}
@@ -152,38 +153,59 @@
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Fähigkeiten von rush \TODO{MAYBE SPLIT FEATURES ACROSS SLIDES}}
+\begin{frame}{Fähigkeiten von rush}
+	\pdfpcnote{
+		1. Schleife \\
+		2. while-Schleife \\
+		3. for-Schleife \\
+		4. if-Verzweigung \\
+		5. Funktionsdefinition \\
+		6. infix-Ausdruck \\
+		7. praefix-Ausdruck \\
+		8. Variablendefinition \\
+		9. Typumwandlung \\
+	}
+
 	\begin{table}[h]
 		\rowcolors{2}{gray!15}{}
-		\begin{tabularx}{0.9\textwidth}{Ll}
-			\rowcolor{gray!25} Bezeichnung & Beispiel                                          \\
+		\begin{tabular}{p{5.2cm}|p{5.2cm}}
+			\rowcolor{gray!25} Bezeichnung & Beispiel                                                 \\
 			\hline
-			Schleife                       & \LirstInline{rush}{loop {  }}                     \\
-			while-Schleife                 & \LirstInline{rush}{while x < 5 {  }}              \\
-			for-Schleife                   & \LirstInline{rush}{for i = 0; i < 5; i += 1 {  }} \\
-			if-Verzweigung                 & \LirstInline{rush}{if true {  } else {  }}        \\
-			Funktionsdefinition            & \LirstInline{rush}{fn foo(n: int) {  }}           \\
-			infix-expression               & \LirstInline{rush}{1 + n; 5 ** 2}                 \\
-			prefix-expression              & \LirstInline{rush}{!false; -n}                    \\
-			let-statement                  & \LirstInline{rush}{let mut answer = 42}           \\
-			cast-expression                & \LirstInline{rush}{42 as float}                   \\
-		\end{tabularx}
+			Schleife                       & \LirstInline{rush}{loop {  }}                     \pause \\
+			\enquote{while}-Schleife       & \LirstInline{rush}{while x < 5 {  }}              \pause \\
+			\enquote{for}-Schleife         & \LirstInline{rush}{for i = 0; i < 5; i += 1 {  }} \pause \\
+			\enquote{if}-Verzweigung       & \LirstInline{rush}{if true {  } else {  }}        \pause \\
+			Funktionsdefinition            & \LirstInline{rush}{fn foo(n: int) {  }}           \pause \\
+			Infix-Ausdruck                 & \LirstInline{rush}{1 + n; 5 ** 2}                 \pause \\
+			Präfix-Ausdruck                & \LirstInline{rush}{!false; -n}                    \pause \\
+			Variablendefinition            & \LirstInline{rush}{let mut answer = 42}           \pause \\
+			Typumwandlung                  & \LirstInline{rush}{42 as float}                          \\
+		\end{tabular}
 	\end{table}
 \end{frame}
 
 \begin{frame}{Datentypen in rush}
+	\pdfpcnote{
+		1. int \\
+		2. float \\
+		3. bool \\
+		4. char \\
+		5. unit \\
+		6. never \\
+	}
+
 	\begin{table}[h]
 		\rowcolors{2}{gray!15}{}
-		\begin{tabularx}{0.9\textwidth}{LL}
-			\rowcolor{gray!25} Bezeichnung & Instanziierung einer Variable            \\
+		\begin{tabular}{p{5.2cm}|p{5.2cm}}
+			\rowcolor{gray!25} Bezeichnung & Instanziierung einer Variable                   \\
 			\hline
-			\qVerb{int}                    & \LirstInline{rush}{let a: int = 0;}      \\
-			\qVerb{float}                  & \LirstInline{rush}{let b: float = 3.14;} \\
-			\qVerb{bool}                   & \LirstInline{rush}{let c: bool = true;}  \\
-			\qVerb{char}                   & \LirstInline{rush}{let d: char = 'a';}   \\
-			\qVerb{()}                     & \LirstInline{rush}{let e: () = main();}  \\
-			\qVerb{!}                      & \LirstInline{rush}{let f = exit(42);}    \\
-		\end{tabularx}
+			\qVerb{int}                    & \LirstInline{rush}{let a: int = 0;}      \pause \\
+			\qVerb{float}                  & \LirstInline{rush}{let b: float = 3.14;} \pause \\
+			\qVerb{bool}                   & \LirstInline{rush}{let c: bool = true;}  \pause \\
+			\qVerb{char}                   & \LirstInline{rush}{let d: char = 'a';}   \pause \\
+			\qVerb{()} oder \enquote{Unit} & \LirstInline{rush}{let e: () = main();}  \pause \\
+			\qVerb{!} oder \enquote{Never} & \LirstInline{rush}{let f = exit(42);}           \\
+		\end{tabular}
 	\end{table}
 \end{frame}
 
@@ -199,19 +221,33 @@
 	\end{minipage}
 \end{frame}
 
+\newcommand{\fadeout}[1]{\textcolor<2>{black!30}{#1}}
 \begin{frame}{Umfang der einzelnen Komponenten}
+	\pdfpcnote{
+		- Uebersicht von rush Komponenten und den jeweiligen Zeilen an Programmtext \\
+		- leere Zeilen und Kommentare werden nicht mitgezaehlt \\
+        \\
+        --- \\
+        \\
+        - Fokus auf Interpreter: das kleinste Teilprojekt -> simpel \\
+        - Fokus auf LLVM: durchschnittlich \\
+        - Fokus auf x64: Das groesste Teilprojekt -> komplex \\
+	}
+
 	\begin{table}[h]
 		\centering
-		\begin{tabularx}{0.9\textwidth}{LL}
-			\rowcolor{gray!20} Komponente               & Zeilen Programmtext                              \\ \hline
-			Lexer / Parser                              & \tokei{./deps/rush/crates/rush-parser}           \\ \hline
-			\rowcolor{gray!30} Tree-walking interpreter & \tokei{./deps/rush/crates/rush-interpreter-tree} \\ \hline
-			VM compiler / runtime                       & \tokei{./deps/rush/crates/rush-interpreter-vm}   \\ \hline
-			WASM compiler                               & \tokei{./deps/rush/crates/rush-compiler-wasm}    \\ \hline
-			\rowcolor{gray!30} LLVM compiler            & \tokei{./deps/rush/crates/rush-compiler-llvm}    \\ \hline
-			RISC-V compiler                             & \tokei{./deps/rush/crates/rush-compiler-risc-v}  \\ \hline
-			\rowcolor{gray!30} x86 compiler             & \tokei{./deps/rush/crates/rush-compiler-x86-64}  \\ \hline
-		\end{tabularx}
+		\rowcolors{2}{gray!15}{}
+		\begin{tabular}{p{5.2cm}|p{5.2cm}}
+			\rowcolor{gray!20} Komponente   & Zeilen Programmtext                                       \\
+			\hline
+			\fadeout{Lexer / Parser}        & \fadeout{\tokei{./deps/rush/crates/rush-parser}}          \\
+			Tree-walking Interpreter        & \tokei{./deps/rush/crates/rush-interpreter-tree}          \\
+			\fadeout{VM Compiler / Runtime} & \fadeout{\tokei{./deps/rush/crates/rush-interpreter-vm}}  \\
+			\fadeout{WASM Compiler}         & \fadeout{\tokei{./deps/rush/crates/rush-compiler-wasm}}   \\
+			LLVM Compiler                   & \tokei{./deps/rush/crates/rush-compiler-llvm}             \\
+			\fadeout{RISC-V Compiler}       & \fadeout{\tokei{./deps/rush/crates/rush-compiler-risc-v}} \\
+			x64 Compiler                    & \tokei{./deps/rush/crates/rush-compiler-x86-64}           \\
+		\end{tabular}
 	\end{table}
 \end{frame}
 

@@ -44,7 +44,7 @@
 \newcommand{\TODO}[1]{\textcolor{red}{\textbf{TODO: #1}}}
 \newcommand{\rushCommit}{\ignorespaces\texttt{\input "|git -C ./deps/rush rev-parse --short HEAD"}\unskip}
 \newcommand{\rushCountCommits}{\ignorespaces\texttt{\input "|git -C ./deps/rush rev-list --all --count"}\unskip}
-\newcommand{\tokei}[1]{\input "|python3 tokei.py #1"}
+\newcommand{\tokei}[1]{\input{"|python3 tokei.py #1"}}
 \newcommand{\riscv}{RISC\babelhyphen{nobreak}V}
 
 \newcommand{\qVerb}[2][]{\enquote{\Verb[#1]{#2}}}
