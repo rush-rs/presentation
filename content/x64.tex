@@ -1,20 +1,69 @@
 % LTeX: language=de-DE
 % chktex-file -2
 \section{Kompilierung zu x86\_64}
-\begin{frame}{Einleitung}
+\begin{frame}{Was ist x86\_64}
 	\begin{itemize}
-		\item \TODO{@RubixDev Write this}
+		\item<1-> Häufig auch x84-64 oder x64 genannt
+		\item<2-> \textbf{C}omplex \textbf{I}instruction \textbf{S}et \textbf{C}omputer (CISC)
+			\begin{itemize}
+				\item<3-> Um vielfaches mehr Instruktionen als RISC Architekturen
+			\end{itemize}
+		\item<4-> Sehr weit verbreitet
 	\end{itemize}
+\end{frame}
+
+\begin{frame}{Beispiel Ein-/Ausgabe}
+	\pdfpcnote{
+		- auch wieder dasselbe Fibonacci Beispiel \\
+		- Ausgabe ist Asseembly (wie bei RISC-V) \\
+		- aber ein anderes Assembly \\
+		- es gibt verschiedene Assembly Dialekte, wir nutzen Intel Syntax \\
+	}
+
+	\begin{minipage}{0.45\textwidth}
+		\Lirsting[float=H, fancyvrb={frame=none, fontsize=\small}]{deps/paper/listings/fib.rush}
+		\centering
+		\Larrow{Ausgabe}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.45\textwidth}
+		\Lirsting[float=H, ranges={6-28, 39-42}, fancyvrb={frame=none, fontsize=\scriptsize}]{listings/generated/fib_x64.s}
+	\end{minipage}
+\end{frame}
+
+\newcommand{\colregr}[1]{\textcolor[HTML]{e45649}{\Verb{#1}}}
+\newcommand{\colregx}[1]{\textcolor[HTML]{e45649}{\reg{#1}}}
+\begin{frame}{Vergleich mit \riscv{} Assembly}
+	\pdfpcnote{
+		1. Aufbau und Benennung von Instruktionen \\
+		2. Benennung von Registern \\
+		3. Syntax fuer Pointer \\
+		4. Groesse eines Worts, und damit die Benennung der anderen Groessen \\
+	}
+
+	\centering
+	\rowcolors{2}{gray!15}{}
+	\begin{tabular}{l|l|l}
+		\rowcolor{gray!20} Merkmal & \riscv{}                                                                                                                                                         & x64                                                                                                                                                                                                                                                                      \\
+		\hline
+		% NOTE: some lirstings are written without `\LirstInline` to have correct highlighting without
+		% the missing context and to allow for `%` signs
+		Instruktionen              & \LirstInline{asm}{addi a0, a0, 3}                                                                                                                                & \Verb[commandchars=\\\{\}]{\textcolor[HTML]{4078f2}{add} \textcolor[HTML]{e45649}{\%rax}\textcolor[HTML]{818387}{,} \textcolor[HTML]{c18401}{3}}                                                                                            \pause \\
+		Register                   & \colregr{a0}, \colregr{a1}, \colregr{fa0}, \colregr{sp}, \dots                                                                                                   & \colregx{rax}, \colregx{rdi}, \colregx{xmm0}, \colregx{rsp}, \dots                                                                                                                                             \pause                                                    \\
+		Pointer                    & \Verb[commandchars=\\\{\}]{\textcolor[HTML]{c18401}{-1}\textcolor[HTML]{818387}{(}\textcolor[HTML]{e45649}{fp}\textcolor[HTML]{818387}{)}} & \Verb[commandchars=\\\{\}]{\textcolor[HTML]{a626a4}{byte} \textcolor[HTML]{a626a4}{ptr} \textcolor[HTML]{818387}{[}\textcolor[HTML]{e45649}{\%rbp}\textcolor[HTML]{383a42}{-}\textcolor[HTML]{c18401}{1}\textcolor[HTML]{818387}{]}} \pause        \\
+		Größe eines \emph{Wort}s   & 4 Byte                                                                                                                                                           & 2 Byte                                                                                                                                                                                                                                                                   \\
+	\end{tabular}
 \end{frame}
 
 \begin{frame}{Fazit zu x64}
 	\begin{table}[h]
 		\rowcolors{2}{gray!15}{}
-		\begin{tabularx}{0.95\textwidth}{L|L}
-			\cellcolor{green!20} Vorteile       & \cellcolor{red!20} Nachteile                 \\
-			Höherer Abstraktionsgrad als \riscv & Kompliziertere Übersetzung von z.B. Division \\
-			Weite Verbreitung                   & Sehr alt und unübersichtlich                 \\
-			Viele Online-Ressourcen             & Weniger übersichtliche Dokumentation         \\
-		\end{tabularx}
+		\begin{tabular}{p{6cm}|p{6cm}}
+			\cellcolor{green!20} Vorteile         & \cellcolor{red!20} Nachteile                 \\
+			\hline
+			Höherer Abstraktionsgrad als \riscv{} & Kompliziertere Übersetzung von z.B. Division \\
+			Weite Verbreitung                     & Sehr alt und unübersichtlich                 \\
+			Viele Online-Ressourcen               & Weniger übersichtliche Dokumentation         \\
+		\end{tabular}
 	\end{table}
 \end{frame}
