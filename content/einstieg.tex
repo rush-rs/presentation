@@ -69,10 +69,12 @@
 \end{frame}
 
 \begin{frame}{Interpreter}
-	\begin{minipage}{.36\textwidth}
-		\Lirsting[float=H, fancyvrb={frame=none, fontsize=\small}]{deps/paper/listings/simple.rush}
-	\end{minipage}%
 	\hfill
+	\begin{minipage}{.35\textwidth}
+		\begin{center}
+			\Lirsting[float=H, fancyvrb={frame=none, fontsize=\small}]{deps/paper/listings/simple.rush}
+		\end{center}
+	\end{minipage}%
 	\Larrow{
 		\begin{minipage}{1.3cm}
 			Ausführung
@@ -83,8 +85,10 @@
 	}
 	\hfill
 	\begin{minipage}{.35\textwidth}
+		\centering
 		{\LARGE Exit code: 5}
 	\end{minipage}
+	\hfill
 
 	\begin{itemize}
 		\item Python, Javascript, PHP, usw.
@@ -94,8 +98,11 @@
 \end{frame}
 
 \begin{frame}{Compiler}
+    \hspace{.8cm}
 	\begin{minipage}{.35\textwidth}
-		\Lirsting[float=H, fancyvrb={frame=none, fontsize=\small}]{deps/paper/listings/simple.rush}
+		\begin{center}
+			\Lirsting[float=H, fancyvrb={frame=none, fontsize=\small}]{deps/paper/listings/simple.rush}
+		\end{center}
 	\end{minipage}%
 	\Larrow{
 		\begin{minipage}{1.45cm}
@@ -105,10 +112,11 @@
 			\includegraphics[width=3.5mm]{assets/google_icon_settings.png}
 		\end{minipage}
 	}
-	\hfill
-	\begin{minipage}{.35\textwidth}
+    \hspace{1.9cm}
+	\begin{minipage}{.26\textwidth}
 		\Lirsting[float=H, fancyvrb={frame=none, fontsize=\small}, ranges={1-10}]{listings/rush_simple.hexdump}
 	\end{minipage}
+	\hfill
 
 	\begin{itemize}
 		\item Rust, C, Go, usw.
@@ -147,7 +155,7 @@
 \begin{frame}{Fähigkeiten von rush \TODO{MAYBE SPLIT FEATURES ACROSS SLIDES}}
 	\begin{table}[h]
 		\rowcolors{2}{gray!15}{}
-		\begin{tabularx}{0.95\textwidth}{Ll}
+		\begin{tabularx}{0.9\textwidth}{Ll}
 			\rowcolor{gray!25} Bezeichnung & Beispiel                                          \\
 			\hline
 			Schleife                       & \LirstInline{rush}{loop {  }}                     \\
@@ -163,10 +171,10 @@
 	\end{table}
 \end{frame}
 
-\begin{frame}{Datentypen in rush \TODO{MAYBE SPLIT TYPES ACROSS SLIDES}}
+\begin{frame}{Datentypen in rush}
 	\begin{table}[h]
 		\rowcolors{2}{gray!15}{}
-		\begin{tabularx}{0.95\textwidth}{lL}
+		\begin{tabularx}{0.9\textwidth}{LL}
 			\rowcolor{gray!25} Bezeichnung & Instanziierung einer Variable            \\
 			\hline
 			\qVerb{int}                    & \LirstInline{rush}{let a: int = 0;}      \\
@@ -184,26 +192,25 @@
 		\Lirsting[float=H]{deps/paper/listings/fib.rush}
 	\end{minipage}
 	\begin{minipage}{.3\textwidth}
-        \begin{align*}
-            f_n &= f_{n-2} + f_{n-1} &; n \ge 3 \\
-            f_1 &= f_2 = 1
-        \end{align*}
+		\begin{align*}
+			f_n & = f_{n-2} + f_{n-1} & ; n \ge 3 \\
+			f_1 & = f_2 = 1
+		\end{align*}
 	\end{minipage}
 \end{frame}
 
 \begin{frame}{Umfang der einzelnen Komponenten}
 	\begin{table}[h]
 		\centering
-		\begin{tabularx}{0.95\textwidth}{|L|L|}
-			\hline
-			\rowcolor{gray!20} Komponente & Zeilen Programmtext                                                  \\ \hline
-			Lexer / Parser                & \tokei{./deps/rush/crates/rush-parser}                               \\ \hline
-			Tree-walking interpreter      & \cellcolor{gray!30} \tokei{./deps/rush/crates/rush-interpreter-tree} \\ \hline
-			VM compiler / runtime         & \tokei{./deps/rush/crates/rush-interpreter-vm}                       \\ \hline
-			WASM compiler                 & \tokei{./deps/rush/crates/rush-compiler-wasm}                        \\ \hline
-			LLVM compiler                 & \cellcolor{gray!30} \tokei{./deps/rush/crates/rush-compiler-llvm}    \\ \hline
-			RISC-V compiler               & \tokei{./deps/rush/crates/rush-compiler-risc-v}                      \\ \hline
-			x86 compiler                  & \cellcolor{gray!30} \tokei{./deps/rush/crates/rush-compiler-x86-64}  \\ \hline
+		\begin{tabularx}{0.9\textwidth}{LL}
+			\rowcolor{gray!20} Komponente               & Zeilen Programmtext                              \\ \hline
+			Lexer / Parser                              & \tokei{./deps/rush/crates/rush-parser}           \\ \hline
+			\rowcolor{gray!30} Tree-walking interpreter & \tokei{./deps/rush/crates/rush-interpreter-tree} \\ \hline
+			VM compiler / runtime                       & \tokei{./deps/rush/crates/rush-interpreter-vm}   \\ \hline
+			WASM compiler                               & \tokei{./deps/rush/crates/rush-compiler-wasm}    \\ \hline
+			\rowcolor{gray!30} LLVM compiler            & \tokei{./deps/rush/crates/rush-compiler-llvm}    \\ \hline
+			RISC-V compiler                             & \tokei{./deps/rush/crates/rush-compiler-risc-v}  \\ \hline
+			\rowcolor{gray!30} x86 compiler             & \tokei{./deps/rush/crates/rush-compiler-x86-64}  \\ \hline
 		\end{tabularx}
 	\end{table}
 \end{frame}

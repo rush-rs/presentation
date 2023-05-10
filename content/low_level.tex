@@ -10,14 +10,14 @@
 
 \begin{frame}{Abstraktionsgrad von Assembly}
 	\begin{figure}[h]
-		\begin{adjustbox}{max totalsize={.26\textwidth}{!},center}
+		\begin{adjustbox}{max totalsize={\textwidth}{!},center}
 			\begin{tikzpicture}[node distance=1cm, inner sep=3mm]
 				\node (highlevel) [entity, fill=none] {High-level Sprachen\\(\emph{C}, \emph{Rust}, \emph{rush})};
-				\node (asm) [entity, fill=gray!15, below=of highlevel, align=center] {Assembly\\Ebene};
+				\node (asm) [entity, fill=gray!15, right=of highlevel, align=center] {Assembly\\Ebene};
 				\draw [arrow] (highlevel) -- (asm);
-				\node (machine) [entity, fill=none, below=of asm, align=center] {Machinensprache\\Ebene};
+				\node (machine) [entity, fill=none, right=of asm, align=center] {Machinensprache\\Ebene};
 				\draw [arrow] (asm) -- (machine);
-				\node (codegen) [entity, fill=none, below=of machine] {Betriebssystem-\\ und Hardwareebene};
+				\node (codegen) [entity, fill=none, right=of machine] {Betriebssystem-\\ und Hardwareebene};
 				\draw [arrow] (machine) -- (codegen);
 			\end{tikzpicture}
 		\end{adjustbox}
@@ -26,7 +26,7 @@
 
 \begin{frame}{Stacklayouts}
 	\begin{minipage}{0.45\textwidth}
-        \hspace{-2.75cm}
+        \hspace{-1.75cm}
 		\begin{tikzpicture}[xscale=0.7, yscale=0.6]
 			\scriptsize
 
@@ -59,12 +59,12 @@
 			\stackbottom[padding]
 
             \small
-            \draw (0,\value{cellnb}-2)  node(currentcell) {\riscv{}};
+            \draw (0,\value{cellnb}-2)  node(currentcell) {\Large \riscv{}};
 		\end{tikzpicture}
 	\end{minipage}
 	\hfill
 	\begin{minipage}{0.45\textwidth}
-        \hspace{-2.75cm}
+        \hspace{-1.75cm}
 		\begin{tikzpicture}[xscale=0.7, yscale=0.6]
 			\scriptsize
 
@@ -97,7 +97,7 @@
 			\stackbottom[padding]
 
             \small
-            \draw (0,\value{cellnb}-2)  node(currentcell) {x64};
+            \draw (0,\value{cellnb}-2)  node(currentcell) {\Large x64};
 		\end{tikzpicture}
 	\end{minipage}
 \end{frame}

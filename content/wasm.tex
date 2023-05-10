@@ -29,12 +29,14 @@
 \newcommand{\TableCell}[2]{\begin{minipage}{5cm}\Lirsting[float=H, fancyvrb={frame=none, numbers=none, fontsize=\footnotesize}, ranges={#2}]{listings/wasm_table.#1}\end{minipage}}
 
 \begin{frame}{Hoher Abstraktionsgrad}
-	\rowcolors{2}{gray!15}{}
-	\begin{tabular}{l|l}
-		\rowcolor{gray!20} rush & WebAssembly                   \\
-		\hline
-		\TableCell{rush}{1-3}   & \TableCell{wat}{1-3}   \pause \\
-		\TableCell{rush}{5-9}   & \TableCell{wat}{5-9}   \pause \\
-		\TableCell{rush}{11-13} & \TableCell{wat}{11-14}        \\
-	\end{tabular}
+	\begin{center}
+		\rowcolors{2}{gray!15}{}
+		\begin{tabular}{l|l}
+			\rowcolor{gray!20} rush & WebAssembly                   \\
+			\hline
+			\TableCell{rush}{1-3}   & \TableCell{wat}{1-3}   \pause \\
+			\TableCell{rush}{5-9}   & \TableCell{wat}{5-9}   \pause \\
+			\TableCell{rush}{11-13} & \TableCell{wat}{11-14}        \\
+		\end{tabular}
+	\end{center}
 \end{frame}
