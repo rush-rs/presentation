@@ -1,3 +1,4 @@
+% LTeX: language=de-DE
 \section{Kompilierung zu low-level Architekturen}
 \begin{frame}{Kompilierung zu low-level Architekturen}
 	\begin{itemize}
@@ -26,7 +27,7 @@
 
 \begin{frame}{Stacklayouts}
 	\begin{minipage}{0.45\textwidth}
-        \hspace{-1.75cm}
+		\hspace{-1.75cm}
 		\begin{tikzpicture}[xscale=0.7, yscale=0.6]
 			\scriptsize
 
@@ -58,13 +59,13 @@
 			\finishframe{current}
 			\stackbottom[padding]
 
-            \small
-            \draw (0,\value{cellnb}-2)  node(currentcell) {\Large \riscv{}};
+			\Large
+			\draw (0,\value{cellnb}-1.5)  node(currentcell) {\riscv{}};
 		\end{tikzpicture}
 	\end{minipage}
 	\hfill
 	\begin{minipage}{0.45\textwidth}
-        \hspace{-1.75cm}
+		\hspace{-1.75cm}
 		\begin{tikzpicture}[xscale=0.7, yscale=0.6]
 			\scriptsize
 
@@ -96,8 +97,31 @@
 			\finishframe{current}
 			\stackbottom[padding]
 
-            \small
-            \draw (0,\value{cellnb}-2)  node(currentcell) {\Large x64};
+			\Large
+			\draw (0,\value{cellnb}-1.5)  node(currentcell) {x64};
 		\end{tikzpicture}
 	\end{minipage}
+\end{frame}
+
+\begin{frame}{Übersetzung von Kontrollstrukturen zu linearen Programmfluss}
+	\pdfpcnote{
+		- Beispiel: Struktur von if-else Ausdruecken in Assembly \\
+		- Nutzung von Spruengen um basierend auf Bedingungen Teile des Programms zu ueberspringen \\
+	}
+
+	\centering
+	\begin{tikzpicture}[every node/.style={minimum size=1.5ex}]
+		\node(s)[vstack=8, rectangle split part align=left]{%
+			\strut \emph{Bedingung}
+			\nodepart{two}  \strut Springe zu \qVerb{.block_x} wenn die Bedingung nicht zutrifft
+			\nodepart{three}\strut \emph{\enquote{if}-Block}
+			\nodepart{four} \strut Springe zu \qVerb{.block_y}
+			\nodepart{five} \strut \Verb{.block_x:}
+			\nodepart{six}  \strut \emph{\enquote{else}-Block}
+			\nodepart{seven}\strut \Verb{.block_y:}
+			\nodepart{eight}\strut \dots
+		};
+		\draw[arrow] (s.two west) to [out=-150,in=150] (s.five west);
+		\draw[arrow] (s.four west) to [out=-150,in=150] (s.seven west);
+	\end{tikzpicture}
 \end{frame}
