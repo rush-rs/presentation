@@ -11,6 +11,12 @@
 \end{frame}
 
 \begin{frame}{Beispiel Ein-/Ausgabe}
+	\pdfpcnote{
+		- selbes Fibonacci Beispiel \\
+		- Ausgabe ist eine Binaerdatei \\
+		- Kompakt aber unübersichtlich und unleserlich \\
+	}
+
 	\begin{minipage}{0.5\textwidth}
 		\Lirsting[float=H, fancyvrb={frame=none, fontsize=\small}]{deps/paper/listings/fib.rush}
 	\end{minipage}
@@ -23,12 +29,26 @@
 \end{frame}
 
 \begin{frame}{Textdarstellung}
+	\pdfpcnote{
+		- Alternative Textdarstellung \\
+		- aehnlicher zu gewoehnlichem Assembly \\
+	}
+
 	\Lirsting[float=H, fancyvrb={frame=none, fontsize=\scriptsize}]{listings/fib.wat}
 \end{frame}
 
 \newcommand{\TableCell}[2]{\begin{minipage}{5cm}\Lirsting[float=H, fancyvrb={frame=none, numbers=none, fontsize=\footnotesize}, ranges={#2}]{listings/wasm_table.#1}\end{minipage}}
 
 \begin{frame}{Hoher Abstraktionsgrad}
+	\pdfpcnote{
+		- Strukturen mit hohem Abstraktionsgrad werden bereitgestellt \\
+		- Beispiele: (links rush, rechts WebAssembly) \\
+		1. Funktionen \\
+		1. if-else Verzweigungen \\
+		1. Schleifen \\
+	}
+
+	\centering
 	\rowcolors{2}{gray!15}{}
 	\begin{tabular}{l|l}
 		\rowcolor{gray!20} rush & WebAssembly                   \\
