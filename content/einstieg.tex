@@ -1,12 +1,15 @@
 % chktex-file -2
 % LTeX: language=de-DE
+
 \section{Einstieg \& Motivation}
 \begin{frame}{Einstieg \& Motivation}
 	\begin{itemize}
 		\item Programme werden in speziellen Sprachen verfasst
-		\item Vorteile eines hohen Abstraktionsgrades~\scite[S.~9]{Dandamudi2005Risc}
+		\item Vorteile eines hohen Abstraktionsgrades
 	\end{itemize}
+\end{frame}
 
+\begin{frame}{Einstieg \& Motivation}
 	\begin{figure}[h]
 		\begin{minipage}{.32\textwidth}
 			\begin{center}
@@ -15,6 +18,7 @@
 				{\small Erweiterbarkeit \& Reperatur}
 			\end{center}
 		\end{minipage}
+		\pause
 		\hfill
 		\begin{minipage}{.32\textwidth}
 			\begin{center}
@@ -22,6 +26,7 @@
 				{\small Portabilität \& Platformunabhängigkeit}
 			\end{center}
 		\end{minipage}
+		\pause
 		\hfill
 		\begin{minipage}{.32\textwidth}
 			\begin{center}
@@ -29,10 +34,6 @@
 				{\small Geschwindigkeit \& Einfachheit }
 			\end{center}
 		\end{minipage}
-		% citation
-		\begin{center}
-			\scite{googleFonts}
-		\end{center}
 	\end{figure}
 \end{frame}
 
@@ -211,7 +212,7 @@
 
 \begin{frame}{Berechnung von Fibonaccizahlen in rush}
 	\begin{minipage}{.6\textwidth}
-		\Lirsting[float=H]{deps/paper/listings/fib.rush}
+        \Lirsting[float=H, fancyvrb={frame=none}]{deps/paper/listings/fib.rush}
 	\end{minipage}
 	\begin{minipage}{.3\textwidth}
 		\begin{align*}

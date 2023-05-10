@@ -8,14 +8,12 @@
 				\node (lexical_analysis) [rec, minimum height=1.5cm] {Lexikalische Analyse};
 				\node (syntactic_analysis) [rec, right=of lexical_analysis, align=center, minimum height=1.5cm] {Syntaxanalyse};
 				\draw [arrow] (lexical_analysis) -- (syntactic_analysis);
-				\node (semantic_analysis) [rec, right=of syntactic_analysis, align=center, minimum height=1.5cm, fill=gray!25] {Semantische\\Analyse};
+				\node (semantic_analysis) [rec, right=of syntactic_analysis, align=center, minimum height=1.5cm, fill=mLightBrown!35] {Semantische\\Analyse};
 				\draw [arrow] (syntactic_analysis) -- (semantic_analysis);
 				\node (codegen) [rec, right=of semantic_analysis, minimum height=1.5cm] {Code-Erzeugung};
 				\draw [arrow] (semantic_analysis) -- (codegen);
 			\end{tikzpicture}
 		\end{adjustbox}
-
-		\scite[S.~6--7]{wirth_compiler_construction_2005}
 	\end{figure}
 \end{frame}
 
@@ -58,10 +56,10 @@
 
 \begin{frame}{Anforderungen an die semantische Analyse (für rush)}
 	\begin{itemize}
-		\item Unterscheidung zwischen validen und invaliden Programmen
-		\item Liefern von hilfreichen Warnungen und Informationen
-		\item Hinzufügen von Typinformationen zu dem AST
-		\item Triviale Optimierungen der Programmstruktur
+		\item<1-> Unterscheidung zwischen validen und invaliden Programmen
+		\item<2-> hilfreiche Warnungen und Informationen
+		\item<3-> Hinzufügen von Typinformationen zu dem AST
+		\item<4-> Triviale Optimierungen der Programmstruktur
 	\end{itemize}
 \end{frame}
 
@@ -85,9 +83,8 @@
 				child { node  { \Verb{-} } }
 				child { node  { \Verb{n}: \emph{int} } };
 
-				\draw[arrow, shorten >= 0.3cm, shorten <= 0.3cm, very thick] (leftm) -- node[above] {Semantische} node[below] {Analyse} ++ (rightm);
+				\draw[arrow, shorten >= 0.4cm, shorten <= 0.4cm, very thick] (leftm) -- node[above] {Semantische} node[below] {Analyse} ++ (rightm);
 			\end{tikzpicture}
-        \end{adjustbox}
-		\caption{Auswirkungen der semantischen Analyse auf den AST}\label{fig:analysis_tree_conv}
+		\end{adjustbox}
 	\end{figure}
 \end{frame}

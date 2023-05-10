@@ -2,12 +2,12 @@
 \section{Kompilierung zu LLVM}
 \begin{frame}{Was ist LLVM?}
 	\begin{itemize}
-		\item Startete als Forschungsprojekt von \emph{Chris Lattner}~\scite{Lattner:MSThesis02}
-		\item Auch \emph{Rust} und \emph{Switft} nutzen LLVM\footnote{\scite[p.~373]{McNamara2021-hz}, \scite[preface]{Hsu2021-ez}}.
-		\item Erzeugung von Code aus einer Zwischendarstellung
-		\item Aggressive Optimisierungsmaßnamen
-		\item Die sogenannte \emph{intermediate representation} (IR) kann mittels APIs erzeugt werden~\scite[preface]{Hsu2021-ez}
-		\item[\Rightarrow] LLVM ist das backend eines Compilers
+		\item<1-> Startete als \cemph{Forschungsprojekt}
+		\item<2-> Auch Rust und Swift nutzen LLVM
+		\item<3-> Erzeugung von Code aus einer \cemph{Zwischendarstellung} (IR)
+		\item<4-> Aggressive \cemph{Optimierung}
+		\item<5-> Die IR kann mittels APIs erzeugt werden
+			\item[\Rightarrow]<6-> Das Backend eines Compilers
 	\end{itemize}
 \end{frame}
 
@@ -25,7 +25,7 @@
 				\node (ir_generation) [rec, align=center, right=of semantic_analysis] {LLVM IR\\generation};
 				\draw [arrow] (semantic_analysis) -- (ir_generation);
 
-				\node (llvm) [rec, align=center, fill=gray!15, right=of ir_generation] {LLVM\\backend};
+				\node (llvm) [rec, align=center, fill=mLightBrown!25, right=of ir_generation] {LLVM\\backend};
 				\draw [arrow] (ir_generation) -- (llvm);
 			\end{tikzpicture}
 		\end{adjustbox}
@@ -53,6 +53,7 @@
 		\rowcolors{2}{gray!15}{}
 		\begin{tabularx}{0.95\textwidth}{L|L}
 			\cellcolor{green!20} Vorteile                                 & \cellcolor{red!20} Nachteile               \\
+            \hline
 			hoher Abstraktionsgrad                                        & Aufwendige Installation der LLVM Libraries \\
 			Unabhängigkeit von der Zielmaschine                           & signifikante Größe der ausführbaren Datei  \\
 			aggressive Optimisierungsmaßnahmen                            & unvollständige Dokumentation von Inkwell   \\
