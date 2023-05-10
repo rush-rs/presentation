@@ -3,13 +3,18 @@
 
 \begin{frame}{Tree-Walking Interpreter}
 	\begin{itemize}
-        \item \emph{Traversiert} den Syntaxbaum
+		\item \emph{Traversiert} den Syntaxbaum
 		\item \emph{Interpretiert} das Programm direkt
 	\end{itemize}
 \end{frame}
 
 \begin{frame}{Felder des Interpreters}
-	\Lirsting[float=H, ranges={10-16}, fancyvrb={fontsize=\footnotesize}]{deps/rush/crates/rush-interpreter-tree/src/interpreter.rs}
+    % TODO: decide whether this is better with 'padding'
+	\begin{center}
+		\begin{minipage}{.9\textwidth}
+			\Lirsting[float=H, ranges={10-16}, fancyvrb={fontsize=\footnotesize}]{deps/rush/crates/rush-interpreter-tree/src/interpreter.rs}
+		\end{minipage}
+	\end{center}
 
 	\begin{description}
 		\item[scopes] Stack von Scopes; jeder Scope weist einem Variablennamen einen Laufzeitwert zu
@@ -45,7 +50,7 @@
 			child {node {Expression \encircle{4}}
 					child {node {\Verb|Int(3)|}}};
 		\end{tikzpicture}
-        \caption{Syntaxbaum zu \enquote{\LirstInline{rush}{1 + 2 * 3}}}
+		\caption{Syntaxbaum zu \enquote{\LirstInline{rush}{1 + 2 * 3}}}
 	\end{figure}
 \end{frame}
 
@@ -62,7 +67,7 @@
 			nodes={minimum height=3ex, draw, text width=4cm},
 			row sep=-\pgflinewidth
 			](stack){
-            \LirstInline{rs}{call_func("fib", vec![3])} \\
+			\LirstInline{rs}{call_func("fib", vec![3])} \\
 			\LirstInline{rs}{visit_block(/* ... */)} \\
 			\LirstInline{rs}{visit_expression(/* ... */)} \\
 			\LirstInline{rs}{visit_if_expr(/* ... */)} \\
