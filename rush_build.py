@@ -39,14 +39,19 @@ JOBS = [
         'backend': Backend.analyzer,
     },
     {
-        'in': 'listings/simple.rush',
-        'out': 'listings/generated/simple.ll',
+        'in': 'deps/paper/listings/fib.rush',
+        'out': 'listings/generated/fib.ll',
         'backend': Backend.llvm,
     },
     {
         'in': 'deps/paper/listings/fib.rush',
         'out': 'listings/generated/fib_x64.s',
         'backend': Backend.x64,
+    },
+    {
+        'in': 'deps/paper/listings/fib.rush',
+        'out': 'listings/generated/fib_riscv.s',
+        'backend': Backend.riscv,
     },
 ]
 
@@ -275,7 +280,7 @@ if __name__ == '__main__':
             if job['backend'] == Backend.analyzer:
                 analyzer_output(job['in'], job['out'], job['show_filename'])
             elif job['backend'] == Backend.riscv:
-                riscv_asm(job['in'], job['out'], 100)
+                riscv_asm(job['in'], job['out'], 16)
             elif job['backend'] == Backend.llvm:
                 llvm_gen_ir(job['in'], job['out'])
             elif job['backend'] == Backend.c:

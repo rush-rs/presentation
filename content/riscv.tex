@@ -2,12 +2,24 @@
 % chktex-file -2
 \section{Kompilierung zu \riscv}
 \begin{frame}{Was ist \riscv?}
+	\pdfpcnote{
+		- RISC -> Reduced Instruction Set Computer
+		- Forschungsprojekt der UC Berkeley
+		- Lösen der Probleme von anderen Architekturen
+		- Simplizit und Erweiterbarkeit
+		- Unterstützt durch
+		- Google
+		- Microsoft
+		- Samsung
+		- IBM
+	}
+
 	\begin{itemize}
-		\item \textbf{R}educed \textbf{I}nstruction \textbf{S}et \textbf{C}omputer (RISC)
-		\item Forschungsprojekt der UC Berkeley
-		\item Ziel: Lösen der Probleme vieler CISC Architekturen
-		\item Simplizität und Erweiterbarkeit
-		\item Unterstüztung durch: Google Microsoft, Samsung und IBM
+		\item<1-> \textbf{R}educed \textbf{I}nstruction \textbf{S}et \textbf{C}omputer (\cemph{RISC})
+		\item<2-> \cemph{Forschungsprojekt} der UC Berkeley
+		\item<3-> Lösen der Probleme vieler anderer Architekturen
+		\item<4-> \cemph{Simplizität} und Erweiterbarkeit
+		\item<5-> Unterstüztung durch: Google, Microsoft, Samsung und IBM
 	\end{itemize}
 \end{frame}
 
@@ -33,15 +45,16 @@
 \end{frame}
 
 \begin{frame}{Beispiel}
-	\begin{minipage}{0.35\textwidth}
-		\TODO{maybe fib?}
-		\Lirsting[float=H, fancyvrb={frame=none}]{deps/paper/listings/simple_add.rush}
+	\begin{minipage}{0.4\textwidth}
+		\vspace{.5cm}
+		\Lirsting[float=H, fancyvrb={frame=none, fontsize=\small}]{deps/paper/listings/fib.rush}
 		\centering
+		\vspace{-.5cm}
 		\Larrow{Ausgabe}
 	\end{minipage}
 	\hfill
-	\begin{minipage}{0.45\textwidth}
-		\Lirsting[float=H, fancyvrb={frame=none, fontsize=\scriptsize}]{deps/paper/listings/generated/rush_simple_add.s}
+	\begin{minipage}{0.4\textwidth}
+		\Lirsting[float=H, fancyvrb={frame=none, fontsize=\scriptsize}, ranges={1-13, 28-40}]{listings/generated/fib_riscv.s}
 	\end{minipage}
 \end{frame}
 

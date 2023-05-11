@@ -1,11 +1,15 @@
 % LTeX: language=de-DE
 \section{Kompilierung zu low-level Architekturen}
 \begin{frame}{Kompilierung zu low-level Architekturen}
+    \pdfpcnote{
+        - Zielmaschine und Betriebssystem spezifisch
+        - Compiler generieren Assembly
+    }
+
 	\begin{itemize}
-		\item Zielmaschine ist spezifisch
-		\item Betriebssystem ist spezifisch
-		\item Nutzung von Registern
-		\item Hier: die Compiler generieren Assembly
+		\item<1-> Zielmaschine ist spezifisch
+		\item<1-> Betriebssystem ist spezifisch
+		\item<2-> Hier: die Compiler generieren Assembly
 	\end{itemize}
 \end{frame}
 
@@ -14,7 +18,7 @@
 		\begin{adjustbox}{max totalsize={\textwidth}{!},center}
 			\begin{tikzpicture}[node distance=1cm, inner sep=3mm]
 				\node (highlevel) [entity, fill=none] {High-level Sprachen\\(\emph{C}, \emph{Rust}, \emph{rush})};
-				\node (asm) [entity, fill=gray!15, right=of highlevel, align=center] {Assembly\\Ebene};
+				\node (asm) [entity, fill=mLightBrown!25, right=of highlevel, align=center] {Assembly\\Ebene};
 				\draw [arrow] (highlevel) -- (asm);
 				\node (machine) [entity, fill=none, right=of asm, align=center] {Machinensprache\\Ebene};
 				\draw [arrow] (asm) -- (machine);

@@ -40,12 +40,16 @@
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Ein LLVM Beispielprogramm: Eingabe}
-	\Lirsting[float=H, fancyvrb={frame=none}]{listings/simple.rush}
+\begin{frame}{Beispiel}
+	\begin{center}
+		\begin{minipage}{.6\textwidth}
+			\Lirsting[float=H, fancyvrb={frame=none}]{deps/paper/listings/fib.rush}
+		\end{minipage}
+	\end{center}
 \end{frame}
 
-\begin{frame}{Ein LLVM Beispielprogramm: Ausgabe}
-	\Lirsting[float=H, fancyvrb={frame=none, fontsize=\footnotesize}]{listings/generated/simple.ll}
+\begin{frame}{Beispiel}
+	\Lirsting[float=H, fancyvrb={frame=none, fontsize=\scriptsize}]{listings/generated/fib.ll}
 \end{frame}
 
 \begin{frame}{Fazit}
@@ -53,7 +57,7 @@
 		\rowcolors{2}{gray!15}{}
 		\begin{tabularx}{0.95\textwidth}{L|L}
 			\cellcolor{green!20} Vorteile                                 & \cellcolor{red!20} Nachteile               \\
-            \hline
+			\hline
 			hoher Abstraktionsgrad                                        & Aufwendige Installation der LLVM Libraries \\
 			Unabhängigkeit von der Zielmaschine                           & signifikante Größe der ausführbaren Datei  \\
 			aggressive Optimisierungsmaßnahmen                            & unvollständige Dokumentation von Inkwell   \\
