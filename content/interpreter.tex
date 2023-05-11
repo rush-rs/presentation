@@ -1,7 +1,12 @@
 % LTeX: language=de-DE
-\section{Tree-Walking Interpreter}
+\section{Tree-walking Interpreter}
 
-\begin{frame}{Tree-Walking Interpreter}
+\begin{frame}{Tree-walking Interpreter}
+	\pdfpcnote{
+		- Ein tree-walking Interpreter funktioniert so, dass er den analysierten Syntaxbaum _traversiert_ \\
+		- und ohne weitere Zwischenschritte die Anweisungen _interpretiert_ \\
+	}
+
 	\begin{itemize}
 		\item \emph{Traversiert} den Syntaxbaum
 		\item \emph{Interpretiert} das Programm direkt
@@ -9,33 +14,44 @@
 \end{frame}
 
 \begin{frame}{Felder des Interpreters}
-    % TODO: decide whether this is better with 'padding'
-	\begin{center}
-		\begin{minipage}{.9\textwidth}
-			\Lirsting[float=H, ranges={10-16}, fancyvrb={fontsize=\footnotesize}]{deps/rush/crates/rush-interpreter-tree/src/interpreter.rs}
+	\pdfpcnote{
+		- Typdefinition des Interpreters \\
+		- Aufbau sehr simpel: benoetigt nur zwei Felder \\
+		- scopes: Zuweisung von Variablennamen zu Laufzeitwerten \\
+		- functions: Zuweisung von Funktionsnamen zu dem Knoten des Syntaxbaums \\
+	}
+
+	\begin{flushright}
+		\begin{minipage}{.85\textwidth}
+			\Lirsting[float=H, ranges={10-16}, fancyvrb={frame=none, fontsize=\small}]{deps/rush/crates/rush-interpreter-tree/src/interpreter.rs}
 		\end{minipage}
-	\end{center}
+	\end{flushright}
 
 	\begin{description}
 		\item[scopes] Stack von Scopes; jeder Scope weist einem Variablennamen einen Laufzeitwert zu
-		\item[functions] Zuweisung von Funktionsnamen zu einer geteilten Referenz zu dem entsprechenden Knoten im Syntaxbaum
+		\item[functions] Zuweisung von Funktionsnamen zu dem entsprechenden Knoten im Syntaxbaum
 	\end{description}
 \end{frame}
 
-\begin{frame}{Weitere Typdefinitionen}
-	\begin{minipage}{0.6\textwidth}
-		\Lirsting[float=H, ranges={6-13, 22-28}, fancyvrb={fontsize=\small}]{deps/rush/crates/rush-interpreter-tree/src/value.rs}
-	\end{minipage}
-	\hfill
-	\begin{minipage}{0.35\textwidth}
-		\begin{itemize}
-			\item Aufzählung zum Speichern verschiedener Datentypen
-			\item Verschiedene Unterbrechungen des Programmflusses
-		\end{itemize}
+\begin{frame}{Laufzeitwerte}
+	\pdfpcnote{
+		- Laufzeitwerte verschiedener Datentypen werden unter einem allgemeinen Typ zusammengefasst \\
+	}
+
+	\centering
+	\begin{minipage}{0.37\textwidth}
+		\Lirsting[float=H, ranges={6-13}, fancyvrb={frame=none}]{deps/rush/crates/rush-interpreter-tree/src/value.rs}
 	\end{minipage}
 \end{frame}
 
 \begin{frame}{Traversierung}
+	\pdfpcnote{
+		- sichtbar: Syntaxbaum zu dem Ausdruck `1 + 2 * 3` \\
+		- interessant: Reihenfolge der Traversierung \\
+		- post-order \\
+		- weil: fuer die Multiplikation muss erst die Summe von 1 + 2 berechnet werden \\
+	}
+
 	\begin{figure}[H]
 		\centering
 		\begin{tikzpicture}[level distance=1cm, sibling distance=2.2cm]
@@ -55,19 +71,29 @@
 \end{frame}
 
 \begin{frame}{Effizienz}
+	\pdfpcnote{
+		- Beispiel: das bereits gezeigte rekursive Fibonacci Programm \\
+		- Grafik rechts: Funktionsaufrufe im Interpreter zu einem Zeitpunkt waehrend der Ausfuehrung \\
+		- tiefer ist aktueller / neuer \\
+		- Ineffizienz durch staendiges verfolgen von Pointern zu anderen Knoten im Baum \\
+		- besonders bei rekursiven Programmen, wiederholte Traversierung derselben Knoten \\
+		- in diesem Beispiel: der obere Block an aufrufen ist nach jedem Aufruf (bei jedem "...") vorhanden \\
+	}
+
 	\begin{minipage}{0.5\textwidth}
-		\Lirsting[float=H, fancyvrb={fontsize=\small}]{listings/fib.rush}
+		\Lirsting[float=H, fancyvrb={frame=none, fontsize=\small}]{deps/paper/listings/fib.rush}
 	\end{minipage}
 	\hfill
 	\begin{minipage}{0.45\textwidth}
 		\begin{tikzpicture}
-			\footnotesize
+			\scriptsize
 			\matrix[
 			matrix of nodes,
 			nodes={minimum height=3ex, draw, text width=4cm},
 			row sep=-\pgflinewidth
 			](stack){
-			\LirstInline{rs}{call_func("fib", vec![3])} \\
+			\dots \\
+			\LirstInline{rs}{call_func("fib", vec![10])} \\
 			\LirstInline{rs}{visit_block(/* ... */)} \\
 			\LirstInline{rs}{visit_expression(/* ... */)} \\
 			\LirstInline{rs}{visit_if_expr(/* ... */)} \\
@@ -76,11 +102,17 @@
 			\LirstInline{rs}{visit_inifix_expr(/* ... */)} \\
 			\LirstInline{rs}{visit_expression(/* ... */)} \\
 			\LirstInline{rs}{visit_call_expr(/* ... */)} \\
+			\LirstInline{rs}{call_func("fib", vec![8])} \\
+			\dots \\
+			\LirstInline{rs}{call_func("fib", vec![6])} \\
+			\dots \\
+			\LirstInline{rs}{call_func("fib", vec![4])} \\
+			\dots \\
 			\LirstInline{rs}{call_func("fib", vec![2])} \\
 			\dots \\
-			\LirstInline{rs}{call_func("fib", vec![1])} \\
+			\LirstInline{rs}{call_func("fib", vec![0])} \\
 			};
-			\draw[arrow] ([xshift=2.4cm]stack.north) -- ([xshift=2.4cm]stack.south);
+			\draw[arrow] ([xshift=1em]stack.north east) -- ([xshift=1em]stack.south east);
 		\end{tikzpicture}
 	\end{minipage}
 \end{frame}
