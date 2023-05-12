@@ -131,6 +131,14 @@
 \section{Die Programmiersprache \enquote{rush}}
 
 \begin{frame}{Fakten über rush}
+	\pdfpcnote{
+		@Silas \\
+		\\
+		- Programmierung: ca. vier Monate \\
+		- umfasst von 815 Git commits \\
+		- besteht aus etwa 17k Zeilen Programmtext \\
+	}
+
 	\begin{figure}[h]
 		\flushleft
 		\hspace{.15cm} \rushlogo{y=0.80pt, x=0.80pt, yscale=-0.15, xscale=0.15}
@@ -139,101 +147,29 @@
 	\begin{itemize}
 		\item ca.\ vier Monate intensive Entwicklung
 		\item \rushCountCommits~Git Commits
-		\item \tokei{./deps/rush} Zeilen Programmtext\footnote{Leerzeilen und Kommentare werden nicht gezählt.} in Git Commit `\rushCommit'
+		\item \tokei{./deps/rush} Zeilen Programmtext in Git Commit \enquote{\rushCommit}
 	\end{itemize}
-\end{frame}
-
-\begin{frame}{Inhalte des Projektes}
-	\begin{itemize}
-		\item Lexer
-		\item Parser
-		\item Semantikanalyse
-		\item zwei Interpreter
-		\item ein Transpiler
-		\item vier Compiler
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{Fähigkeiten von rush}
-	\pdfpcnote{
-		1. Schleife \\
-		2. while-Schleife \\
-		3. for-Schleife \\
-		4. if-Verzweigung \\
-		5. Funktionsdefinition \\
-		6. infix-Ausdruck \\
-		7. praefix-Ausdruck \\
-		8. Variablendefinition \\
-		9. Typumwandlung \\
-	}
-
-	\begin{table}[h]
-		\rowcolors{2}{gray!15}{}
-		\begin{tabular}{p{5.2cm}|p{5.2cm}}
-			\rowcolor{gray!25} Bezeichnung & Beispiel                                                 \\
-			\hline
-			Schleife                       & \LirstInline{rush}{loop {  }}                     \pause \\
-			\enquote{while}-Schleife       & \LirstInline{rush}{while x < 5 {  }}              \pause \\
-			\enquote{for}-Schleife         & \LirstInline{rush}{for i = 0; i < 5; i += 1 {  }} \pause \\
-			\enquote{if}-Verzweigung       & \LirstInline{rush}{if true {  } else {  }}        \pause \\
-			Funktionsdefinition            & \LirstInline{rush}{fn foo(n: int) {  }}           \pause \\
-			Infix-Ausdruck                 & \LirstInline{rush}{1 + n; 5 ** 2}                 \pause \\
-			Präfix-Ausdruck                & \LirstInline{rush}{!false; -n}                    \pause \\
-			Variablendefinition            & \LirstInline{rush}{let mut answer = 42}           \pause \\
-			Typumwandlung                  & \LirstInline{rush}{42 as float}                          \\
-		\end{tabular}
-	\end{table}
-\end{frame}
-
-\begin{frame}{Datentypen in rush}
-	\pdfpcnote{
-		1. int \\
-		2. float \\
-		3. bool \\
-		4. char \\
-		5. unit \\
-		6. never \\
-	}
-
-	\begin{table}[h]
-		\rowcolors{2}{gray!15}{}
-		\begin{tabular}{p{5.2cm}|p{5.2cm}}
-			\rowcolor{gray!25} Bezeichnung & Instanziierung einer Variable                   \\
-			\hline
-			\qVerb{int}                    & \LirstInline{rush}{let a: int = 0;}      \pause \\
-			\qVerb{float}                  & \LirstInline{rush}{let b: float = 3.14;} \pause \\
-			\qVerb{bool}                   & \LirstInline{rush}{let c: bool = true;}  \pause \\
-			\qVerb{char}                   & \LirstInline{rush}{let d: char = 'a';}   \pause \\
-			\qVerb{()} oder \enquote{Unit} & \LirstInline{rush}{let e: () = main();}  \pause \\
-			\qVerb{!} oder \enquote{Never} & \LirstInline{rush}{let f = exit(42);}           \\
-		\end{tabular}
-	\end{table}
-\end{frame}
-
-\begin{frame}{Berechnung von Fibonaccizahlen in rush}
-	\begin{minipage}{.6\textwidth}
-        \Lirsting[float=H, fancyvrb={frame=none}]{deps/paper/listings/fib.rush}
-	\end{minipage}
-	\begin{minipage}{.3\textwidth}
-		\begin{align*}
-			f_n & = f_{n-2} + f_{n-1} & ; n \ge 3 \\
-			f_1 & = f_2 = 1
-		\end{align*}
-	\end{minipage}
 \end{frame}
 
 \newcommand{\fadeout}[1]{\textcolor<2>{black!30}{#1}}
-\begin{frame}{Umfang der einzelnen Komponenten}
-	\pdfpcnote{
-		- Uebersicht von rush Komponenten und den jeweiligen Zeilen an Programmtext \\
-		- leere Zeilen und Kommentare werden nicht mitgezaehlt \\
-        \\
-        --- \\
-        \\
-        - Fokus auf Interpreter: das kleinste Teilprojekt -> simpel \\
-        - Fokus auf LLVM: durchschnittlich \\
-        - Fokus auf x64: Das groesste Teilprojekt -> komplex \\
-	}
+\begin{frame}{Projektstruktur}
+	\only<1>{\pdfpcnote{
+			@Silas \\
+			\\
+			- rush besteht aus mehreren Komponenten \\
+			- rechte Spalte zeigt die jeweilige Groesse den Programmtextes \\
+			- erste Kategorie: Analyse der Eingabe, genutzt von allen anderen Komponenten \\
+			- zweite Kategorie: Interpreter Implementierungen \\
+			- dritte Kategorie: high-level Compiler Implementierungen \\
+			- letzte Kategorie: low-level Compiler Implementierungen \\
+		}}
+
+	\only<2>{\pdfpcnote{
+			- Fokus auf drei Komponenten \\
+			- Interpreter: das kleinste Teilprojekt, weil simpel \\
+			- LLVM: durchschnittlich, repraesentativ fuer high-level Kategorie \\
+			- x64: Das groesste Teilprojekt, weil komplex \\
+		}}
 
 	\begin{table}[h]
 		\centering
@@ -242,12 +178,95 @@
 			\rowcolor{gray!20} Komponente   & Zeilen Programmtext                                       \\
 			\hline
 			\fadeout{Lexer / Parser}        & \fadeout{\tokei{./deps/rush/crates/rush-parser}}          \\
+			\fadeout{Analyzer}              & \fadeout{\tokei{./deps/rush/crates/rush-analyzer}}        \\
+			\hline
 			Tree-walking Interpreter        & \tokei{./deps/rush/crates/rush-interpreter-tree}          \\
 			\fadeout{VM Compiler / Runtime} & \fadeout{\tokei{./deps/rush/crates/rush-interpreter-vm}}  \\
-			\fadeout{WASM Compiler}         & \fadeout{\tokei{./deps/rush/crates/rush-compiler-wasm}}   \\
+			\hline
+			\fadeout{WebAssembly Compiler}  & \fadeout{\tokei{./deps/rush/crates/rush-compiler-wasm}}   \\
 			LLVM Compiler                   & \tokei{./deps/rush/crates/rush-compiler-llvm}             \\
+			\fadeout{C Transpiler}          & \fadeout{\tokei{./deps/rush/crates/rush-transpiler-c}}    \\
+			\hline
 			\fadeout{RISC-V Compiler}       & \fadeout{\tokei{./deps/rush/crates/rush-compiler-risc-v}} \\
 			x64 Compiler                    & \tokei{./deps/rush/crates/rush-compiler-x86-64}           \\
 		\end{tabular}
 	\end{table}
+\end{frame}
+
+\begin{frame}{Fähigkeiten von rush}
+	\pdfpcnote{
+		@Silas \\
+		\\
+		- die wichtigsten Faehigkeiten von rush \\
+		\\
+		--- \\
+		\\
+		1. gewoehnliche Schleifen \\
+		2. if-Verzweigung \\
+		3. Funktionsdefinition \\
+		4. Variablendefinition \\
+		5. infix- und praefix Ausdruecke \\
+		6. Typumwandlung \\
+	}
+
+	\begin{table}[h]
+		\rowcolors{2}{gray!15}{}
+		\begin{tabular}{p{5.2cm}|p{5.2cm}}
+			\rowcolor{gray!25} Bezeichnung & Beispiel                                                 \\
+			\hline
+			Schleife                       & \LirstInline{rush}{loop {  }}                            \\
+			\enquote{while}-Schleife       & \LirstInline{rush}{while x < 5 {  }}                     \\
+			\enquote{for}-Schleife         & \LirstInline{rush}{for i = 0; i < 5; i += 1 {  }} \pause \\
+			\enquote{if}-Verzweigung       & \LirstInline{rush}{if true {  } else {  }}        \pause \\
+			Funktionsdefinition            & \LirstInline{rush}{fn foo(n: int) {  }}           \pause \\
+			Variablendefinition            & \LirstInline{rush}{let mut answer = 42}           \pause \\
+			Infix-Ausdruck                 & \LirstInline{rush}{1 + n; 5 ** 2}                        \\
+			Präfix-Ausdruck                & \LirstInline{rush}{!false; -n}                    \pause \\
+			Typumwandlung                  & \LirstInline{rush}{42 as float}                          \\
+		\end{tabular}
+	\end{table}
+\end{frame}
+
+\begin{frame}{Datentypen in rush}
+	\pdfpcnote{
+		@Silas \\
+		\\
+		1. sowohl Ganzzahlen als auch Fliesskommazahlen \\
+		2. Wahrheitswerte \\
+		3. Zeichen \\
+		4. untypische: _unit_ und _never_ \\
+		\\
+		--- \\
+		\\
+		- **keine** Sequenzen wie z.B. Strings \\
+	}
+
+	\begin{table}[h]
+		\rowcolors{2}{gray!15}{}
+		\begin{tabular}{p{5.2cm}|p{5.2cm}}
+			\rowcolor{gray!25} Bezeichnung & Instanziierung einer Variable                   \\
+			\hline
+			\qVerb{int}                    & \LirstInline{rush}{let a: int = 0;}             \\
+			\qVerb{float}                  & \LirstInline{rush}{let b: float = 3.14;} \pause \\
+			\qVerb{bool}                   & \LirstInline{rush}{let c: bool = true;}  \pause \\
+			\qVerb{char}                   & \LirstInline{rush}{let d: char = 'a';}   \pause \\
+			\qVerb{()} oder \enquote{Unit} & \LirstInline{rush}{let e: () = main();}         \\
+			\qVerb{!} oder \enquote{Never} & \LirstInline{rush}{let f = exit(42);}           \\
+		\end{tabular}
+	\end{table}
+\end{frame}
+
+\begin{frame}{Berechnung von Fibonaccizahlen in rush}
+	\pdfpcnote{
+		@Silas \\
+		\\
+		- gezeigt: Beispielprogramm in rush \\
+		- Berechnung von Zahlen der Fibonacci-reihe \\
+		- wir werden zeigen wie die einzelnen Implementierung mit diesem Programm umgehen \\
+	}
+
+	\centering
+	\begin{minipage}{.42\textwidth}
+		\Lirsting[float=H, fancyvrb={frame=none}]{deps/paper/listings/fib.rush}
+	\end{minipage}
 \end{frame}
