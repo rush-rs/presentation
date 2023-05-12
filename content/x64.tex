@@ -2,23 +2,28 @@
 % chktex-file -2
 \section{Kompilierung zu x86\_64}
 \begin{frame}{Was ist x86\_64}
-    \pdfpcnote{
-        - TODO
-        - Sehr weit verbreitet: Dieser PC nutzt es
-    }
+	\pdfpcnote{
+		@Silas \\
+		\\
+		- keine klare Benennung \\
+		- CISC: um vielfaches mehr Instruktionen als RISC Architekturen \\
+		- Sehr weit verbreitet: Dieser PC nutzt es \\
+	}
 
 	\begin{itemize}
-		\item<1-> Häufig auch x84-64 oder x64 genannt
+		\item<1-> Häufig auch x84-64 oder x64 geschrieben
 		\item<2-> \textbf{C}omplex \textbf{I}instruction \textbf{S}et \textbf{C}omputer (CISC)
 			\begin{itemize}
-				\item<3-> Um vielfaches mehr Instruktionen als RISC Architekturen
+				\item<2-> Um vielfaches mehr Instruktionen als RISC Architekturen
 			\end{itemize}
-		\item<4-> Sehr weit verbreitet
+		\item<3-> Sehr weit verbreitet
 	\end{itemize}
 \end{frame}
 
 \begin{frame}{Beispiel Ein-/Ausgabe}
 	\pdfpcnote{
+		@Silas \\
+		\\
 		- auch wieder dasselbe Fibonacci Beispiel \\
 		- Ausgabe ist Asseembly (wie bei RISC-V) \\
 		- aber ein anderes Assembly \\
@@ -40,10 +45,12 @@
 \newcommand{\colregx}[1]{\textcolor[HTML]{e45649}{\reg{#1}}}
 \begin{frame}{Vergleich mit \riscv{} Assembly}
 	\pdfpcnote{
-		1. Aufbau und Benennung von Instruktionen \\
-		2. Benennung von Registern \\
-		3. Syntax fuer Pointer \\
-		4. Groesse eines Worts, und damit die Benennung der anderen Groessen \\
+		@Silas \\
+		\\
+		1. Aufbau und Benennung der Instruktionen \\
+		2. Benennung, Zweck und Anzahl der Register \\
+		3. **die** Syntax fuer Pointer \\
+		4. Groesse eines Worts: die Basisgroesse der Architektur \\
 	}
 
 	\centering
@@ -61,6 +68,19 @@
 \end{frame}
 
 \begin{frame}{Fazit zu x64}
+	\pdfpcnote{
+		@Silas \\
+		\\
+		- **Vorteile:** \\
+		- etwas hoeherer Abstraktionsgrad als RISC-V \\
+		- weite Verbreitung \\
+		- Reichlichkeit der Online-Ressourcen \\
+		- **Nachteile:** \\
+		- kompliziertere Uebersetzung von manchen scheinbar simplen Operationen, z.B. Division \\
+		- alt und unuebersichtlich (durch die grosse Anzahl an Instruktionen) \\
+		- unuebersichtliche Dokumentation \\
+	}
+
 	\begin{table}[h]
 		\rowcolors{2}{gray!15}{}
 		\begin{tabular}{p{6cm}|p{6cm}}
