@@ -1,21 +1,33 @@
 % chktex-file -2
 % LTeX: language=de-DE
 
-\section{Einstieg \& Motivation}
 \begin{frame}{Einstieg \& Motivation}
+    \pdfpcnote{
+        @Mik \\ 
+        \\
+        - In speziellen Sprachen verfasst \\
+        - Vorteile eines hohen Abstraktionsgrades
+    }
 	\begin{itemize}
-		\item Programme werden in speziellen Sprachen verfasst
+		\item Wir schreiben Programme in speziellen Sprachen
 		\item Vorteile eines hohen Abstraktionsgrades
 	\end{itemize}
 \end{frame}
 
 \begin{frame}{Einstieg \& Motivation}
+    \pdfpcnote{
+       @Mik \\
+       \\
+       - Erweiterbarkeit \\
+       - Plattformunabhaengigkeit \\
+       - Geschwindigkeit \\
+    }
 	\begin{figure}[h]
 		\begin{minipage}{.32\textwidth}
 			\begin{center}
 				\centering
 				\centerline{\includegraphics[width=.5\textwidth]{assets/google_icon_construction.png}}
-				{\small Erweiterbarkeit \& Reperatur}
+				{\small Erweiterbarkeit}
 			\end{center}
 		\end{minipage}
 		\pause
@@ -23,7 +35,7 @@
 		\begin{minipage}{.32\textwidth}
 			\begin{center}
 				\centerline{\includegraphics[width=.5\textwidth]{assets/google_icon_deployed_code.png}}
-				{\small Portabilität \& Platformunabhängigkeit}
+				{\small Plattformunabhängigkeit}
 			\end{center}
 		\end{minipage}
 		\pause
@@ -31,13 +43,26 @@
 		\begin{minipage}{.32\textwidth}
 			\begin{center}
 				\centerline{\includegraphics[width=.5\textwidth]{assets/google_icon_speed.png}}
-				{\small Geschwindigkeit \& Einfachheit }
+				{\small Geschwindigkeit}
 			\end{center}
 		\end{minipage}
 	\end{figure}
 \end{frame}
 
 \begin{frame}{Zentrales Problem}
+    \pdfpcnote{
+       @Mik \\ 
+       \\
+       - Es bleibt die Frage, **wie** Programme ausgefuehrt werden \\
+       - Dies stellt ein signifikantes Problem dar \\
+       \\
+       --- \\
+       \\
+       - Programme sollten einfach zu schreiben sein \\
+       - Die Ausfuehrung sollte auch unkompilziert sein \\
+       - **Dies ist das zentrale Problem unserer Arbeit** \\
+    }
+
 	\begin{minipage}{.35\textwidth}
 		\Lirsting[float=H, fancyvrb={frame=none, fontsize=\small}]{deps/paper/listings/simple.rush}
 	\end{minipage}%
@@ -58,19 +83,44 @@
 
 	\begin{itemize}
 		\item Programme sollten \cemph{einfach} zu schreiben sein
-		\item[\Rightarrow] Ein Computer muss diese jedoch auch \cemph{einfach} verarbeiten
+        \item Die Ausführung sollte jedoch auch \cemph{einfach} sein
+        \item[\Rightarrow] Zentrales Problem unserer Arbeit
 	\end{itemize}
 \end{frame}
 
 \begin{frame}{Methoden zur Programmausführung}
+    \pdfpcnote{
+        @Mik \\
+        \\
+        - Man unterscheidet zwischen 2 verschiedenen Vorgehensweisen \\
+        \\
+        --- \\
+        \\
+        - Interpreter \\
+        - Compiler \\
+    }
+
 	\begin{itemize}
-		\item Man unterscheidet zwischen \cemph{Compilern} und \cemph{Interpretern}
-		\item Compiler: übersetzt das Programm in ein Zielformat
-		\item Interpreter: führt das Programm direkt aus (keine Übersetzung)
+        \item Verschiedene Vorgehensweisen
+		\item Unterscheidung zwischen \cemph{Interpretern} und \cemph{Compilern}
 	\end{itemize}
 \end{frame}
 
 \begin{frame}{Interpreter}
+    \pdfpcnote{
+       @Mik \\
+        \\
+        - Sprachen wie Python, Javascript und PHP \\
+        \\
+        --- \\
+        \\\
+        - In diesem Beispiel: Eine Ausgabe wird generiert (*exit-code*) \\
+        \\
+        --- \\
+        \\
+        - Ein Interpreter interpretiert den Syntaxbaum direkt \\
+        - **Es ist kein zusaetzlicher Prozess notwendig** \\
+    }
 	\hfill
 	\begin{minipage}{.35\textwidth}
 		\begin{center}
@@ -94,12 +144,23 @@
 
 	\begin{itemize}
 		\item Python, Javascript, PHP, usw.
-		\item Keine Übersetzung notwending
-		\item[\Rightarrow] Interpretiert den Syntaxbaum direkt
+		\item Direktes Ausführen des Syntaxbaums
+		\item[\Rightarrow] Kein zusätzlicher Prozess notwendig
 	\end{itemize}
 \end{frame}
 
 \begin{frame}{Compiler}
+    \pdfpcnote{
+       @Mik \\
+        \\
+        - Sprachen wie Rust, C und Go \\
+        \\
+        --- \\
+        \\
+        - Wandelt das Programm in ein anderes Format um \\
+        - Diese muss vor der Ausfuehrung stattfinden \\
+        - **Daher stellt ein Compiler einen zusaetzlicher Prozess dar** \\
+    }
 	\hspace{.8cm}
 	\begin{minipage}{.35\textwidth}
 		\begin{center}
@@ -122,9 +183,9 @@
 
 	\begin{itemize}
 		\item Rust, C, Go, usw.
-		\item Zusätzlicher Prozess
 		\item Umwandlung in ein anderes Format
-		\item[\Rightarrow] Muss vor der Ausführung stattfinden
+        \item Muss vor der Ausführung stattfinden
+		\item[\Rightarrow] Zusätzlicher Prozess
 	\end{itemize}
 \end{frame}
 

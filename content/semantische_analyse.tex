@@ -1,7 +1,17 @@
 % LTeX: language=de-DE
+\pdfpcnote{
+	@Mik \\
+	\\
+	- Nachdem die Syntax analysiert wurde muss allerdings auch noch der **Inhalt** des Programmes betrachtet werden
+}
 \section{Semantische Analyse}
 
 \begin{frame}{Etappen der Übersetzung: Semantische Analyse}
+	\pdfpcnote{
+		@Mik \\
+		\\
+		- Zeitlich findet die semantische Analyse nach der Syntaxanalyse statt \\
+	}
 	\begin{figure}[h]
 		\begin{adjustbox}{max totalsize={\textwidth}{!},center}
 			\begin{tikzpicture}[node distance=3mm and 1cm, inner sep=3mm]
@@ -18,13 +28,58 @@
 \end{frame}
 
 \begin{frame}{Semantische Analyse und Semantikregeln}
+	\pdfpcnote{
+		@Mik \\
+		\\
+		- Hier werden die semantischen Eigenschaften des Programmes validiert \\
+		- Das heisst, der Inhalt des Programmes wird betrachtet und auf Fehler untersucht \\
+		- Meistens werden die Regeln in einer natuerlichen Sprache definiert, da es noch kein gutes Regelsystem fuer diese Aufgabe gibt \\
+	}
 	\begin{itemize}
 		\item Validiert die semantischen Eigenschaften
 		\item Meistens: Definition in einer natürlichen Sprache
 	\end{itemize}
 \end{frame}
 
+\begin{frame}{Anforderungen an die semantische Analyse (für rush)}
+	\pdfpcnote{
+		@Mik \\
+		\\
+		- Die Anforderungen an die Semantische Analyse fuer rush sind... \\
+		\\
+		--- \\
+		\\
+		1. Die Unterscheidung zwischen validen und invaliden Programmen \\
+		2. Das Liefern von hilfreichen Warnungen und Informationen \\
+        3. Das Hinzufuegen von Typinformationen zum Syntaxbaum \\
+        4. Die Durchfuehrung von trivialen Optimierungen der Programmstruktur \\
+	}
+	\begin{itemize}
+		\item<1-> Unterscheidung zwischen validen und invaliden Programmen
+		\item<2-> hilfreiche Warnungen und Informationen
+		\item<3-> Hinzufügen von Typinformationen zu dem Syntaxbaum
+		\item<4-> Triviale Optimierungen der Programmstruktur
+	\end{itemize}
+\end{frame}
+
 \begin{frame}{Beispiel 1: Typkonflikt}
+	\pdfpcnote{
+		@Mik \\
+		\\
+		- Hier ist ein rush-Beispielprogramm dargestellt \\
+		- Die Syntax des Programmes ist fehlerfrei \\
+		- Allerdings enthaelt das Programm einen Semantikfehler \\
+		\\
+		--- \\
+		\\
+		- Die Variable **num** ist eine Fliesskommazahl \\
+		- Der Nutzer versucht, eine Addition zwischen einer Fliesskommazahl und einer Ganzzahl durchzufuehren \\
+		\\
+		--- \\
+		\\
+		- Der von rush generierte Fehler ist unten abgebildet \\
+	}
+
 	\begin{minipage}{.5\textwidth}
 		\Lirsting[float=H, fancyvrb={frame=none}]{listings/incompatible_types.rush}
 	\end{minipage}%
@@ -35,6 +90,31 @@
 \end{frame}
 
 \begin{frame}{Beispiel 2: Warnung aufgrund einer unbenutzten Variable}
+	\pdfpcnote{
+		@Mik \\
+		\\
+		- Hier ist ein weiteres Programm abgebildet \\
+		- Es ist in hinblick auf die Syntax und die Semantik fehlerfrei \\
+		- Dennoch findet die semanische Analyse von rush einige Maengel in der Programmstruktur \\
+		\\
+		--- \\
+		\\
+		- Die Variable **x** ist definiert, aber nicht verwendet. \\
+		- Dies erzeugt in diesem Fall eine **Warnung**, da Speicher verschwendet wird \\
+		\\
+		--- \\
+		\\
+		- Die Variable **y** wird zwar verwendet, aber ihr Wert aendert sich nie \\
+		- Sie ist aber mittels des **mut** Keywoards als veraenderbar definiert \\
+		- Dies erzeugt hier eine Information \\
+		\\
+		--- \\
+		\\
+		- Alle Meldungen enthalten den Ort der Fehlerquelle oder Warnung \\
+		- Somit sind diese einfach zu lesen und Hilfreich waehrend der Entwicklung \\
+
+	}
+
 	\begin{minipage}{.5\textwidth}
 		\Lirsting[float=H, fancyvrb={frame=none}]{listings/unused_var.rush}
 	\end{minipage}%
@@ -44,16 +124,24 @@
 	\Lirsting[float=H, fancyvrb={frame=none, fontsize=\footnotesize}, ansi=true]{listings/generated/unused_var.rush.out}
 \end{frame}
 
-\begin{frame}{Anforderungen an die semantische Analyse (für rush)}
-	\begin{itemize}
-		\item<1-> Unterscheidung zwischen validen und invaliden Programmen
-		\item<2-> Hilfreiche Warnungen und Informationen
-		\item<3-> Hinzufügen von Typinformationen zu dem AST
-		\item<4-> Triviale Optimierungen der Programmstruktur
-	\end{itemize}
-\end{frame}
-
 \begin{frame}{Hinzufügen von Informationen über Datentypen}
+    \pdfpcnote{
+        @Mik \\
+        \\
+        - Hier sind 2 Syntaxbaueme dargestellt \\
+        - Der linke ist vom Parser generiert \\
+        - Der rechte entsteht nach der semantischen Analyse \\
+        \\
+        --- \\
+        \\
+        - Wie bereits angesprochen werden Typinformationen zum Syntaxbaum hinzugefuegt \\
+        - Hier ist dies auf der rechten Seite zu erkennen \\
+        \\
+        ---\\
+        \\
+        - Zusaetzlich wird der Ausdruck **1 + 42** direkt zu **43** umgewandelt \\
+        - Dies erspart somit das Berechnen des Wertes während der Laufzeit, wodurch das Programm etwas schneller und kleiner wird \\
+    }
 	\begin{figure}[h]
 		\begin{adjustbox}{max totalsize={\textwidth}{!},center}
 			\begin{tikzpicture}[
@@ -73,8 +161,11 @@
 				child { node  { \Verb{-} } }
 				child { node  { \Verb{n}: \emph{int} } };
 
-				\draw[arrow, shorten >= 0.4cm, shorten <= 0.4cm, very thick] (leftm) -- node[above] {Semantische} node[below] {Analyse} ++ (rightm);
+				\draw[arrow, shorten >= 0.5cm, shorten <= 0.5cm, very thick] (leftm) -- node[above] {Semantische} node[below] {Analyse} ++ (rightm);
 			\end{tikzpicture}
 		\end{adjustbox}
 	\end{figure}
+
+    \centering
+    \LirstInline{rush}{1 + 42 - n}
 \end{frame}

@@ -30,17 +30,20 @@
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Übertragung der Konzepte auf die rush VM}
-	\begin{center}
-		\begin{minipage}{.5\textwidth}
-			\Lirsting[fancyvrb={frame=none}, float=H]{listings/vm_struct.rs}
-		\end{minipage}
-	\end{center}
+\begin{frame}{Die rush VM}
+	\begin{itemize}
+		\item Führt ein zuvor übersetztes Programm aus
+		\item Stackbasiertes Design
+		\item Hoher Abstaktionsgrad
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Felder der VM}
 	\begin{description}
-		\item<1->[stack] für temporäre Werte
-		\item<2->[mem] für Variablen
-		\item<3->[mem\_ptr] Index der letzten freien Speicherzelle
-        \item<4->[call\_stack] Aufrufstapel (\emph{Befehlsähler} und \emph{Funktionszähler})
+		\item<1->[stack] Für temporäre Werte
+		\item<2->[mem] Für Variablen
+		\item<2->[mem\_ptr] Für Speicherverwaltung
+		\item<3->[call\_stack] Aufrufstapel (\emph{Befehlsähler} und \emph{Funktionszähler})
 	\end{description}
 \end{frame}
 
@@ -85,10 +88,10 @@
 	\begin{itemize}
 		\item<1-> Ca. 2.7 mal schneller als der Tree-walking Interpreter
 		\item<2-> Einfache Implementierung des Compilers
-		      \begin{itemize}
-			      \item<3-> Stack-basierte Architektur
-                  \item<4-> Gleichzeitige Entwicklung von VM und Compiler (\cemph{Feedbackschleife})
-			      \item<5-> Hoher Abstraktionsgrad
-		      \end{itemize}
+			\begin{itemize}
+				\item<3-> Stack-basierte Architektur
+				\item<4-> Gleichzeitige Entwicklung von VM und Compiler (\cemph{Feedbackschleife})
+				\item<5-> Hoher Abstraktionsgrad
+			\end{itemize}
 	\end{itemize}
 \end{frame}
