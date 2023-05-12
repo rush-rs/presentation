@@ -2,6 +2,13 @@
 \section{Lexikalische \& Syntaktische Analyse}
 
 \begin{frame}{Etappen der Übersetzung: Semantische Analyse}
+	\pdfpcnote{
+		@Silas \\
+		\\
+		- In jedem Fall sind die ersten Schritte die lexikalische und syntaktische Analyse \\
+		- bei rush zu einem Schritt zusammengefasst \\
+	}
+
 	\begin{figure}[h]
 		\begin{adjustbox}{max totalsize={\textwidth}{!},center}
 			\begin{tikzpicture}[node distance=1cm, inner sep=3mm]
@@ -17,7 +24,18 @@
 	\end{figure}
 \end{frame}
 
-\begin{frame}{Lexikalische \& Syntaktische Analyse \TODO{DELETE}}
+\begin{frame}{Lexikalische \& Syntaktische Analyse}
+	\pdfpcnote{
+		@Silas \\
+		\\
+		- Programmtext wird in sogenannte _Tokens_ gruppiert (lex. analyse) \\
+		- darauf basierend: **die** Syntax des Programms wird analysiert \\
+		- dabei: ein abstrakter Syntaxbaum wird erstellt \\
+		- **die** Syntax ist formal in Form einer Grammatik definiert \\
+		- Beispiel fuer solch eine Grammatik \\
+		- die rush Grammatik ist deutlich laenger \\
+	}
+
 	\begin{itemize}
 		\item Gruppieren des Programmtextes in Tokens
 		\item Analyse der Syntax des Programms
@@ -25,14 +43,25 @@
 		\item Festlegen der formalen Regeln in Form einer Grammatik
 	\end{itemize}
 
-	\centering
-    \Lirsting[float=H, fancyvrb={fontsize=\small}, ranges={1-5:33, _5:66-5}, caption={Ein Beispiel für eine kontextfreihe Grammatik (EBNF)}]{listings/grammar.ebnf}
+	\raggedleft
+	\begin{minipage}{0.955\textwidth}
+		\Lirsting[float=H, fancyvrb={frame=none, fontsize=\small}]{listings/grammar.ebnf}
+	\end{minipage}
 \end{frame}
 
-\begin{frame}{Abstrakter Syntaxbaum \TODO{DELETE}}
+\begin{frame}{Abstrakter Syntaxbaum}
+	\pdfpcnote{
+		@Silas \\
+		\\
+		- sichtbar: zwei verschiedene Syntaxbaeume \\
+		- beide fuer den Ausdruck `1+2**3` \\
+		- unterschiedlich weil: Verwendung verschiedener Algorithmen \\
+		- rechts geringere Tiefe -> wuenschenswert \\
+	}
+
 	\begin{figure}[h]
-		\begin{minipage}{.35\textwidth}
-			\centering
+		\begin{minipage}{.45\textwidth}
+			\raggedleft
 			\begin{tikzpicture}[level distance=1cm, sibling distance=2cm, scale=.65, transform shape]
 				\node {Expression}
 				child {node {Term}
@@ -49,24 +78,22 @@
 		\end{minipage}
 		\hfill
 		\begin{minipage}{.45\textwidth}
-			\begin{figure}[h]
-				\centering
-				\begin{tikzpicture}[level distance=1cm, sibling distance=2cm, scale=.65, transform shape]
-					\node {Expression}
-					child {node {Expression}
-							child {node {\Verb{Int(1)}}}}
-					child {node {\Verb{Plus}}}
-					child {node {Expression}
-							child {node {Expression}
-									child {node {\Verb{Int(2)}}}}
-							child {node {\Verb{Pow}}}
-							child {node {Expression}
-									child {node {\Verb{Int(3)}}}}};
-				\end{tikzpicture}
-			\end{figure}
+			\raggedright
+			\begin{tikzpicture}[level distance=1cm, sibling distance=2cm, scale=.65, transform shape]
+				\node {Expression}
+				child {node {Expression}
+						child {node {\Verb{Int(1)}}}}
+				child {node {\Verb{Plus}}}
+				child {node {Expression}
+						child {node {Expression}
+								child {node {\Verb{Int(2)}}}}
+						child {node {\Verb{Pow}}}
+						child {node {Expression}
+								child {node {\Verb{Int(3)}}}}};
+			\end{tikzpicture}
 		\end{minipage}
 
-        \centering
-        Zwei verschiedene Syntaxbäume für \enquote{\LirstInline{rush}{1+2**3}}
+		\centering
+		Zwei verschiedene Syntaxbäume für \enquote{\LirstInline{rush}{1+2**3}}
 	\end{figure}
 \end{frame}
