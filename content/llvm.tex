@@ -1,3 +1,4 @@
+% LTeX: language=de-DE
 % chktex-file -2
 \section{Kompilierung zu LLVM}
 \begin{frame}{Was ist LLVM?}
@@ -15,21 +16,20 @@
 	\begin{figure}[h]
 		\begin{adjustbox}{max totalsize={\textwidth}{!},center}
 			\begin{tikzpicture}[node distance=3mm and 1cm, inner sep=3mm]
-				\node (syntactic_analysis_text) [inner sep=0] {syntactical analysis};
-				\node (lexical_analysis) [rec, below=of syntactic_analysis_text] {lexical analysis};
+				\node (syntactic_analysis_text) [inner sep=0] {Syntaxanalyse};
+				\node (lexical_analysis) [rec, below=of syntactic_analysis_text] {Lexikalische Analyse};
 				\node (syntactic_analysis) [rec, fit={(syntactic_analysis_text) (lexical_analysis)}] {};
 
-				\node (semantic_analysis) [rec, align=center, right=of syntactic_analysis] {semantic\\analysis};
+				\node (semantic_analysis) [rec, align=center, right=of syntactic_analysis] {Semantische\\Analyse};
 				\draw [arrow] (syntactic_analysis) -- (semantic_analysis);
 
-				\node (ir_generation) [rec, align=center, right=of semantic_analysis] {LLVM IR\\generation};
+				\node (ir_generation) [rec, align=center, right=of semantic_analysis] {LLVM IR\\Generation};
 				\draw [arrow] (semantic_analysis) -- (ir_generation);
 
-				\node (llvm) [rec, align=center, fill=mLightBrown!25, right=of ir_generation] {LLVM\\backend};
+				\node (llvm) [rec, align=center, fill=mLightBrown!25, right=of ir_generation] {LLVM\\Backend};
 				\draw [arrow] (ir_generation) -- (llvm);
 			\end{tikzpicture}
 		\end{adjustbox}
-		\caption{Etappen der Übersetzung mit Verwendung von LLVM}\label{fig:compilation_steps_llvm}
 	\end{figure}
 \end{frame}
 
@@ -40,28 +40,28 @@
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Beispiel}
-	\begin{center}
-		\begin{minipage}{.6\textwidth}
-			\Lirsting[float=H, fancyvrb={frame=none}]{deps/paper/listings/fib.rush}
-		\end{minipage}
-	\end{center}
-\end{frame}
-
-\begin{frame}{Beispiel}
-	\Lirsting[float=H, fancyvrb={frame=none, fontsize=\scriptsize}]{listings/generated/fib.ll}
+\begin{frame}{Beispiel Ein-/Ausgabe}
+	\begin{minipage}{0.45\textwidth}
+		\Lirsting[float=H, fancyvrb={frame=none, fontsize=\small}]{deps/paper/listings/fib.rush}
+		\centering
+		\Larrow{Ausgabe}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.5\textwidth}
+		\Lirsting[float=H, fancyvrb={frame=none, fontsize=\scriptsize}]{listings/fib.ll}
+	\end{minipage}
 \end{frame}
 
 \begin{frame}{Fazit}
 	\begin{table}[h]
 		\rowcolors{2}{gray!15}{}
 		\begin{tabularx}{0.95\textwidth}{L|L}
-			\cellcolor{green!20} Vorteile                                 & \cellcolor{red!20} Nachteile               \\
+			\cellcolor{green!20} Vorteile                             & \cellcolor{red!20} Nachteile               \\
 			\hline
-			hoher Abstraktionsgrad                                        & Aufwendige Installation der LLVM Libraries \\
-			Unabhängigkeit von der Zielmaschine                           & signifikante Größe der ausführbaren Datei  \\
-			aggressive Optimisierungsmaßnahmen                            & unvollständige Dokumentation von Inkwell   \\
-			Ausgabeprogramm ca. 1,7 mal schneller (vgl. x86\_64 Compiler) & Abhängigkeit von einer C++ Codebase        \\
+			Hoher Abstraktionsgrad                                    & Aufwendige Installation der LLVM Libraries \\
+			Unabhängigkeit von der Zielmaschine                       & Signifikante Größe des Compilers           \\
+			Aggressive Optimierungsmaßnahmen                          & Unvollständige Dokumentation von Inkwell   \\
+			Ausgabeprogramm ca. 1,7 mal schneller (vgl. x64 Compiler) & Abhängigkeit von einer C++ Codebase        \\
 		\end{tabularx}
 	\end{table}
 \end{frame}

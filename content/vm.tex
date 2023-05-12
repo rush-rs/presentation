@@ -1,16 +1,32 @@
 % LTeX: language=de-DE
 \section{Virtuelle Maschine}
 
+\begin{frame}{Etappen der Übersetzung: Code-Erzeugung}
+	\begin{figure}[h]
+		\begin{adjustbox}{max totalsize={\textwidth}{!},center}
+			\begin{tikzpicture}[node distance=3mm and 1cm, inner sep=3mm]
+				\node (syntactic_analysis_text) [inner sep=0] {Syntaxanalyse};
+				\node (lexical_analysis) [rec, below=of syntactic_analysis_text] {Lexikalische Analyse};
+				\node (syntactic_analysis) [rec, fit={(syntactic_analysis_text) (lexical_analysis)}] {};
+				\node (semantic_analysis) [rec, right=of syntactic_analysis] {Semantische Analyse};
+				\draw [arrow] (syntactic_analysis) -- (semantic_analysis);
+				\node (codegen) [rec, fill=mLightBrown!35, right=of semantic_analysis] {Code-Erzeugung};
+				\draw [arrow] (semantic_analysis) -- (codegen);
+			\end{tikzpicture}
+		\end{adjustbox}
+	\end{figure}
+\end{frame}
+
 \begin{frame}{Virtuelle Maschine}
 	\begin{itemize}
 		\item<1-> Häufig: Eine \emph{Virtuelle Maschine} (VM) simuliert echte Computer
 		      \begin{itemize}
-			      \item<2->  Display
-			      \item<3-> Lautsprecher
-			      \item<4-> Festplatte
-			      \item<4-> \dots
+			      \item Display
+			      \item Lautsprecher
+			      \item Festplatte
+			      \item \dots
 		      \end{itemize}
-		\item<5-> Hier: Software, die wie die CPU eines Rechners funktioniert
+		\item<2-> Hier: Software, die wie die CPU eines Rechners funktioniert
 	\end{itemize}
 \end{frame}
 
@@ -32,15 +48,15 @@
 	\begin{itemize}
 		\item<1-> Unterteilung in Funktionen
 		      \begin{itemize}
-			      \item<2-> Ohne Namen
-			      \item<3-> numerische Identifizierung
-			      \item<4-> Enthält mehrere Anweisungen
+			      \item Ohne Namen
+			      \item numerische Identifizierung
+			      \item Enthält mehrere Anweisungen
 		      \end{itemize}
-		\item<5-> ca. 30 verschiedene Befehlscodes
-		\item<6-> Struktur der Anweisungen: \enquote{\LirstInline{asm}{call 2}}
+		\item<2-> ca. 30 verschiedene Befehlscodes
+		\item<3-> Struktur der Anweisungen: \enquote{\LirstInline{asm}{call 2}}
 		      \begin{itemize}
-			      \item<7-> Befehlscode (\texttt{call})
-			      \item<8-> Optionaler Operand (\texttt{2})
+			      \item<3-> Befehlscode (\texttt{call})
+			      \item<3-> Optionaler Operand (\texttt{2})
 		      \end{itemize}
 	\end{itemize}
 \end{frame}

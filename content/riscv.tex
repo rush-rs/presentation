@@ -23,27 +23,6 @@
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Register der \riscv{} Architektur}
-	\begin{table}
-		\centering
-		\begin{tabularx}{\linewidth}{L|L}
-			\rowcolor{gray!15} Register & Verwendung                        \\ \hline
-			\texttt{zero}               & hardwired zero                    \\ \hline
-			\texttt{ra}                 & return address                    \\ \hline
-			\texttt{sp}                 & stack pointer                     \\ \hline
-			\texttt{t0}--\texttt{t6}    & temporary storage                 \\ \hline
-			\texttt{fp}                 & frame pointer                     \\ \hline
-			\texttt{a0}, \texttt{a1}    & function arguments, return values \\ \hline
-			\texttt{a2}--\texttt{a7}    & function arguments                \\ \hline
-			\texttt{s1}--\texttt{s11}   & saved register                    \\ \hline
-			\texttt{fa0}, \texttt{fa1}  & float arguments, return values    \\ \hline
-			\texttt{fa2}--\texttt{fa7}  & float arguments                   \\ \hline
-			\texttt{fs0}--\texttt{fs11} & float saved registers             \\ \hline
-			\texttt{ft0}--\texttt{ft11} & float temporaries                 \\
-		\end{tabularx}
-	\end{table}
-\end{frame}
-
 \begin{frame}{Beispiel}
 	\begin{minipage}{0.4\textwidth}
 		\vspace{.5cm}
@@ -62,11 +41,12 @@
 	\begin{table}[h]
 		\rowcolors{2}{gray!15}{}
 		\begin{tabularx}{0.95\textwidth}{L|L}
-			\cellcolor{green!20} Vorteile                       & \cellcolor{red!20} Nachteile               \\
-			Sehr neu und modern                                 & Geringe Verbreitung                        \\
-			Komplett open-source und Gemeinschaftlich verwaltet & Eher experimentell                         \\
-			Sehr übersichtliche und simple Architektur          & Einige Operationen sind aufwendiger        \\
-			Weniger Online-Ressourcen                           & Sehr gute und übersichtliche Dokumentation \\
+			\cellcolor{green!20} Vorteile                       & \cellcolor{red!20} Nachteile        \\
+			\hline
+			Sehr neu und modern                                 & Geringe Verbreitung                 \\
+			Komplett open-source und Gemeinschaftlich verwaltet & Eher experimentell                  \\
+			Sehr übersichtliche und simple Architektur          & Einige Operationen sind aufwendiger \\
+			Sehr gute und übersichtliche Dokumentation          & Weniger Online-Ressourcen           \\
 		\end{tabularx}
 	\end{table}
 \end{frame}

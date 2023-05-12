@@ -17,14 +17,14 @@
 	\end{figure}
 \end{frame}
 
-\begin{frame}{Semantische Analyse \& Semantikregeln}
+\begin{frame}{Semantische Analyse und Semantikregeln}
 	\begin{itemize}
-		\item Validiert die semantische Eigenschaften
+		\item Validiert die semantischen Eigenschaften
 		\item Meistens: Definition in einer natürlichen Sprache
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Beispiel 1: Invalides rush Programm}
+\begin{frame}{Beispiel 1: Typkonflikt}
 	\begin{minipage}{.5\textwidth}
 		\Lirsting[float=H, fancyvrb={frame=none}]{listings/incompatible_types.rush}
 	\end{minipage}%
@@ -34,17 +34,7 @@
 	\Lirsting[float=H, fancyvrb={frame=none, fontsize=\footnotesize}, ansi=true]{listings/generated/incompatible_types.rush.out}
 \end{frame}
 
-\begin{frame}{Beispiel 2: Invalides rush Programm}
-	\begin{minipage}{.5\textwidth}
-		\Lirsting[float=H, fancyvrb={frame=none}]{listings/invalid_main_fn.rush}
-	\end{minipage}%
-	\begin{minipage}{.5\textwidth}
-		\Darrow{Fehlerausgabe}
-	\end{minipage}
-	\Lirsting[float=H, fancyvrb={frame=none, fontsize=\footnotesize}, ansi=true]{listings/generated/invalid_main_fn.rush.out}
-\end{frame}
-
-\begin{frame}{Beispiel 3: Warnung aufgrund einer unbenutzten Variable}
+\begin{frame}{Beispiel 2: Warnung aufgrund einer unbenutzten Variable}
 	\begin{minipage}{.5\textwidth}
 		\Lirsting[float=H, fancyvrb={frame=none}]{listings/unused_var.rush}
 	\end{minipage}%
@@ -57,7 +47,7 @@
 \begin{frame}{Anforderungen an die semantische Analyse (für rush)}
 	\begin{itemize}
 		\item<1-> Unterscheidung zwischen validen und invaliden Programmen
-		\item<2-> hilfreiche Warnungen und Informationen
+		\item<2-> Hilfreiche Warnungen und Informationen
 		\item<3-> Hinzufügen von Typinformationen zu dem AST
 		\item<4-> Triviale Optimierungen der Programmstruktur
 	\end{itemize}

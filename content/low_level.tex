@@ -1,9 +1,12 @@
+% chktex-file -2
 % LTeX: language=de-DE
 \section{Kompilierung zu low-level Architekturen}
 \begin{frame}{Kompilierung zu low-level Architekturen}
 	\pdfpcnote{
-		- Zielmaschine und Betriebssystem spezifisch
-		- Compiler generieren Assembly
+		@Silas \\
+		\\
+		- Verstaendnis von _low-level_: Zielmaschine und Betriebssystem spezifisch \\
+		- unsere Compiler generieren Assembly \\
 	}
 
 	\begin{itemize}
@@ -14,6 +17,14 @@
 \end{frame}
 
 \begin{frame}{Abstraktionsgrad von Assembly}
+	\pdfpcnote{
+		@Silas \\
+		\\
+		- Assembly ist eine Art Programmiersprache \\
+		- anders als high-level wie Rust: benoetigt Verstaendnis der grundlegenden Prozesse und Strukturen \\
+		- aber: bietet immer noch Abstraktionen, gegenueber bspw. Maschinensprache \\
+	}
+
 	\begin{figure}[h]
 		\begin{adjustbox}{max totalsize={\textwidth}{!},center}
 			\begin{tikzpicture}[node distance=1cm, inner sep=3mm]
@@ -29,10 +40,41 @@
 	\end{figure}
 \end{frame}
 
+\begin{frame}{Register}
+	\pdfpcnote{
+		@Silas \\
+		\\
+		- viele Architekturen machen Gebrauch von _Registern_ \\
+		- sichtbar: Uebersicht der Register von RISC-V \\
+	}
+
+	\begin{table}
+		\centering
+		\rowcolors{2}{gray!15}{}
+		\begin{tabular}{p{5.2cm}|p{5.2cm}}
+			\rowcolor{gray!20} Register & Purpose                           \\
+			\hline
+			\texttt{zero}               & hardwired zero                    \\
+			\texttt{ra}                 & return address                    \\
+			\texttt{sp}                 & stack pointer                     \\
+			\texttt{t0}--\texttt{t6}    & temporary storage                 \\
+			\texttt{fp}                 & frame pointer                     \\
+			\texttt{a0}, \texttt{a1}    & function arguments, return values \\
+			\texttt{a2}--\texttt{a7}    & function arguments                \\
+			\texttt{s1}--\texttt{s11}   & saved register                    \\
+			\texttt{fa0}, \texttt{fa1}  & float arguments, return values    \\
+			\texttt{fa2}--\texttt{fa7}  & float arguments                   \\
+			\texttt{fs0}--\texttt{fs11} & float saved registers             \\
+			\texttt{ft0}--\texttt{ft11} & float temporaries                 \\
+		\end{tabular}
+	\end{table}
+\end{frame}
+
 \begin{frame}{Stacklayouts}
 	\pdfpcnote{
 		@Silas \\
 		\\
+		- es gibt einen Stack \\
 		- es gibt _Standards_ fuer die Struktur des Stacks \\
 		- gezeigt sind die fuer RISC-V und x64 \\
 		- nicht erzwungen \\
