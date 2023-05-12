@@ -11,13 +11,15 @@
 
 	\begin{figure}[h]
 		\begin{adjustbox}{max totalsize={\textwidth}{!},center}
-			\begin{tikzpicture}[node distance=1cm, inner sep=3mm]
-				\node (lexical_analysis) [rec, minimum height=1.5cm, fill=mLightBrown!35] {Lexikalische Analyse};
-				\node (syntactic_analysis) [rec, right=of lexical_analysis, align=center, minimum height=1.5cm, fill=mLightBrown!35] {Syntaxanalyse};
-				\draw [arrow] (lexical_analysis) -- (syntactic_analysis);
-				\node (semantic_analysis) [rec, right=of syntactic_analysis, align=center, minimum height=1.5cm] {Semantische\\Analyse};
+			\begin{tikzpicture}[node distance=3mm and 1cm, inner sep=3mm]
+				\node (syntactic_analysis_text) [inner sep=0] {Syntaxanalyse};
+				\node (lexical_analysis) [rec, below=of syntactic_analysis_text] {Lexikalische Analyse};
+				\begin{scope}[on background layer]
+					\node (syntactic_analysis) [rec, fill=mLightBrown!35, fit={(syntactic_analysis_text) (lexical_analysis)}] {};
+				\end{scope}
+				\node (semantic_analysis) [rec, right=of syntactic_analysis] {Semantische Analyse};
 				\draw [arrow] (syntactic_analysis) -- (semantic_analysis);
-				\node (codegen) [rec, right=of semantic_analysis, minimum height=1.5cm] {Code-Erzeugung};
+				\node (codegen) [rec, right=of semantic_analysis] {Code-Erzeugung};
 				\draw [arrow] (semantic_analysis) -- (codegen);
 			\end{tikzpicture}
 		\end{adjustbox}
