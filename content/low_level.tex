@@ -1,10 +1,10 @@
 % LTeX: language=de-DE
 \section{Kompilierung zu low-level Architekturen}
 \begin{frame}{Kompilierung zu low-level Architekturen}
-    \pdfpcnote{
-        - Zielmaschine und Betriebssystem spezifisch
-        - Compiler generieren Assembly
-    }
+	\pdfpcnote{
+		- Zielmaschine und Betriebssystem spezifisch
+		- Compiler generieren Assembly
+	}
 
 	\begin{itemize}
 		\item<1-> Zielmaschine ist spezifisch
@@ -30,6 +30,15 @@
 \end{frame}
 
 \begin{frame}{Stacklayouts}
+	\pdfpcnote{
+		@Silas \\
+		\\
+		- es gibt _Standards_ fuer die Struktur des Stacks \\
+		- gezeigt sind die fuer RISC-V und x64 \\
+		- nicht erzwungen \\
+		- aber notwendig fuer interoperation mit bestehenden Bibliotheken \\
+	}
+
 	\begin{minipage}{0.45\textwidth}
 		\hspace{-1.75cm}
 		\begin{tikzpicture}[xscale=0.7, yscale=0.6]
@@ -109,7 +118,10 @@
 
 \begin{frame}{Übersetzung von Kontrollstrukturen zu linearen Programmfluss}
 	\pdfpcnote{
-		- Beispiel: Struktur von if-else Ausdruecken in Assembly \\
+		@Silas \\
+		\\
+		- Kontrollstrukturen muessen zu linearen Programmfluss ueberzsetzt werden \\
+		- Beispiel: Struktur von if-else Verzweigungen in Assembly \\
 		- Nutzung von Spruengen um basierend auf Bedingungen Teile des Programms zu ueberspringen \\
 	}
 
