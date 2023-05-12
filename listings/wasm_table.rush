@@ -2,7 +2,7 @@ fn fib(n: int) -> int {
     // ...
 }
 
-if n < 2 {
+if /* ... */ {
     n
 } else {
     // ...
