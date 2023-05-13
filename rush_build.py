@@ -20,38 +20,46 @@ class Backend(Enum):
 
 
 JOBS = [
+    # Not automatically built with the document
+    {
+        'in': 'deps/paper/listings/fib.rush',
+        'out': 'listings/fib.ll',
+        'backend': Backend.llvm,
+        'auto': False,
+    },
+    # Automatically built with the document
     {
         'in': 'listings/incompatible_types.rush',
         'out': 'listings/generated/incompatible_types.rush.out',
         'show_filename': 'incompatible_types.rush',
         'backend': Backend.analyzer,
+        'auto': True,
     },
     {
         'in': 'listings/invalid_main_fn.rush',
         'out': 'listings/generated/invalid_main_fn.rush.out',
         'show_filename': 'invalid_main_fn.rush',
         'backend': Backend.analyzer,
+        'auto': True,
     },
     {
         'in': 'listings/unused_var.rush',
         'out': 'listings/generated/unused_var.rush.out',
         'show_filename': 'unused_var.rush',
         'backend': Backend.analyzer,
-    },
-    {
-        'in': 'deps/paper/listings/fib.rush',
-        'out': 'listings/generated/fib.ll',
-        'backend': Backend.llvm,
+        'auto': True,
     },
     {
         'in': 'deps/paper/listings/fib.rush',
         'out': 'listings/generated/fib_x64.s',
         'backend': Backend.x64,
+        'auto': True,
     },
     {
         'in': 'deps/paper/listings/fib.rush',
         'out': 'listings/generated/fib_riscv.s',
         'backend': Backend.riscv,
+        'auto': True,
     },
 ]
 
@@ -275,8 +283,10 @@ if __name__ == '__main__':
             23,
             '; RISC-V binary\n',
         )
-    elif sys.argv[1] == 'build':
+    elif sys.argv[1] == 'build' or sys.argv[1] == "regen":
         for job in JOBS:
+            if sys.argv[1] == 'build' and job['auto'] == False:
+                continue
             if job['backend'] == Backend.analyzer:
                 analyzer_output(job['in'], job['out'], job['show_filename'])
             elif job['backend'] == Backend.riscv:
