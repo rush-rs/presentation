@@ -32,11 +32,11 @@
 		@Mik \\
 		\\
 		- Aber ist eine Virtuelle Maschine nicht ein Programm, was einen echten Computer simuliert? \\
-            - Das heisst, es werden auch Geraete wie \\
-            - das Display \\
-            - die Lautsprecher \\
-            - und die Festplatte \\
-            - simuliert. \\
+		- Das heisst, es werden auch Geraete wie \\
+		- das Display \\
+		- die Lautsprecher \\
+		- und die Festplatte \\
+		- simuliert. \\
 		\\
 		--- \\
 		\\
@@ -56,19 +56,19 @@
 \end{frame}
 
 \begin{frame}{Virtuelle Maschine}
-    \pdfpcnote{
-        @Mik \\
-        \\
-        - Hier ist der Ablauf aehnlich wie der des Compilers \\
-        - Zuerst wandelt der Compiler das Programm in ein anderes Format um, welches die VM versteht \\
-        - Diese fuehrt dann anschliessend das Ausgabeprogramm aus \\
-        - Somit funktioniert die VM wie eine CPU mit einer eigenen Architektur \\
-        \\
-        --- \\
-        \\
-        - Dies wirkt von Aussen allerdings wie ein Schritt, weshalb wir die VM als Interpreter einordnen \\
-        - Sprachen, die aehnlich funktionieren, sind zum Beispiel **Java** \\
-    }
+	\pdfpcnote{
+		@Mik \\
+		\\
+		- Hier ist der Ablauf aehnlich wie der des Compilers \\
+		- Zuerst wandelt der Compiler das Programm in ein anderes Format um, welches die VM versteht \\
+		- Diese fuehrt dann anschliessend das Ausgabeprogramm aus \\
+		- Somit funktioniert die VM wie eine CPU mit einer eigenen Architektur \\
+		\\
+		--- \\
+		\\
+		- Dies wirkt von Aussen allerdings wie ein Schritt, weshalb wir die VM als Interpreter einordnen \\
+		- Sprachen, die aehnlich funktionieren, sind zum Beispiel **Java** \\
+	}
 
 	\hspace{.3cm}
 	\begin{minipage}{.2\textwidth}
@@ -85,7 +85,7 @@
 			\includegraphics[width=3.5mm]{assets/google_icon_settings.png}
 		\end{minipage}
 	}
-    \hspace{.8cm}
+	\hspace{.8cm}
 	\begin{minipage}{.24\textwidth}
 		\Lirsting[float=H, fancyvrb={frame=none, fontsize=\footnotesize}, ranges={4-20}]{listings/simple_vm.s}
 	\end{minipage}
@@ -97,7 +97,7 @@
 			\includegraphics[width=3.5mm]{assets/google_icon_settings.png}
 		\end{minipage}
 	}
-    \hspace{.1cm}
+	\hspace{.1cm}
 	\begin{minipage}{.13\textwidth}
 		\centering
 		{\large Exit code: 5}
@@ -115,36 +115,36 @@
 	\pdfpcnote{
 		@Mik \\
 		\\
-        - Diese Konzepte wurden nun auch auf die rush VM uebertragen \\
-        \\
-        --- \\
-        \\
-        1. Hier werden auch vorher uebersetzte Programme ausgefuehrt \\
+		- Diese Konzepte wurden nun auch auf die rush VM uebertragen \\
+		\\
+		--- \\
+		\\
+		1. Hier werden auch vorher uebersetzte Programme ausgefuehrt \\
 		2. Die VM besitzt **eine selbst entwickelte Architektur**, die das Ziel des Compilers darstellt \\
-		    - Diese Architektur besitzt ein **stackbasiertes Design** und einen **hohen Abstaktionsgrad** \\
+		- Diese Architektur besitzt ein **stackbasiertes Design** und einen **hohen Abstaktionsgrad** \\
 	}
 	\begin{itemize}
 		\item<1-> Führt ein zuvor übersetztes Programm aus
 		\item<2-> Besitzt eine selbst entwickelte Architektur
-		      \begin{itemize}
-			      \item Stackbasiertes Design
-			      \item Hoher Abstaktionsgrad
-		      \end{itemize}
+			\begin{itemize}
+				\item Stackbasiertes Design
+				\item Hoher Abstaktionsgrad
+			\end{itemize}
 	\end{itemize}
 \end{frame}
 
 \begin{frame}{Felder der VM}
-    \pdfpcnote{
-        @Mik \\
-        \\
-        - Im Vergleich zum Tree-walking Interpreter hat die VM 4 Felder \\
-        \\
-        --- \\
-        \\
-        1. Einen **stack** fuer temporaere Werte \\
-        2. Die Felder **mem** und **mem-ptr** zur Speicherung von Variablen \\
-        3. Einen **call-stack**, also einen Aufrufstapel, der mehrere **Befehlszaehler** und **Funktionszaehler** verwaltet \\
-    }
+	\pdfpcnote{
+		@Mik \\
+		\\
+		- Im Vergleich zum Tree-walking Interpreter hat die VM 4 Felder \\
+		\\
+		--- \\
+		\\
+		1. Einen **stack** fuer temporaere Werte \\
+		2. Die Felder **mem** und **mem-ptr** zur Speicherung von Variablen \\
+		3. Einen **call-stack**, also einen Aufrufstapel, der mehrere **Befehlszaehler** und **Funktionszaehler** verwaltet \\
+	}
 	\begin{description}
 		\item<1->[stack] Für temporäre Werte
 		\item<2->[mem] Für Variablen
@@ -154,22 +154,22 @@
 \end{frame}
 
 \begin{frame}{Struktur der Programme der rush VM}
-    \pdfpcnote{
-        @Mik \\
-        \\
-        - Ein Teil der Architektur der VM ist die Struktur ihrer Programme... \\
-        \\
-        --- \\
-        \\
-        - Die Programme sind in Funktionen aufgeteilt \\
-            - Diese haben keinen Namen aber eine numerische Identifizierung \\
-            - Jede Funktion enthaehlt mehrere Anweisungen \\
-        -  Jede Anweisung ist wie folgt aufgebaut: \\
-            - Als Beispiel betrachten wir die Anweisung **call 2** \\
-            - Der Befehlscode, also **call** \\
-            - Und ein optionaler Operand, hier die **2** \\
-        - Nach dem neusten Stand der Entwicklung besitzt die VM gerade einmal ca. 30 verschiedene Befehlscodes \\
-    }
+	\pdfpcnote{
+		@Mik \\
+		\\
+		- Ein Teil der Architektur der VM ist die Struktur ihrer Programme... \\
+		\\
+		--- \\
+		\\
+		- Die Programme sind in Funktionen aufgeteilt \\
+		- Diese haben keinen Namen aber eine numerische Identifizierung \\
+		- Jede Funktion enthaehlt mehrere Anweisungen \\
+		-  Jede Anweisung ist wie folgt aufgebaut: \\
+		- Als Beispiel betrachten wir die Anweisung **call 2** \\
+		- Der Befehlscode, also **call** \\
+		- Und ein optionaler Operand, hier die **2** \\
+		- Nach dem neusten Stand der Entwicklung besitzt die VM gerade einmal ca. 30 verschiedene Befehlscodes \\
+	}
 	\begin{itemize}
 		\item<1-> Unterteilung in Funktionen
 			\begin{itemize}
@@ -187,6 +187,22 @@
 \end{frame}
 
 \begin{frame}{Demonstration: Ein-/Ausgabe}
+	\pdfpcnote{
+		@Mik \\
+		\\
+		- Nun betrachten Wir erneut das bekannte Fibonaccibeispiel \\
+		- Die rechte Seite stellt hier die Ausgabe des VM-Compilers dar \\
+		- Hier lassen sich die verschiedenen Funktionen erkennen \\
+		- Jede Funktion enthaehlt verschiedene Anweisungen, wie **call 2** zum Beispiel \\
+		\\
+		--- \\
+		\\
+		- Hier wird die Anweisung **call 2** an 2 Stellen verwendet: \\
+		- In Zeile 7 zum erstmaligen Aufrufen \\
+		- Und in Zeile 29 zum rekursiven Aufrufen der Funktion \\
+		- Wichtig ist: beim Abarbeiten der Anweisung springt die VM nur zur Anweisung in Zeile 10\\
+		- Das heisst: es ist keine erneute Baumtraversierung notwendig \\
+	}
 	\begin{minipage}{0.5\textwidth}
 		\Lirsting[float=H, fancyvrb={frame=none, fontsize=\small}]{deps/paper/listings/fib.rush}
 		\centering
@@ -199,6 +215,17 @@
 \end{frame}
 
 \begin{frame}{Demonstration: Laufzeitverhalten}
+	\pdfpcnote{
+		@Mik \\
+		\\
+		- Nun betrachten Wir, wie die VM dieses Programm ausfuehrt \\
+		- Es ist direkt auffaellig, dass man nicht erkennt, das ein Compiler das Programm erst umgewandelt hat \\
+		\\
+		--- \\
+		\\
+		- Jeder Schritt stellt hier die Abarbeitung einer Anweisung dar \\
+		- Die Informationen auf dem Bildschirm stellen die Felder der VM dar, also den Stack oder die gespeicherten Variablen \\
+	}
 	\begin{figure}[H]
 		\href{run:assets/01_rush_presentation_vm.mkv}{
 			\movie{\includegraphics[width=.95\textwidth]{assets/01_rush_presentation_vm.png}}{assets/01_rush_presentation_vm.mkv}
@@ -207,13 +234,22 @@
 \end{frame}
 
 \begin{frame}{VM: Fazit}
+    \pdfpcnote{
+        @Mik \\
+        \\
+        1. Durch  den zuvor erwaehnten Aufbau der VM kann Sie Programme ungefaehr **2.7** mal schneller als der Tree-walking Interpreter ausfuehren \\
+        2. Waehrend des Entwurfs der VM hat sich die Implementierung des Compilers als einfach herausgestellt \\
+            - Besonders durch die Stack-basierte Architektur \\
+            - Den hohen Abstraktionsgrad der Architektur \\
+            - und die gleichzeitige Entwicklung der VM und ihres Compilers \\
+    }
 	\begin{itemize}
-		\item<1-> Ca. 2.7 mal schneller als der Tree-walking Interpreter
+		\item<1-> Ca. 2,7 mal schneller als der Tree-walking Interpreter
 		\item<2-> Einfache Implementierung des Compilers
 			\begin{itemize}
-				\item<3-> Stack-basierte Architektur
-				\item<4-> Gleichzeitige Entwicklung von VM und Compiler (\cemph{Feedbackschleife})
-				\item<5-> Hoher Abstraktionsgrad
+				\item<2-> Stack-basierte Architektur
+				\item<2-> Gleichzeitige Entwicklung von VM und Compiler (\cemph{Feedbackschleife})
+				\item<2-> Hoher Abstraktionsgrad
 			\end{itemize}
 	\end{itemize}
 \end{frame}
