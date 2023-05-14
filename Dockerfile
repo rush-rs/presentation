@@ -1,7 +1,5 @@
 FROM rust:alpine
 
-ENV LLVM_SYS_140_PREFIX=/usr/lib/llvm14
-
 # to remove the cache at the end, all apk installs must happen in one step,
 # see https://github.com/gliderlabs/docker-alpine/issues/45
 RUN apk add --update \
@@ -16,7 +14,6 @@ RUN apk add --update \
         texmf-dist-pictures \
         texmf-dist-fontsextra \
  \
-        llvm14 llvm14-libs llvm14-dev llvm14-static \
         libc-dev libxml2-dev libffi-dev g++ \
         make git jq rsync nodejs \
         python3 zip curl \
