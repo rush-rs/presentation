@@ -13,7 +13,7 @@ This repository contains the LaTeX sources of the projects defense presentation.
 ### Using docker
 
 Alternatively, build the docker image of the `Dockerfile`, then run the
-following commands inside the Docker container
+identical commands inside the Docker container
 
 ## Screenshot
 
