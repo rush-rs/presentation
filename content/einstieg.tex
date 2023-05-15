@@ -283,7 +283,8 @@
 		3. Funktionsdefinition \\
 		4. Variablendefinition \\
 		5. infix- und praefix Ausdruecke \\
-		6. Typumwandlung \\
+		6. Pointer \\
+		7. Typumwandlung \\
 	}
 
 	\begin{table}[h]
@@ -299,6 +300,7 @@
 			Variablendefinition            & \LirstInline{rush}{let mut answer = 42}           \pause \\
 			Infix-Ausdruck                 & \LirstInline{rush}{1 + n; 5 ** 2}                        \\
 			Präfix-Ausdruck                & \LirstInline{rush}{!false; -n}                    \pause \\
+			Pointer                        & \Verb[commandchars=\\\{\}]{\textcolor[HTML]{a626a4}{let} \textcolor[HTML]{383a42}{b} \textcolor[HTML]{383a42}{=} \textcolor[HTML]{383a42}{&}\textcolor[HTML]{383a42}{a}\textcolor[HTML]{818387}{;} \textcolor[HTML]{383a42}{*}\textcolor[HTML]{383a42}{b}} \pause               \\
 			Typumwandlung                  & \LirstInline{rush}{42 as float}                          \\
 		\end{tabular}
 	\end{table}
@@ -315,7 +317,7 @@
 		\\
 		--- \\
 		\\
-		- **keine** Sequenzen wie z.B. Strings \\
+		- anzumerken: **keine** Sequenzen wie z.B. Strings \\
 	}
 
 	\begin{table}[h]
