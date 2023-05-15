@@ -2,7 +2,7 @@
 \pdfpcnote{
 	@Mik \\
 	\\
-	- Nachdem die Syntax analysiert wurde muss allerdings auch noch der **Inhalt** des Programmes betrachtet werden
+	- es muss noch der **Inhalt** des Programmes betrachtet werden
 }
 \section{Semantische Analyse}
 
@@ -10,7 +10,7 @@
 	\pdfpcnote{
 		@Mik \\
 		\\
-		- Zeitlich findet die semantische Analyse nach der Syntaxanalyse statt \\
+		- Zeitlich: nach der Syntaxanalyse \\
 	}
 	\begin{figure}[h]
 		\begin{adjustbox}{max totalsize={\textwidth}{!},center}
@@ -31,9 +31,9 @@
 	\pdfpcnote{
 		@Mik \\
 		\\
-		- Hier werden die semantischen Eigenschaften des Programmes validiert \\
-		- Das heisst, der Inhalt des Programmes wird betrachtet und auf Fehler untersucht \\
-		- Meistens werden die Regeln in einer natuerlichen Sprache definiert, da es noch kein gutes Regelsystem fuer diese Aufgabe gibt \\
+		- validierung der semantischen Eigenschaften \\
+		- Das heisst: Inhalt des Programmes wird auf Fehler untersucht \\
+		- Regeln werden in einer natuerlichen Sprache definiert \\
 	}
 	\begin{itemize}
 		\item Validiert die semantischen Eigenschaften
@@ -45,14 +45,14 @@
 	\pdfpcnote{
 		@Mik \\
 		\\
-		- Die Anforderungen an die Semantische Analyse fuer rush sind... \\
+		- Anforderungen fuer rush sind... \\
 		\\
 		--- \\
 		\\
-		1. Die Unterscheidung zwischen validen und invaliden Programmen \\
-		2. Das Liefern von hilfreichen Warnungen und Informationen \\
-		3. Das Hinzufuegen von Typinformationen zum Syntaxbaum \\
-		4. Die Durchfuehrung von trivialen Optimierungen der Programmstruktur \\
+		1. Unterscheidung zwischen validen und invaliden Programmen \\
+		2. Liefern von Warnungen und Informationen \\
+		3. Hinzufuegen von Typinformationen zum Syntaxbaum \\
+		4. triviale Optimierungen der Programmstruktur \\
 	}
 	\begin{itemize}
 		\item<1-> Unterscheidung zwischen validen und invaliden Programmen
@@ -66,21 +66,16 @@
 	\pdfpcnote{
 		@Mik \\
 		\\
-		Nun betrachten Wir einige Beispiele, die die Semantikregeln von rush verdeutlichen \\
+		- Syntax fehlerfrei; Programm enthaelt einen Semantikfehler \\
 		\\
 		--- \\
 		\\
-		- Hier ist ein rush-Beispielprogramm dargestellt \\
-		- Die Syntax des Programmes ist fehlerfrei \\
-		- Allerdings enthaelt das Programm einen Semantikfehler \\
+		- **num** ist eine Fliesskommazahl \\
+		- Addition zwischen Fliesskommazahl und Ganzzahl \\
 		\\
 		--- \\
 		\\
-		- Die Variable **num** ist eine Fliesskommazahl \\
-		- Der Nutzer versucht, eine Addition zwischen einer Fliesskommazahl und einer Ganzzahl durchzufuehren \\
-		\\
-		--- \\
-		\\
+        - Typkonflikt
 		- Der von rush generierte Fehler ist unten abgebildet \\
 	}
 
@@ -97,25 +92,17 @@
 	\pdfpcnote{
 		@Mik \\
 		\\
-		- Hier ist ein weiteres Programm abgebildet \\
-		- Es ist jedoch in Hinblick auf die Syntax und die Semantik fehlerfrei \\
-		- Dennoch findet die semanische Analyse von rush einige Maengel in der Programmstruktur \\
+		- **x** ist definiert, aber nicht verwendet. \\
+		- **Warnung**, da Speicher verschwendet wird \\
 		\\
 		--- \\
 		\\
-		- Die Variable **x** ist definiert, aber nicht verwendet. \\
-		- Dies erzeugt in diesem Fall eine **Warnung**, da Speicher verschwendet wird \\
+		- **y** wird zwar verwendet, aber ihr Wert aendert sich nie \\
+		- durch **mut** veraenderbar definiert; erzeugt Information \\
 		\\
 		--- \\
 		\\
-		- Die Variable **y** wird zwar verwendet, aber ihr Wert aendert sich nie \\
-		- Sie ist aber mittels des **mut** Keywoards als veraenderbar definiert \\
-		- Dies erzeugt hier eine Information \\
-		\\
-		--- \\
-		\\
-		- Alle Meldungen (sowohl fuer Fehler, als auch Warnungen) enthalten den Ort der Fehlerquelle oder Warnung \\
-		- Somit sind diese einfach zu lesen und Hilfreich waehrend der Entwicklung \\
+		- Meldungen enthalten Quell Ort; sehr hilfreich \\
 	}
 
 	\begin{minipage}{.5\textwidth}
@@ -131,20 +118,17 @@
 	\pdfpcnote{
 		@Mik \\
 		\\
-		- Wie bereits erwaehnt bestehen die Aufgaben der Semantischen Analyse nicht nur aus der Ueberpruefung, sondern auch aus der Veraenderung des Syntaxbaumes \\
-		- Hier sind 2 Syntaxbaueme des Programmes **1 + 42 - n** dargestellt \\
-		- Der linke ist vom Parser generiert \\
-		- Der rechte entsteht nach der semantischen Analyse \\
+		- 2 Syntaxbaueme fuer **1 + 42 - n** \\
+		- Links: Parser | Rechts: Semantische Analyse 
 		\\
 		--- \\
 		\\
-		- Wie bereits angesprochen werden Typinformationen zum Syntaxbaum hinzugefuegt \\
-		- Hier ist dies auf der rechten Seite zu erkennen \\
+		- Hinzufuegen von Typinformationen zum Syntaxbaum \\
 		\\
 		---\\
 		\\
-		- Zusaetzlich wird der Ausdruck **1 + 42** direkt zu **43** umgewandelt \\
-		- Dies erspart somit das Berechnen des Wertes waehrend der Laufzeit, wodurch das Programm etwas schneller und kleiner wird \\
+        - **1 + 42** wird direkt zu **43** umgewandelt; **trivial** \\
+        - Erspart Berechnen waehrend Laufzeit; **schneller, kleiner** \\
 	}
 	\begin{figure}[h]
 		\begin{adjustbox}{max totalsize={\textwidth}{!},center}

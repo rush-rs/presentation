@@ -5,16 +5,11 @@
 	\pdfpcnote{
 		@Mik \\
 		\\
-		- **RISC** steht fuer **R**educed **I**nstruction **Set** **C**omputer, da es eher wenige Befehlscodes besitzt \\
-		- Die Architektur entstand im Ramen eines Forschungsprojektes der UC Berkeley \\
-		- Die Architektur versucht, die Probleme anderer Architekturen zu loesen \\
-		- Kernwerte sind hierbei: **Simplizitaet und Erweiterbarkeit** \\
-		- Heutzutage wird die Organisation durch... \\
-            - Google \\
-            - Microsoft \\
-            - Samsung \\
-            - und IBM \\
-        - ...unterstuetzt \\
+		1. **RISC** -> **R**educed **I**nstruction **Set** **C**omputer (wenige Befehlscodes) \\
+		2. Forschungsprojekt der UC Berkeley \\
+		3. Loesen der Probleme anderer Architekturen \\
+		4. Kernwerte sind: **Simplizitaet und Erweiterbarkeit** \\
+		5. Google, Microsoft, Samsung, IMB \\
 	}
 
 	\begin{itemize}
@@ -27,15 +22,14 @@
 \end{frame}
 
 \begin{frame}{Beispiel}
-    \pdfpcnote{
-        @Mik \\
-        \\
-        - Hier ist ein Teil der Ausgabe des Fibonaccibeispiels dargestellt \\
-        - Dieser Compiler generiert Assembly Code fuehr die RISC-V Architektur \\
-        - Hierbei muessen alle Eigenschaften der Architektur, wie Register und Speicher, beachtet werden \\
-        - Besonders ist, selbst die Einfachsten Operationen, wie **Funktionsaufrufe** benoetigen hier zahlreiche Anweisungen \\
-        - Bei WebAssembly und LLVM konnte einfach eine **call-Anweisung** verwendet werden, das geht hier leider nicht mehr \\
-    }
+	\pdfpcnote{
+		@Mik \\
+		\\
+		- Compiler generiert Assembly \\
+		- Alle Eigenschaften muessen beruecksichtigt werden \\
+		- Selbst einfache Operationen sind komplex (**Prologue**) \\
+		- LLVM **call-Anweisung**, das geht hier leider nicht mehr \\
+	}
 	\begin{minipage}{0.4\textwidth}
 		\vspace{.5cm}
 		\Lirsting[float=H, fancyvrb={frame=none, fontsize=\small}]{deps/paper/listings/fib.rush}
@@ -49,36 +43,41 @@
 	\end{minipage}
 \end{frame}
 
-\begin{frame}{Fazit zu \riscv}
-    \pdfpcnote{
-        @Mik \\
-        \\
-        - Waehrend der Entwicklung dieses Compilers haben sich folgende Aspekte als vorteilhaft herausgestellt: \\
-            - Die Architektur ist sehr neu und modern \\
-            - Sie ist komplett open-source und gemeinschaftlich verwaltet \\
-            - Zudem ist die Architektur sehr uebersichtlich und simel \\
-            - Es gibt zudem sehr gute und uebersichtliche offizielle Dokumentation \\
-        \\
-        --- \\
-        \\
-        - Allerdings haben sich folgende Aspekte als Nachteilhaft herausgestellt: \\
-            - Die geringe Verbreitung der Architektur erschwert eigene Google-Anfragen \\
-            - Einige Operationen, wie z.B. **Funktionsaufrufe** sind aufwendiger \\
-            - Zudem ist man beim Ausfuehren und Debugging auf einen Emulator, in unserem Fall **QEMU** angewiesen \\
-        \\
-        --- \\
-        \\
-        - Dennoch habe ich die Arbeit mit der Architektur als sehr angenehm und zukunftssicher empfunden \\
-    }
-	\begin{table}[h]
-		\rowcolors{2}{gray!15}{}
-		\begin{tabularx}{0.95\textwidth}{L|L}
-			\cellcolor{green!20} Vorteile                       & \cellcolor{red!20} Nachteile        \\
-			\hline
-			Sehr neu und modern                                 & Geringe Verbreitung                 \\
-			Komplett open-source und gemeinschaftlich verwaltet & Weniger Online-Ressourcen           \\
-			Sehr übersichtliche und simple Architektur          & Einige Operationen sind aufwendiger \\
-            Sehr gute und übersichtliche Dokumentation          & Abhaengigkeit von einem Emulator (QEMU)  \\
-		\end{tabularx}
-	\end{table}
+\begin{frame}{Vorteile}
+	\pdfpcnote{
+		@Mik \\
+		\\
+		- Waehrend der Entwicklung dieses Compilers haben sich folgende Aspekte als vorteilhaft herausgestellt: \\
+		- Die Architektur ist sehr neu und modern \\
+		- Sie ist komplett open-source und gemeinschaftlich verwaltet \\
+		- Zudem ist die Architektur sehr uebersichtlich und simel \\
+		- Es gibt zudem sehr gute und uebersichtliche offizielle Dokumentation \\
+	}
+
+	\begin{itemize}
+		\item<1-> Sehr neu und modern
+		\item<2-> Komplett open-source und gemeinschaftlich verwaltet
+		\item<3-> Sehr übersichtliche und simple Architektur
+		\item<4-> Sehr gute und übersichtliche Dokumentation             \end{itemize}
+\end{frame}
+
+\begin{frame}{Nachteile}
+	\pdfpcnote{
+		@Mik \\
+		\\
+		- Geringer Verbreitung -> schwierige Google Suche \\
+		- Operationen, wie z.B. **Funktionsaufrufe**, sind aufwendiger \\
+        - Ausfuehren und Debugging; Abhaengig von einem Emulator (QEMU) \\
+		\\
+		--- \\
+		\\
+		- Dennoch habe ich die Arbeit mit der Architektur als sehr angenehm und zukunftssicher empfunden \\
+	}
+
+	\begin{itemize}
+		\item<1-> Geringe Verbreitung
+		\item<2-> Weniger Online-Ressourcen
+		\item<3-> Einige Operationen sind aufwendiger
+		\item<4-> Abhängigkeit von einem Emulator (QEMU)
+	\end{itemize}
 \end{frame}

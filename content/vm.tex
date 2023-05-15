@@ -1,8 +1,9 @@
 % LTeX: language=de-DE
+
 \pdfpcnote{
 	@Mik \\
 	\\
-	- Zusaetzlich zum Tree-walking Interpreter haben wir für rush auch noch eine **Virtuelle Maschine** implementiert \\
+	- Zusaetzlich: wir haben eine **Virtuelle Maschine** implementiert \\
 }
 \section{Virtuelle Maschine}
 
@@ -10,7 +11,7 @@
 	\pdfpcnote{
 		@Mik \\
 		\\
-		- Wichtig ist, hierbei handelt es sich um das erste Projekt, welches **Code-Erzeugung**, das heisst **einen Compiler** benoetigt \\
+		- Wichtig: erste Projekt, welches **Code-Erzeugung**; **einen Compiler** benoetigt \\
 	}
 	\begin{figure}[h]
 		\begin{adjustbox}{max totalsize={\textwidth}{!},center}
@@ -31,16 +32,14 @@
 	\pdfpcnote{
 		@Mik \\
 		\\
-		- Aber ist eine Virtuelle Maschine nicht ein Programm, was einen echten Computer simuliert? \\
-		- Das heisst, es werden auch Geraete wie \\
+		- Simuliert eine VM nicht einen ganzen Computer? \\
 		- das Display \\
 		- die Lautsprecher \\
 		- und die Festplatte \\
-		- simuliert. \\
 		\\
 		--- \\
 		\\
-		- In diesem Kontext ist eine VM **eine Software, die wie die CPU eines Rechners funktioniert** \\
+		- Hier: **Software, die wie die CPU eines Rechners funktioniert** \\
 
 	}
 	\begin{itemize}
@@ -59,15 +58,14 @@
 	\pdfpcnote{
 		@Mik \\
 		\\
-		- Hier ist der Ablauf aehnlich wie der des Compilers \\
-		- Zuerst wandelt der Compiler das Programm in ein anderes Format um, welches die VM versteht \\
-		- Diese fuehrt dann anschliessend das Ausgabeprogramm aus \\
-		- Somit funktioniert die VM wie eine CPU mit einer eigenen Architektur \\
+		- Hier: Ablauf aehnelt dem des Compilers \\
+		- Zuerst: Umwandlung in ein Format, welches die VM versteht \\
+		- Diese fuehrt dieses dann aus \\
 		\\
 		--- \\
 		\\
-		- Dies wirkt von Aussen allerdings wie ein Schritt, weshalb wir die VM als Interpreter einordnen \\
-		- Sprachen, die aehnlich funktionieren, sind zum Beispiel **Java** \\
+		- von Aussen: wie ein Schritt; Einordnung zu Interpretern\\
+		- aehnlich: **Java** \\
 	}
 
 	\hspace{.3cm}
@@ -119,9 +117,9 @@
 		\\
 		--- \\
 		\\
-		1. Hier werden auch vorher uebersetzte Programme ausgefuehrt \\
-		2. Die VM besitzt **eine selbst entwickelte Architektur**, die das Ziel des Compilers darstellt \\
-		- Diese Architektur besitzt ein **stackbasiertes Design** und einen **hohen Abstaktionsgrad** \\
+		1. Ausfuehrung vorher uebersetzter Programme\\
+		2. **eine selbst entwickelte Architektur**, die das Ziel des Compilers darstellt \\
+		- **stackbasiertes Design**, **hoher Abstaktionsgrad** \\
 	}
 	\begin{itemize}
 		\item<1-> Führt ein zuvor übersetztes Programm aus
@@ -137,13 +135,13 @@
 	\pdfpcnote{
 		@Mik \\
 		\\
-		- Im Vergleich zum Tree-walking Interpreter hat die VM 4 Felder \\
+		- Vgl. Tree-walking Interpreter: die VM hat 4 Felder \\
 		\\
 		--- \\
 		\\
-		1. Einen **stack** fuer temporaere Werte \\
-		2. Die Felder **mem** und **mem-ptr** zur Speicherung von Variablen \\
-		3. Einen **call-stack**, also einen Aufrufstapel, der mehrere **Befehlszaehler** und **Funktionszaehler** verwaltet \\
+		1. **stack** fuer temporaere Werte \\
+		2. **mem** und **mem-ptr** zur Speicherung von Variablen \\
+		3. **call-stack** (also Aufrufstapel): verwaltet mehrere **Befehlszaehler** und **Funktionszaehler** \\
 	}
 	\begin{description}
 		\item<1->[stack] Für temporäre Werte
@@ -157,18 +155,13 @@
 	\pdfpcnote{
 		@Mik \\
 		\\
-		- Ein Teil der Architektur der VM ist die Struktur ihrer Programme... \\
-		\\
-		--- \\
-		\\
-		- Die Programme sind in Funktionen aufgeteilt \\
-		- Diese haben keinen Namen aber eine numerische Identifizierung \\
-		- Jede Funktion enthaehlt mehrere Anweisungen \\
-		-  Jede Anweisung ist wie folgt aufgebaut: \\
+		- Die Programme der VM sind in Funktionen aufgeteilt \\
+            - keinen Namen aber numerische Identifizierung \\
+            - Jede Funktion enthaehlt mehrere Anweisungen \\
 		- Als Beispiel betrachten wir die Anweisung **call 2** \\
-		- Der Befehlscode, also **call** \\
-		- Und ein optionaler Operand, hier die **2** \\
-		- Nach dem neusten Stand der Entwicklung besitzt die VM gerade einmal ca. 30 verschiedene Befehlscodes \\
+            - Der Befehlscode, also **call** \\
+            - Und ein optionaler Operand, hier die **2** \\
+		- gerade einmal ca. 30 verschiedene Befehlscodes \\
 	}
 	\begin{itemize}
 		\item<1-> Unterteilung in Funktionen
@@ -190,16 +183,11 @@
 	\pdfpcnote{
 		@Mik \\
 		\\
-		- Nun betrachten Wir erneut das bekannte Fibonaccibeispiel \\
-		- Die rechte Seite stellt hier die Ausgabe des VM-Compilers dar \\
-		- Hier lassen sich die verschiedenen Funktionen erkennen \\
-		- Jede Funktion enthaehlt verschiedene Anweisungen, wie **call 2** zum Beispiel \\
+		- verschiedene Funktionen erkennbar (**Pointer**) \\
 		\\
 		--- \\
 		\\
-		- Hier wird die Anweisung **call 2** an 2 Stellen verwendet: \\
-		- In Zeile 7 zum erstmaligen Aufrufen \\
-		- Und in Zeile 29 zum rekursiven Aufrufen der Funktion \\
+        - **call 2** wird an 2 Stellen verwendet: (7 und 29) \\
 		- Wichtig ist: beim Abarbeiten der Anweisung springt die VM nur zur Anweisung in Zeile 10\\
 		- Das heisst: es ist keine erneute Baumtraversierung notwendig \\
 	}
@@ -219,12 +207,12 @@
 		@Mik \\
 		\\
 		- Nun betrachten Wir, wie die VM dieses Programm ausfuehrt \\
-		- Es ist direkt auffaellig, dass man nicht erkennt, das ein Compiler das Programm erst umgewandelt hat \\
+		- Man erkennt den Compiler nicht \\
 		\\
 		--- \\
 		\\
-		- Jeder Schritt stellt hier die Abarbeitung einer Anweisung dar \\
-		- Die Informationen auf dem Bildschirm stellen die Felder der VM dar, also den Stack oder die gespeicherten Variablen \\
+		- Jeder Schritt: Abarbeitung einer Anweisung \\
+		- Informationen: Felder der VM (**Stack oder die gespeicherten Variablen**) \\
 	}
 	\begin{figure}[H]
 		\href{run:assets/01_rush_presentation_vm.mkv}{
@@ -234,22 +222,22 @@
 \end{frame}
 
 \begin{frame}{VM: Fazit}
-    \pdfpcnote{
-        @Mik \\
-        \\
-        1. Durch  den zuvor erwaehnten Aufbau der VM kann Sie Programme ungefaehr **2.7** mal schneller als der Tree-walking Interpreter ausfuehren \\
-        2. Waehrend des Entwurfs der VM hat sich die Implementierung des Compilers als einfach herausgestellt \\
-            - Besonders durch die Stack-basierte Architektur \\
-            - Den hohen Abstraktionsgrad der Architektur \\
-            - und die gleichzeitige Entwicklung der VM und ihres Compilers \\
-    }
+	\pdfpcnote{
+		@Mik \\
+		\\
+		1. Durch  den Aufbau: die VM kann Programme ca. **2.7** mal schneller ausfuehren \\
+		2. Implementierung vom Compiler hat sich als einfach herausgestellt \\
+		- Stack-basierte Architektur \\
+		- hoher Abstraktionsgrad der Architektur \\
+		- gleichzeitige Entwicklung der VM und ihres Compilers \\
+	}
 	\begin{itemize}
 		\item<1-> Ca. 2,7 mal schneller als der Tree-walking Interpreter
 		\item<2-> Einfache Implementierung des Compilers
 			\begin{itemize}
 				\item<2-> Stack-basierte Architektur
-				\item<2-> Gleichzeitige Entwicklung von VM und Compiler (\cemph{Feedbackschleife})
 				\item<2-> Hoher Abstraktionsgrad
+				\item<2-> Gleichzeitige Entwicklung von VM und Compiler (\cemph{Feedbackschleife})
 			\end{itemize}
 	\end{itemize}
 \end{frame}

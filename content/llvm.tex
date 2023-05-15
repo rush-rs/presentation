@@ -1,125 +1,131 @@
 % LTeX: language=de-DE
 % chktex-file -2
 \section{Kompilierung zu LLVM}
+
 \begin{frame}{Was ist LLVM?}
-	\pdfpcnote{
-		@Mik \\
-		\\
-		1. Startete als Forschungsprojekt \\
-		2. Wird dafuer verwendet, Code aus einer Zwischendarstellung, auch **IR** genannt, zu erzeugen \\
-		3. Die IR kann mittels oeffentlichen APIs erzeugt werden \\
-		4. Das Framework ist bekannt fuehr seine agressiven Optimierungsmassnahmen \\
-		5. Auch die Programmierspachen Rust und Swift nutzen LLVM \\
-		6. LLVM ist also das Backend eines Compilers \\
-	}
-	\begin{itemize}
-		\item<1-> Startete als \cemph{Forschungsprojekt}
-		\item<2-> Erzeugung von Code aus einer \cemph{Zwischendarstellung} (IR)
-		\item<3-> Aggressive \cemph{Optimierung}
-		\item<4-> Die IR kann mittels APIs erzeugt werden
-		\item<5-> Auch Rust und Swift nutzen LLVM
-			\item[\Rightarrow]<6-> Das Backend eines Compilers
-	\end{itemize}
+    \pdfpcnote{
+        @Mik \\
+        \\
+        1. Forschungsprojekt \\
+        2. Codeerzeugung aus einer Zwischendarstellung \\
+        3. Die IR kann mittels oeffentlichen APIs erzeugt werden \\
+        4. fuehr seine agressiven Optimierungsmassnahmen \\
+        5. Rust und Swift nutzen LLVM \\
+        6. => **LLVM ist also das Backend eines Compilers** \\
+    }
+    \begin{itemize}
+        \item<1-> Startete als \cemph{Forschungsprojekt}
+        \item<2-> Erzeugung von Code aus einer \cemph{Zwischendarstellung} (IR)
+        \item<3-> Aggressive \cemph{Optimierung}
+        \item<4-> Die IR kann mittels APIs erzeugt werden
+        \item<5-> Auch Rust und Swift nutzen LLVM
+            \item[\Rightarrow]<6-> Das Backend eines Compilers
+    \end{itemize}
 \end{frame}
 
 \begin{frame}{Rolle von LLVM in einem Compiler}
-	\pdfpcnote{
-		@Mik \\
-		\\
-		- Um LLVM in einen Compiler zu integrieren benoetigt man zunaechst eine Komponente, die die LLVM IR erzeugt \\
-		- Anschliessend kann LLVM die IR dann verarbeite, optimieren und zur Codeerzeugung nutzen \\
-	}
-	\begin{figure}[h]
-		\begin{adjustbox}{max totalsize={\textwidth}{!},center}
-			\begin{tikzpicture}[node distance=3mm and 1cm, inner sep=3mm]
-				\node (syntactic_analysis_text) [inner sep=0] {Syntaxanalyse};
-				\node (lexical_analysis) [rec, below=of syntactic_analysis_text] {Lexikalische Analyse};
-				\node (syntactic_analysis) [rec, fit={(syntactic_analysis_text) (lexical_analysis)}] {};
+    \pdfpcnote{
+        @Mik \\
+        \\
+        - Komponente, die die LLVM IR erzeugt \\
+        - LLVM verarbeitet dann diese IR\\
+        1. Pruefen
+        2. Optimieren
+        3. Uebersetzen
+    }
+    \begin{figure}[h]
+        \begin{adjustbox}{max totalsize={\textwidth}{!},center}
+            \begin{tikzpicture}[node distance=3mm and 1cm, inner sep=3mm]
+                \node (syntactic_analysis_text) [inner sep=0] {Syntaxanalyse};
+                \node (lexical_analysis) [rec, below=of syntactic_analysis_text] {Lexikalische Analyse};
+                \node (syntactic_analysis) [rec, fit={(syntactic_analysis_text) (lexical_analysis)}] {};
 
-				\node (semantic_analysis) [rec, align=center, right=of syntactic_analysis] {Semantische\\Analyse};
-				\draw [arrow] (syntactic_analysis) -- (semantic_analysis);
+                \node (semantic_analysis) [rec, align=center, right=of syntactic_analysis] {Semantische\\Analyse};
+                \draw [arrow] (syntactic_analysis) -- (semantic_analysis);
 
-				\node (ir_generation) [rec, align=center, fill=mLightBrown!25, right=of semantic_analysis] {LLVM IR\\Generation};
-				\draw [arrow] (semantic_analysis) -- (ir_generation);
+                \node (ir_generation) [rec, align=center, fill=mLightBrown!25, right=of semantic_analysis] {LLVM IR\\Generation};
+                \draw [arrow] (semantic_analysis) -- (ir_generation);
 
-				\node (llvm) [rec, align=center, fill=mLightBrown!25, right=of ir_generation] {LLVM\\Backend};
-				\draw [arrow] (ir_generation) -- (llvm);
-			\end{tikzpicture}
-		\end{adjustbox}
-	\end{figure}
+                \node (llvm) [rec, align=center, fill=mLightBrown!25, right=of ir_generation] {LLVM\\Backend};
+                \draw [arrow] (ir_generation) -- (llvm);
+            \end{tikzpicture}
+        \end{adjustbox}
+    \end{figure}
 \end{frame}
 
 \begin{frame}{Der rush LLVM Compiler}
-	\pdfpcnote{
-		@Mik \\
-		\\
-		- Diese Konzepte wurden auch auf den rush LLVM Compiler uebertragen \\
-		--- \\
-		\\
-		- Der rush Compiler erzeugt LLVM IR \\
-		- Da rush in Rust geschrieben ist nutzen wir eine Rust library namens **Inkwell**, um LLVM IR zu erzeugen \\
-	}
-	\begin{itemize}
-		\item Rust library names \cemph{Inkwell}
-		\item Der Compiler erzeugt LLVM IR
-	\end{itemize}
+    \pdfpcnote{
+        @Mik \\
+        \\
+        - Diese Konzepte wurden auch auf den rush LLVM Compiler uebertragen \\
+        - Der rush Compiler erzeugt LLVM IR \\
+        - Rust library namens **Inkwell**, um LLVM IR zu erzeugen \\
+    }
+    \begin{itemize}
+        \item Rust library names \cemph{Inkwell}
+        \item Der Compiler erzeugt LLVM IR
+    \end{itemize}
 \end{frame}
 
 \begin{frame}{Beispiel Ein-/Ausgabe}
-	\pdfpcnote{
-		@Mik \\
-		\\
-		- Nun betrachten wir erneut das Fibonaccibeispiel \\
-		- Die rechte Seite Zeigt die LLVM IR, die der rush Compiler generiert hat \\
-		\\
-		--- \
-		\\
-		- Es ist zu erkennen, dass die IR einige Konstrukte mit hohem Abstraktionsgrad bereitstellt... \\
-		- Wie zum Beispiel das Prinzip von Funktionen oder die **call** Anweisung \\
-	}
-	\begin{minipage}{0.45\textwidth}
-		\Lirsting[float=H, fancyvrb={frame=none, fontsize=\small}]{deps/paper/listings/fib.rush}
-		\centering
-		\Larrow{Ausgabe}
-	\end{minipage}
-	\hfill
-	\begin{minipage}{0.5\textwidth}
-		\Lirsting[float=H, fancyvrb={frame=none, fontsize=\scriptsize}]{listings/fib.ll}
-	\end{minipage}
+    \pdfpcnote{
+        @Mik \\
+        \\
+        - Nun betrachten wir erneut das Fibonaccibeispiel \\
+        - Rechts: LLVM IR, die der rush Compiler generiert hat \\
+        \\
+        --- \
+        \\
+        - einige Konstrukte mit hohem Abstraktionsgrad \\
+        - die **call** Anweisung \\
+        - If-Konstrukte sind allerdings schwieriger \\
+    }
+    \begin{minipage}{0.45\textwidth}
+        \Lirsting[float=H, fancyvrb={frame=none, fontsize=\small}]{deps/paper/listings/fib.rush}
+        \centering
+        \Larrow{Ausgabe}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.5\textwidth}
+        \Lirsting[float=H, fancyvrb={frame=none, fontsize=\scriptsize}]{listings/fib.ll}
+    \end{minipage}
 \end{frame}
 
-\begin{frame}{Fazit}
-	\pdfpcnote{
-		@Mik \\
-		\\
-		- Waehrend der Entwicklung dieses Compilers haben sich unter anderem... \\
-            - Der hohe Abstraktionsgrad \\
-            - die Unabhaenhigeit von der Zielmaschine \\
-            - und die aggressiven Optimierungsmassnahmen \\
-            - ...als vorteilhaft dargestellt \\
-        - Letzere fuehren dazu, dass ein x64 Programm ca 1.7 mal schneller als eines von einem nicht-optimierenden Compiler ausgefuehrt wird \\
-		\\
-		--- \\
-		\\
-		- Allerdings haben sich auch einige Nachteile herrausgestellt: \\
-            - Die Installation der LLVM libraries ist sehr aufwendig \\
-            - Zudem ist der fertige Compiler sehr gross \\
-            - Die Inkwell library war sehr schlecht dokumentiert, weshalb wir den Quelltext der Library betrachten mussten \\
-            - Zusaetzlich ist man als Rust Entwickler abhaengig von einer C++ Codebase \\
+\begin{frame}{Vorteile}
+    \pdfpcnote{
+        @Mik \\
+        \\
+        - Der hohe Abstraktionsgrad \\
+        - die Unabhaenhigeit von der Zielmaschine \\
+        - und die aggressiven Optimierungsmassnahmen \\
+        - x64 Programm 1.7 mal schneller als nicht-optimiert \\
+    }
+
+    \begin{itemize}
+        \item<1->  Hoher Abstraktionsgrad
+        \item<2-> Unabhängigkeit von der Zielmaschine
+        \item<3-> Aggressive Optimierungsmaßnahmen
+        \item<4-> Ausgabeprogramm ca. 1,7 mal schneller (vgl. x64 Compiler)
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Nachteile}
+    \pdfpcnote{
+        @Mik \\
+        \\
+        - Installation aufwendig \\
+        - der fertige Compiler sehr gross \\
+        - Inkwell schlecht dokumentiert \\
+        - Abhaengigkeit von einer C++ Codebase \\
         \\
         --- \\
         \\
-        - **Dennoch wuerden wir, wenn wir einen komplexeren Compiler entwerfen wuerden, LLVM in Betracht ziehen, da es sehr weit verbreitet ist \\
-	}
-	\begin{table}[h]
-		\rowcolors{2}{gray!15}{}
-		\begin{tabularx}{0.95\textwidth}{L|L}
-			\cellcolor{green!20} Vorteile                             & \cellcolor{red!20} Nachteile               \\
-			\hline
-			Hoher Abstraktionsgrad                                    & Aufwendige Installation der LLVM Libraries \\
-			Unabhängigkeit von der Zielmaschine                       & Signifikante Größe des Compilers           \\
-			Aggressive Optimierungsmaßnahmen                          & Unvollständige Dokumentation von Inkwell   \\
-			Ausgabeprogramm ca. 1,7 mal schneller (vgl. x64 Compiler) & Abhängigkeit von einer C++ Codebase        \\
-		\end{tabularx}
-	\end{table}
+        - **Wir wuerden LLVM nochmal verwenden** \\
+    }
+    \begin{itemize}
+        \item<1-> Aufwendige Installation der LLVM libraries
+        \item<2-> Signifikante Größe des Compilers
+        \item<3-> Unvollständige Dokumentation von Inkwell
+            \item<4-> Abhängigkeit von einer C++
+    \end{itemize}
 \end{frame}
