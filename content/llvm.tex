@@ -16,9 +16,9 @@
     \begin{itemize}
         \item<1-> Startete als \cemph{Forschungsprojekt}
         \item<2-> Erzeugung von Code aus einer \cemph{Zwischendarstellung} (IR)
+        \item<2-> Die IR kann mittels APIs erzeugt werden
         \item<3-> Aggressive \cemph{Optimierung}
-        \item<4-> Die IR kann mittels APIs erzeugt werden
-        \item<5-> Auch Rust und Swift nutzen LLVM
+        \item<4-> Auch Rust und Swift nutzen LLVM
             \item[\Rightarrow]<6-> Das Backend eines Compilers
     \end{itemize}
 \end{frame}
@@ -95,10 +95,10 @@
     \pdfpcnote{
         @Mik \\
         \\
-        - Der hohe Abstraktionsgrad \\
-        - die Unabhaenhigeit von der Zielmaschine \\
-        - und die aggressiven Optimierungsmassnahmen \\
-        - x64 Programm 1.7 mal schneller als nicht-optimiert \\
+        1. Der hohe Abstraktionsgrad \\
+        2. die Unabhaenhigeit von der Zielmaschine \\
+        3. und die aggressiven Optimierungsmassnahmen \\
+        4. x64 Programm 1.7 mal schneller als nicht-optimiert \\
     }
 
     \begin{itemize}
@@ -113,10 +113,10 @@
     \pdfpcnote{
         @Mik \\
         \\
-        - Installation aufwendig \\
-        - der fertige Compiler sehr gross \\
-        - Inkwell schlecht dokumentiert \\
-        - Abhaengigkeit von einer C++ Codebase \\
+        1. Installation aufwendig \\
+        2. der fertige Compiler sehr gross \\
+        3. Inkwell schlecht dokumentiert \\
+        4. Abhaengigkeit von einer C++ Codebase \\
         \\
         --- \\
         \\
@@ -126,6 +126,6 @@
         \item<1-> Aufwendige Installation der LLVM libraries
         \item<2-> Signifikante Größe des Compilers
         \item<3-> Unvollständige Dokumentation von Inkwell
-            \item<4-> Abhängigkeit von einer C++
+        \item<4-> Abhängigkeit von einer C++ Codebase
     \end{itemize}
 \end{frame}

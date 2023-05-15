@@ -117,9 +117,9 @@
 		\\
 		--- \\
 		\\
-		1. Ausfuehrung vorher uebersetzter Programme\\
-		2. **eine selbst entwickelte Architektur**, die das Ziel des Compilers darstellt \\
-		- **stackbasiertes Design**, **hoher Abstaktionsgrad** \\
+		- 1 Ausfuehrung vorher uebersetzter Programme\\
+		- 2 **eine selbst entwickelte Architektur**, die das Ziel des Compilers darstellt \\
+		- **stackbasiertes Design**, **hoher Abstaktionsgrad**
 	}
 	\begin{itemize}
 		\item<1-> Führt ein zuvor übersetztes Programm aus
@@ -155,13 +155,13 @@
 	\pdfpcnote{
 		@Mik \\
 		\\
-		- Die Programme der VM sind in Funktionen aufgeteilt \\
-            - keinen Namen aber numerische Identifizierung \\
-            - Jede Funktion enthaehlt mehrere Anweisungen \\
-		- Als Beispiel betrachten wir die Anweisung **call 2** \\
-            - Der Befehlscode, also **call** \\
-            - Und ein optionaler Operand, hier die **2** \\
-		- gerade einmal ca. 30 verschiedene Befehlscodes \\
+		- 1 Die Programme der VM sind in Funktionen aufgeteilt \\
+		- keinen Namen aber numerische Identifizierung \\
+		- Jede Funktion enthaehlt mehrere Anweisungen \\
+		- 2 Als Beispiel betrachten wir die Anweisung **call 2** \\
+		- Der Befehlscode, also **call** \\
+		- Und ein optionaler Operand, hier die **2** \\
+		- 3 gerade einmal ca. 30 verschiedene Befehlscodes \\
 	}
 	\begin{itemize}
 		\item<1-> Unterteilung in Funktionen
@@ -187,7 +187,7 @@
 		\\
 		--- \\
 		\\
-        - **call 2** wird an 2 Stellen verwendet: (7 und 29) \\
+		- **call 2** wird an 2 Stellen verwendet: (7 und 29) \\
 		- Wichtig ist: beim Abarbeiten der Anweisung springt die VM nur zur Anweisung in Zeile 10\\
 		- Das heisst: es ist keine erneute Baumtraversierung notwendig \\
 	}
@@ -215,7 +215,7 @@
 		- Informationen: Felder der VM (**Stack oder die gespeicherten Variablen**) \\
 	}
 	\begin{figure}[H]
-		\href{run:assets/01_rush_presentation_vm.mkv}{
+		\href{run:assets/01_rush_presentation_vm.mp4}{
 			\movie{\includegraphics[width=.95\textwidth]{assets/01_rush_presentation_vm.png}}{assets/01_rush_presentation_vm.mkv}
 		}
 	\end{figure}
