@@ -3,6 +3,8 @@
 
 \begin{frame}{Tree-walking Interpreter}
 	\pdfpcnote{
+		@Silas \\
+		\\
 		- Ein tree-walking Interpreter funktioniert so, dass er den analysierten Syntaxbaum _traversiert_ \\
 		- und ohne weitere Zwischenschritte die Anweisungen _interpretiert_ \\
 	}
@@ -15,6 +17,8 @@
 
 \begin{frame}{Felder des Interpreters}
 	\pdfpcnote{
+		@Silas \\
+		\\
 		- Typdefinition des Interpreters \\
 		- Aufbau sehr simpel: benoetigt nur zwei Felder \\
 		- scopes: Zuweisung von Variablennamen zu Laufzeitwerten \\
@@ -35,6 +39,8 @@
 
 \begin{frame}{Laufzeitwerte}
 	\pdfpcnote{
+		@Silas \\
+		\\
 		- Laufzeitwerte verschiedener Datentypen werden unter einem allgemeinen Typ zusammengefasst \\
 	}
 
@@ -46,6 +52,8 @@
 
 \begin{frame}{Traversierung}
 	\pdfpcnote{
+		@Silas \\
+		\\
 		- sichtbar: Syntaxbaum zu dem Ausdruck `1 + 2 * 3` \\
 		- interessant: Reihenfolge der Traversierung \\
 		- post-order \\
@@ -72,6 +80,8 @@
 
 \begin{frame}{Effizienz}
 	\pdfpcnote{
+		@Silas \\
+		\\
 		- Beispiel: das bereits gezeigte rekursive Fibonacci Programm \\
 		- Grafik rechts: Funktionsaufrufe im Interpreter zu einem Zeitpunkt waehrend der Ausfuehrung \\
 		- tiefer ist aktueller / neuer \\
