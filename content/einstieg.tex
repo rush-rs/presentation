@@ -2,12 +2,12 @@
 % LTeX: language=de-DE
 
 \begin{frame}{Einstieg \& Motivation}
-    \pdfpcnote{
-        @Mik \\ 
-        \\
-        - In speziellen Sprachen verfasst \\
-        - Vorteile eines hohen Abstraktionsgrades
-    }
+	\pdfpcnote{
+		@Mik \\
+		\\
+		- In speziellen Sprachen verfasst \\
+		- Vorteile eines hohen Abstraktionsgrades
+	}
 	\begin{itemize}
 		\item Wir schreiben Programme in speziellen Sprachen
 		\item Vorteile eines hohen Abstraktionsgrades
@@ -15,13 +15,13 @@
 \end{frame}
 
 \begin{frame}{Einstieg \& Motivation}
-    \pdfpcnote{
-       @Mik \\
-       \\
-       - Erweiterbarkeit \\
-       - Plattformunabhaengigkeit \\
-       - Geschwindigkeit \\
-    }
+	\pdfpcnote{
+		@Mik \\
+		\\
+		- Erweiterbarkeit \\
+		- Plattformunabhaengigkeit \\
+		- Geschwindigkeit \\
+	}
 	\begin{figure}[h]
 		\begin{minipage}{.32\textwidth}
 			\begin{center}
@@ -50,18 +50,18 @@
 \end{frame}
 
 \begin{frame}{Zentrales Problem}
-    \pdfpcnote{
-       @Mik \\ 
-       \\
-       - Es bleibt die Frage, **wie** Programme ausgefuehrt werden \\
-       - Dies stellt ein signifikantes Problem dar \\
-       \\
-       --- \\
-       \\
-       - Programme sollten einfach zu schreiben sein \\
-       - Die Ausfuehrung sollte auch unkompilziert sein \\
-       - **Dies ist das zentrale Problem unserer Arbeit** \\
-    }
+	\pdfpcnote{
+		@Mik \\
+		\\
+		- Es bleibt die Frage, **wie** Programme ausgefuehrt werden \\
+		- Dies stellt ein signifikantes Problem dar \\
+		\\
+		--- \\
+		\\
+		- Programme sollten einfach zu schreiben sein \\
+		- Die Ausfuehrung sollte auch unkompilziert sein \\
+		- **Dies ist das zentrale Problem unserer Arbeit** \\
+	}
 
 	\begin{minipage}{.35\textwidth}
 		\Lirsting[float=H, fancyvrb={frame=none, fontsize=\small}]{deps/paper/listings/simple.rush}
@@ -83,44 +83,44 @@
 
 	\begin{itemize}
 		\item Programme sollten \cemph{einfach} zu schreiben sein
-        \item Die Ausführung sollte jedoch auch \cemph{einfach} sein
-        \item[\Rightarrow] Zentrales Problem unserer Arbeit
+		\item Die Ausführung sollte jedoch auch \cemph{einfach} sein
+		\item[\Rightarrow] Zentrales Problem unserer Arbeit
 	\end{itemize}
 \end{frame}
 
 \begin{frame}{Methoden zur Programmausführung}
-    \pdfpcnote{
-        @Mik \\
-        \\
-        - Man unterscheidet zwischen 2 verschiedenen Vorgehensweisen \\
-        \\
-        --- \\
-        \\
-        - Interpreter \\
-        - Compiler \\
-    }
+	\pdfpcnote{
+		@Mik \\
+		\\
+		- Man unterscheidet zwischen 2 verschiedenen Vorgehensweisen \\
+		\\
+		--- \\
+		\\
+		- Interpreter \\
+		- Compiler \\
+	}
 
 	\begin{itemize}
-        \item Verschiedene Vorgehensweisen
+		\item Verschiedene Vorgehensweisen
 		\item Unterscheidung zwischen \cemph{Interpretern} und \cemph{Compilern}
 	\end{itemize}
 \end{frame}
 
 \begin{frame}{Interpreter}
-    \pdfpcnote{
-       @Mik \\
-        \\
-        - Sprachen wie Python, Javascript und PHP \\
-        \\
-        --- \\
-        \\\
-        - In diesem Beispiel: Eine Ausgabe wird generiert (*exit-code*) \\
-        \\
-        --- \\
-        \\
-        - Ein Interpreter interpretiert den Syntaxbaum direkt \\
-        - **Es ist kein zusaetzlicher Prozess notwendig** \\
-    }
+	\pdfpcnote{
+		@Mik \\
+		\\
+		- Sprachen wie Python, Javascript und PHP \\
+		\\
+		--- \\
+		\\\
+		- In diesem Beispiel: Eine Ausgabe wird generiert (*exit-code*) \\
+		\\
+		--- \\
+		\\
+		- Ein Interpreter interpretiert den Syntaxbaum direkt \\
+		- **Es ist kein zusaetzlicher Prozess notwendig** \\
+	}
 	\hfill
 	\begin{minipage}{.35\textwidth}
 		\begin{center}
@@ -150,17 +150,17 @@
 \end{frame}
 
 \begin{frame}{Compiler}
-    \pdfpcnote{
-       @Mik \\
-        \\
-        - Sprachen wie Rust, C und Go \\
-        \\
-        --- \\
-        \\
-        - Wandelt das Programm in ein anderes Format um \\
-        - Diese muss vor der Ausfuehrung stattfinden \\
-        - **Daher stellt ein Compiler einen zusaetzlicher Prozess dar** \\
-    }
+	\pdfpcnote{
+		@Mik \\
+		\\
+		- Sprachen wie Rust, C und Go \\
+		\\
+		--- \\
+		\\
+		- Wandelt das Programm in ein anderes Format um \\
+		- Diese muss vor der Ausfuehrung stattfinden \\
+		- **Daher stellt ein Compiler einen zusaetzlicher Prozess dar** \\
+	}
 	\hspace{.8cm}
 	\begin{minipage}{.35\textwidth}
 		\begin{center}
@@ -184,8 +184,22 @@
 	\begin{itemize}
 		\item Rust, C, Go, usw.
 		\item Umwandlung in ein anderes Format
-        \item Muss vor der Ausführung stattfinden
+		\item Muss vor der Ausführung stattfinden
 		\item[\Rightarrow] Zusätzlicher Prozess
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Vorgehensweise}
+	\pdfpcnote{
+		@Mik \\
+		\\
+		- Um diese Fragestellung zu untersuchen sind Wir wie folgt vorgegangen: \\
+		- Wir haben eine eigene Programmiersprache entwickelt \\
+		- Jeder von uns hat jeweils einen Interpreter und zwei Compiler fuer unsere Sprache entwickelt \\
+	}
+	\begin{itemize}
+		\item Entwicklung einer eigenen Programmiersprache
+		\item Jeder hat \cemph{einen Interpreter} und \cemph{zwei Compiler} entwickelt
 	\end{itemize}
 \end{frame}
 
