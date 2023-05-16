@@ -43,7 +43,7 @@
                 \node (semantic_analysis) [rec, align=center, right=of syntactic_analysis] {Semantische\\Analyse};
                 \draw [arrow] (syntactic_analysis) -- (semantic_analysis);
 
-                \node (ir_generation) [rec, align=center, fill=mLightBrown!25, right=of semantic_analysis] {LLVM IR\\Generation};
+                \node (ir_generation) [rec, align=center, fill=mLightBrown!25, right=of semantic_analysis] {LLVM IR\\Erzeugung};
                 \draw [arrow] (semantic_analysis) -- (ir_generation);
 
                 \node (llvm) [rec, align=center, fill=mLightBrown!25, right=of ir_generation] {LLVM\\Backend};
