@@ -57,22 +57,22 @@
 		- sichtbar: Syntaxbaum zu dem Ausdruck `1 + 2 * 3` \\
 		- interessant: Reihenfolge der Traversierung \\
 		- post-order \\
-		- weil: fuer die Multiplikation muss erst die Summe von 1 + 2 berechnet werden \\
+		- weil: fuer die Addition muss erst das Produkt von `2 * 3` berechnet werden \\
 	}
 
 	\begin{figure}[H]
 		\centering
-		\begin{tikzpicture}[level distance=1cm, sibling distance=2.2cm]
+		\begin{tikzpicture}[level distance=1cm, sibling distance=2.2cm, transform shape]
 			\node {Expression \encircle{5}}
-			child {node {Expression \encircle{3}}
-					child {node {Expression \encircle{1}}
-							child {node {\Verb|Int(1)|}}}
-					child {node {\Verb|Plus|}}
-					child {node {Expression \encircle{2}}
-							child {node {\Verb|Int(2)|}}}}
-			child {node {\Verb|Star|}}
+			child {node {Expression \encircle{1}}
+					child {node {\Verb{Int(1)}}}}
+			child {node {\Verb{Plus}}}
 			child {node {Expression \encircle{4}}
-					child {node {\Verb|Int(3)|}}};
+					child {node {Expression \encircle{2}}
+							child {node {\Verb{Int(2)}}}}
+					child {node {\Verb{Star}}}
+					child {node {Expression \encircle{3}}
+							child {node {\Verb{Int(3)}}}}};
 		\end{tikzpicture}
 		\caption{Syntaxbaum zu \enquote{\LirstInline{rush}{1 + 2 * 3}}}
 	\end{figure}
