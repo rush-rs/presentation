@@ -7,11 +7,11 @@ entry:
   %i_lt = icmp slt i64 %0, 2
   br i1 %i_lt, label %merge, label %else
 
-merge:                                            ; preds = %entry, %else
+merge:
   %if_res = phi i64 [ %i_sum3, %else ], [ %0, %entry ]
   ret i64 %if_res
 
-else:                                             ; preds = %entry
+else:
   %i_sum = add i64 %0, -2
   %ret_fib = call i64 @fib(i64 %i_sum)
   %i_sum1 = add i64 %0, -1
